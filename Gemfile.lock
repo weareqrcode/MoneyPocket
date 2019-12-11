@@ -72,6 +72,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.9.0)
     ffi (1.11.3)
+    foreman (0.86.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hirb (0.7.3)
@@ -198,6 +199,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   devise (~> 4.7, >= 4.7.1)
+  foreman (~> 0.86.0)
   hirb-unicode (~> 0.0.5)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
