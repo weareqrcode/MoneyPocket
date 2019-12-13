@@ -8,11 +8,11 @@ Rails.application.routes.draw do
       get :check
     end
   end
-  root 'invoices#index'
+  root 'transaction_items#index'
 
   # 登入後路徑 : 從user向下延伸路徑
   namespace :user do 
-    root 'trades#index'
+    root 'transaction_items#index'
     resources :transaction_items
   end
 end
