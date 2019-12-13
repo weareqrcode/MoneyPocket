@@ -1,15 +1,15 @@
-class KeepAccountsController < ApplicationController
+class TransactionItemsController < ApplicationController
 
   def index
-    @transaction_items = Transaction_item.all
+    @transactionitems = TransactionItem.all
   end
 
   def new
-    @transaction_item = Transaction_item.new
+    @transactionitem = TransactionItem.new
   end
   
   def create
-    @transaction_item = Transaction_item.new(item_params)
+    @transactionitem = TransactionItem.new(item_params)
     if @transaction_item.save
       redirect_to user_transaction_items_path, notice: '完成一筆帳目新增'
     else
@@ -24,14 +24,15 @@ class KeepAccountsController < ApplicationController
   end
 
   def update
-    if @transaction_item.update(item_params)
+    if @transactionitem.update(item_params)
       redirect_to user_transaction_items_path, notice: '完成一筆帳目更新'
     else
       render :edit
+    end
   end
 
   def destory
-    @transaction_item.destory
+    @transactionitem.destory
     redirect_to user_transaction_items_path, notice: '完成一筆帳目刪除'
   end
 
