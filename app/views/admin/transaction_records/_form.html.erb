@@ -1,0 +1,29 @@
+<% if @transactionitem.errors.any? %>
+  <div>
+    <button></button>
+    <ul>
+      <% @transactionitem.error.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% form_with([:user, @transactionitem]) do |form| %>
+  <div>
+    <%= form.label :title, '品項名稱' %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :quantity, '品項數量' %>
+    <%= form.text_field :quantity %>
+  </div>
+  <div>
+    <%= form.label :price, '品項單價' %>
+    <%= form.text_field :price %>
+  </div>
+  <div>
+    <%= form.label :total, '品項總價' %>
+    <%= form.text_field :total %>
+  </div>
+<% end %>

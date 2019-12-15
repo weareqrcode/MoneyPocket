@@ -1,4 +1,4 @@
-class TransactionItemsController < ApplicationController
+class Admin::TransactionRecordsController < Admin::BaseController
 
   def index
     @transactionitems = TransactionItem.all

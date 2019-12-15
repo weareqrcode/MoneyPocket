@@ -1,0 +1,31 @@
+<h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
+
+<%= link_to '新增帳目', new_user_transaction_item_path, class: 'btn btn-primary' %>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">消費時間</th>
+      <th scope="col">品項名稱</th>
+      <th scope="col">品項數量</th>
+      <th scope="col">品項單價</th>
+      <th scope="col">品項總價</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @transactionitems.each do |transactionitem| %>
+        <th class="row"><%= transactionitem.created_at %></th> 
+        <td><%= transactionitem.title %></td>
+        <td><%= transactionitem.quantity %></td>
+        <td><%= transactionitem.price %></td>
+        <td><%= transactionitem.total %></td>
+        <td>
+          <%= link_to '刪除', user_transaction_item_path, method: :delete %>
+          <%= link_to '編輯', edit_user_transaction_item_path(transactionitem) %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
