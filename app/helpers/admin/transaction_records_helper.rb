@@ -1,0 +1,2 @@
+module Admin::TransactionRecordsHelper
+end
