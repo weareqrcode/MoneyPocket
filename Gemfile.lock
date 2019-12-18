@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.0.6)
+      concurrent-ruby (~> 1.0)
     actioncable (6.0.1)
       actionpack (= 6.0.1)
       nio4r (~> 2.0)
@@ -104,6 +106,8 @@ GEM
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    paranoia (2.4.2)
+      activerecord (>= 4.0, < 6.1)
     pg (1.1.4)
     puma (4.3.1)
       nio4r (~> 2.0)
@@ -196,6 +200,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm (~> 5.0, >= 5.0.6)
   bootsnap (>= 1.4.2)
   byebug
   devise (~> 4.7, >= 4.7.1)
@@ -203,6 +208,7 @@ DEPENDENCIES
   hirb-unicode (~> 0.0.5)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
+  paranoia (~> 2.4, >= 2.4.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.1)

@@ -3,16 +3,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # 登入前路徑：增加一個方法"check"，讓使用者不用登入就可對發票
-  resources :transaction_items, only: [:index, :check] do
+  resources :transactions, only: [:index, :check] do
     collection do
       get :check
     end
   end
-  root 'transaction_items#index'
+  root 'transactions#index'
 
   # 登入後路徑 : 從user向下延伸路徑
   namespace :user do 
-    root 'transaction_items#index'
-    resources :transaction_items
+    root 'transactions#index'
+    resources :transactions
   end
 end
