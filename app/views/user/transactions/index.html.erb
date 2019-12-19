@@ -21,10 +21,10 @@
       <% @transactions.each do |transaction| %>
         <th class="row"><%= transaction.created_at %></th> 
         <td><%= transaction.invoice_num %></td>
-        <td><%= transactionitem.title %></td>
-        <td><%= transactionitem.quantity %></td>
-        <td><%= transactionitem.price %></td>
-        <td><%= transactionitem.total %></td>
+        <td><%= transaction.title %></td>
+        <td><%= transaction.quantity %></td>
+        <td><%= transaction.price %></td>
+        <td><%= transaction.total %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.status %></td>
         <td>
