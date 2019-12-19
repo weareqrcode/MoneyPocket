@@ -11,7 +11,7 @@ class User::TransactionsController < User::BaseController
   
   def create
     @transaction = current_user.transactions.new(transaction_params)
-    byebug
+    # byebug
     if @transaction.save
       redirect_to user_transactions_path, notice: '完成一筆帳目新增'
     else
