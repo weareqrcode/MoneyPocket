@@ -7,12 +7,9 @@ class User::TransactionsController < User::BaseController
   def new
     @transaction = Transaction.new
     @transaction.transaction_items.new
-    # @transaction.build_transactionitem
-    # 2.times { @transaction.transaction_items.build }
   end
   
   def create
-    # byebug
     @transaction = current_user.transactions.new(transaction_params)
     byebug
     if @transaction.save
