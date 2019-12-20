@@ -20,7 +20,7 @@
   </div>
   <div>
     <label>發票內容: </label>
-    <%= invoice.fields_for :trnasaction_items do |item| %>
+    <%= invoice.fields_for :transaction_items do |item| %>
     <div>
       <%= item.label :title, '品項名稱' %>
       <%= item.text_field :title %>

@@ -21,14 +21,16 @@
       <% @transactions.each do |transaction| %>
         <th class="row"><%= transaction.created_at %></th> 
         <td><%= transaction.invoice_num %></td>
-        <td><%= transactionitem.title %></td>
-        <td><%= transactionitem.quantity %></td>
-        <td><%= transactionitem.price %></td>
-        <td><%= transactionitem.total %></td>
+        <% transaction.transaction_items.each do |item| %>
+          <td><%= item.title %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.price %></td>
+          <td><%= item.total %></td>
+        <% end %>
         <td><%= transaction.amount %></td>
         <td><%= transaction.status %></td>
         <td>
-          <%= link_to '刪除', user_transaction_path, method: :delete %>
+          <%= link_to '刪除', user_transaction_path(transaction), method: :delete %>
           <%= link_to '編輯', edit_user_transaction_path(transaction) %>
         </td>
       <% end %>

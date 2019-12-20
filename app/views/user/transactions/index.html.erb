@@ -2,36 +2,40 @@
 
 <%= link_to '新增帳目', new_user_transaction_path, class: 'btn btn-primary' %>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">消費時間</th>
-      <th scope="col">發票號碼</th>
-      <th scope="col">品項名稱</th>
-      <th scope="col">品項數量</th>
-      <th scope="col">品項單價</th>
-      <th scope="col">品項總價</th>
-      <th scope="col">發票總價</th>
-      <th scope="col">對獎狀態</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">消費時間</th>
+        <th scope="col">發票號碼</th>
+        <th scope="col">品項名稱</th>
+        <th scope="col">品項數量</th>
+        <th scope="col">品項單價</th>
+        <th scope="col">品項總價</th>
+        <th scope="col">發票總價</th>
+        <th scope="col">對獎狀態</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
       <% @transactions.each do |transaction| %>
-        <th class="row"><%= transaction.created_at %></th> 
-        <td><%= transaction.invoice_num %></td>
-        <td><%= transaction.title %></td>
-        <td><%= transaction.quantity %></td>
-        <td><%= transaction.price %></td>
-        <td><%= transaction.total %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.status %></td>
-        <td>
-          <%= link_to '刪除', user_transaction_path, method: :delete %>
-          <%= link_to '編輯', edit_user_transaction_path(transaction) %>
-        </td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+        <tr>
+          <td><%= transaction.created_at %></td> 
+          <td><%= transaction.invoice_num %></td>
+          <% transaction.transaction_items.each do |item| %>
+            <td><%= item.title %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.price %></td>
+            <td><%= item.total %></td>
+          <% end %>
+          <td><%= transaction.amount %></td>
+          <td><%= transaction.status %></td>
+          <td>
+            <%= link_to '編輯', edit_user_transaction_path(transaction), class: 'btn btn-outline-danger' %>
+            <%= link_to '刪除', user_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
