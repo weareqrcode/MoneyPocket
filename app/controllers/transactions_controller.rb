@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  before_action :find_transaction, only: [:show, :edit, :update, :destroy]
 
   layout 'frontend'
 
@@ -34,12 +35,16 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def destory
-    @transaction.destory
+  def destroy
+    @transaction.destroy
     redirect_to user_transactions_path, notice: '完成一筆帳目刪除'
   end
 
   private
+
+  def find_transaction
+    @transaction = Transaction.find(params[:id])
+  end
 
   def transaction_params
     clear_params = params.require(:transactions).premit(:invoice_num, :invoice_photo, :amount, :status, :data)

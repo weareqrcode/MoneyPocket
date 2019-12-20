@@ -2,7 +2,7 @@
   <div>
     <button></button>
     <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
+      <% @transactions.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
@@ -22,6 +22,7 @@
     <label>發票內容: </label>
     <%= invoice.fields_for :transaction_items do |item| %>
     <div>
+      <%= item.hidden_field :id %>
       <%= item.label :title, '品項名稱' %>
       <%= item.text_field :title %>
     </div>
