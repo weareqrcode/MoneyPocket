@@ -9,7 +9,8 @@
     "bootstrap": "^4.4.1",
     "jQuery": "^1.7.4",
     "popper.js": "^1.16.0",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "@fortawesome/fontawesome-free": "^5.12.0"
   },
   "version": "0.1.0",
   "devDependencies": {
