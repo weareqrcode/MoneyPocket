@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>登入</h2>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, 'Email', class: 'col-sm-2 col-form-label' %><br />
+      <div class="col-sm-10">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :password, '密碼', class: 'col-sm-2 col-form-label' %><br />
+      <div class="col-sm-10 inner-addon left-addon">
+        <span class="icon is-small is-left">
+          <i class="fas fa-key"></i>
+        </span>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+
+      </div>
+    </div>
+  
+    <% if devise_mapping.rememberable? %>
+      <div class="form-group">
+        <div class="col-sm-10">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me, '記住我' %>
+        </div>
+      </div>
+    <% end %>
+  
+    <div class="actions">
+      <div class="col-sm-10">
+      <%= f.submit "登入", class: 'btn btn-outline-success' %>
+      </div>
+    </div>
+  <% end %>
+  <hr>
+  <%= render "devise/shared/links" %>
+</div>
+
