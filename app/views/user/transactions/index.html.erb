@@ -1,6 +1,8 @@
-<%= javascript_pack_tag 'datepicker' %>
+<% content_for :scripts do %>
+  <%= javascript_pack_tag 'transactions' %>
+<% end %>
 
-<%= form_with model: @transaction, method: :get, local: true, id: 'date_filter', class: '' do |date| %>
+<%= form_with model: @transaction, method: :get, local: true do |date| %>
   <%= date.label :start_date, '請輸入起始日期' %>
   <%= date.text_field :start_date, value: params[:start_date] %>
   <%= date.label :end_date, '請輸入結束日期' %>
@@ -46,8 +48,7 @@
           </td>
         <% end %>
         <% if @transactions.blank? %>
-          <tr><td colspan="10">No Orders~</td></tr>
-          <script>alert('no order')</script>
+          <tr><td colspan="10">找不到任何帳目</td></tr>
         <% end %>
       </tr>
     </tbody>
