@@ -1,0 +1,50 @@
+#point-item {
+  display: flex;
+  justify-content: center;
+  width: 960px;
+  height: 200px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  padding: 2px;
+  margin: 3px;
+  width: 12px;
+  height: 12px;
+  background-color: rgb(152, 152, 165);
+  display: inline-block;
+}
+
+.pink200 {
+  background-color: rgb(215, 76, 243);
+  filter: brightness(200%);
+}
+
+.pink175 {
+  background-color: rgb(215, 76, 243);
+  filter: brightness(175%);
+}
+
+.pink150 {
+  background-color: rgb(215, 76, 243);
+  filter: brightness(150%);
+}
+
+.pink125 {
+  background-color: rgb(215, 76, 243);
+  filter: brightness(125%);
+}
+
+.pink100 {
+  background-color: rgb(215, 76, 243);
+  filter: brightness(75%);
+}
+
+.pink50 {
+  background-color: rgb(215, 76, 243);
+  filter: brightness(50%);
+}

@@ -1,0 +1,2 @@
+module User::PointsHelper
+end

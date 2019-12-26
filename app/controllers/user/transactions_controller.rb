@@ -10,7 +10,7 @@ class User::TransactionsController < User::BaseController
     @transaction = Transaction.new
     @transaction.transaction_items.new
   end
-  
+
   def create
     @transaction = current_user.transactions.new(transaction_params)
     if @transaction.save
@@ -28,7 +28,6 @@ class User::TransactionsController < User::BaseController
 
   def update
     if @transaction.update(transaction_params)
-      # byebug
       redirect_to user_transactions_path, notice: '完成一筆帳目更新'
     else
       render :edit
@@ -38,6 +37,14 @@ class User::TransactionsController < User::BaseController
   def destroy
     @transaction.destroy
     redirect_to user_transactions_path, notice: '完成一筆帳目刪除'
+  end
+
+  def point
+    @points = Transaction.select("count(1), date(created_at) AS dates").group("dates")
+      respond_to do |format|
+        format.html { render "point" }
+        format.json { render json: @points.to_json }
+      end
   end
 
   private
