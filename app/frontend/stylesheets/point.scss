@@ -1,8 +1,8 @@
 #point-item {
   display: flex;
   justify-content: center;
-  width: 960px;
-  height: 200px;
+  align-items: center;
+  height: 300px;
 }
 
 .column {
@@ -17,6 +17,12 @@
   height: 12px;
   background-color: rgb(152, 152, 165);
   display: inline-block;
+}
+
+.color-reference{
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px;
 }
 
 .pink200 {

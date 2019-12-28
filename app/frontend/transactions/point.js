@@ -26,7 +26,7 @@ function fetchDayColors() {
 }
 
 function generateDayGrid() {
-  const range = moment.range(moment().subtract(1, "year"), moment());
+  const range = moment.range(moment().subtract(1, "year").subtract(-2,"day"), moment());
   const days = Array.from(range.by("day"));
   const daysByWeeks = R.splitEvery(7, days);
   const daysHTML = daysByWeeks.map(w => w.map(toDayDiv)).map(toWeekDiv);
