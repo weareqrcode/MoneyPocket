@@ -1,6 +1,6 @@
-<h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
+<h1 class="card-title"><i class="fas fa-user-circle"></i> 個人頁面總覽</h1>
 
-<%= link_to '新增帳目', new_user_transaction_path, class: 'btn btn-primary' %>
+<%= link_to '新增帳目', new_user_transaction_path, class: 'btn btn-outline-secondary' %>
 
 <div class="table-responsive">
   <table class="table">
@@ -31,8 +31,14 @@
           <td><%= transaction.amount %></td>
           <td><%= transaction.status %></td>
           <td>
-            <%= link_to '編輯', edit_user_transaction_path(transaction), class: 'btn btn-outline-danger' %>
-            <%= link_to '刪除', user_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
+            <%= link_to edit_user_transaction_path(transaction), class: 'btn btn-outline-success' do %>
+            <i class="fas fa-edit"></i>
+            編輯
+            <% end %>
+            <%= link_to user_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
+            <i class="fas fa-trash-alt"></i>
+            刪除
+            <% end %>
           </td>
         <% end %>
       </tr>

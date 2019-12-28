@@ -1,12 +1,7 @@
 <% if @transaction.errors.any? %>
-  <div>
-    <button></button>
-    <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <% @transaction.errors.full_messages.each do |message| %>
+    <%= message %><i class="far fa-times-circle"></i>
+  <% end %>
 <% end %>
 
 <%= form_with model: [:user, @transaction], local: true do |invoice| %>
@@ -15,7 +10,6 @@
 
     <%= invoice.label :invoice_photo, '發票截圖' %>
     <%= invoice.file_field :invoice_photo %>
-    <%# 發票圖片上傳 %>
   </div>
   <div>
     <%= invoice.label :invoice_num, '發票號碼' %>
