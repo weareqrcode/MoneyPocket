@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   layout 'frontend'
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all.with_attached_invoice_photo
     @transactionitems = TransactionItem.all
   end
 
