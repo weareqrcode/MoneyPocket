@@ -46,8 +46,6 @@ ActiveRecord::Schema.define(version: 2019_12_15_155146) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "provider"
-    t.string "uid"
     t.string "github_uid"
     t.string "github_token"
     t.string "google_uid"
