@@ -3,8 +3,8 @@
 # oauth
 google_app_id: 'YOUR APP ID'
 google_app_secret: 'YOUR APP SECRET'
-facebook_app_id: 'YOUR APP ID'
-facebook_app_secret: 'YOUR APP SECRET'
+github_app_id: 'YOUR APP ID'
+github_app_secret: 'YOUR APP SECRET'
 
 
 # pusher_app_id: "2954"
