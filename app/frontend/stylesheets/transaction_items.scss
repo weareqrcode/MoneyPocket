@@ -6,12 +6,27 @@
   border-collapse: collapse;
 }
 
+.blue-box{
+  border: 1px solid #16a1ec;
+}
+
+.btn-blue1{
+  background-color: #16a1ec;
+  border: 1px solid #16a1ec;
+  /*background-color: #0000A1;*/
+  color: #fff;
+}
 section{
   padding: 50px 0;
 }
 
 .login{
   background: #B9EDF8;
+}
+
+.input-box{
+  line-height: 100px;
+  margin: auto;
 }
 
 .intro{
