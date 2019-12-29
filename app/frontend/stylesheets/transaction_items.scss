@@ -5,3 +5,71 @@
   font-family: ariel, Microsoft JhengHei, STHeiti;
   border-collapse: collapse;
 }
+
+section{
+  padding: 50px 0;
+}
+
+.login{
+  background: #B9EDF8;
+}
+
+.intro{
+  
+}
+
+.feature{
+  
+}
+
+.feature-item{
+  display: flex;
+}
+
+.icon{
+  border-right: 1px solid #e3e3e3;
+  padding: 0 15px 10px 0;
+  margin: 0 15px 0 0;
+  font-size: 26px;
+  line-height: 36px;
+  transition: all 250ms ease-in-out 0s;
+      color: #f0b848;
+}
+
+.summary{
+  margin: 15px 0 0;
+}
+
+.action{
+  
+}
+
+.footer{
+  background: #2c2c2c;
+  border-top:1px solid #e9e9e9;
+  color: #8894a0;
+  font-size: 12px;
+  padding: 40px 0;
+  position: relative;
+}
+
+.social-icon li{
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+}
+
+.social-icon li a{
+  background: #f9f9f9;
+  border-radius: 100%;
+  color: #999;
+  font-size: 16px;
+  text-decoration: none;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  margin: 0 8px 8px 0;
+  padding-top: 8px;
+}
