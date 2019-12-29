@@ -38,17 +38,24 @@ section{
 }
 
 .feature-item{
-  display: flex;
+  /*display: flex;*/
+  text-align: center;
+}
+
+h4{
+  color: #1F6ED4;
+  margin: 10px 0; 
 }
 
 .icon{
-  border-right: 1px solid #e3e3e3;
-  padding: 0 15px 10px 0;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 15px 10px;
   margin: 0 15px 0 0;
   font-size: 26px;
+  /*vertical-align: middle;*/
   line-height: 36px;
-  transition: all 250ms ease-in-out 0s;
-      color: #f0b848;
+  /*transition: all 250ms ease-in-out 0s;*/
+  color: #1F6ED4;
 }
 
 .summary{
@@ -56,6 +63,10 @@ section{
 }
 
 .action{
+  
+}
+
+.title{
   
 }
 
