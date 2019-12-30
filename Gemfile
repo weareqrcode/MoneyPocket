@@ -24,13 +24,16 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'aasm', '~> 5.0', '>= 5.0.6'
+gem 'omniauth-google-oauth2', '~> 0.4.1'
+gem 'omniauth-github', '~> 1.3'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

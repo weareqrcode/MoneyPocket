@@ -2,16 +2,19 @@
   <div>
     <button></button>
     <ul>
-      <% @transactions.errors.full_messages.each do |message| %>
+      <% @transaction.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_with model: [:user, @transaction] do |invoice| %>
+<%= form_with model: [:user, @transaction], local: true do |invoice| %>
   <div>
+    <%= invoice_photo_tag transaction %>
+
     <%= invoice.label :invoice_photo, '發票截圖' %>
+    <%= invoice.file_field :invoice_photo %>
     <%# 發票圖片上傳 %>
   </div>
   <div>

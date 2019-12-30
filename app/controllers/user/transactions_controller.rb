@@ -3,13 +3,14 @@ class User::TransactionsController < User::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = Transaction.all
+      @transactions = Transaction.all.with_attached_invoice_photo
       @transactionitems = TransactionItem.all
     else
       @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
       )
     end
+
   end
 
   def new
