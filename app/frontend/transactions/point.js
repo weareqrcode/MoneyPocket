@@ -12,10 +12,11 @@ $(document).on("turbolinks:load", function() {
 function fetchDayColors() {
   let colors = ["pink200", "pink175", "pink150", "pink125", "pink100"];
   $.getJSON(`/user/transactions/point`).then(data => {
+    console.log(data)
     data
       .map(d => ({ ...d, color: colors[d.count] }))
       .map(d => {
-        let el = $(`div.item[data-date=${d.dates}]`).removeClass(colors.join(" "));
+        let el = $(`div.item[data-date=${d.date}]`).removeClass(colors.join(" "));
         if (6 > d.count > 0){
           el.addClass(d.color);
         }else if (d.count > 5){
@@ -26,11 +27,10 @@ function fetchDayColors() {
 }
 
 function generateDayGrid() {
-  const range = moment.range(moment().subtract(1, "year").subtract(-2,"day"), moment());
+  const range = moment.range(moment().subtract(1, "year"), moment());
   const days = Array.from(range.by("day"));
-  const daysByWeeks = R.splitEvery(7, days);
-  const daysHTML = daysByWeeks.map(w => w.map(toDayDiv)).map(toWeekDiv);
-
+  const daysByWeeks = R.splitEvery(7, days);[[1, 2, 3, 4, 5, 6, 7]]
+  const daysHTML = daysByWeeks.map(w => w.map(toDayDiv)).map(w => toWeekDiv(w));
   $("#point-item")
     .empty()
     .append(daysHTML);
@@ -40,6 +40,10 @@ function toDayDiv(m) {
   return `<div class="item" data-date="${m.format("YYYY-MM-DD")}"></div>`;
 }
 
-function toWeekDiv(w) {
-  return `<div class="column">${w.join("")}</div>`;
+function toWeekDiv(c) {
+  return `<div class="column">${c.join("")}</div>`;
+}
+
+function generateMonent(){
+  
 }

@@ -1,8 +1,13 @@
-#point-item {
+.point{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 300px;
+}
+#point-item {
+  display: flex;
+  justify-content: center;
 }
 
 .column {
@@ -21,7 +26,6 @@
 
 .color-reference{
   display: flex;
-  justify-content: flex-end;
   margin: 30px;
 }
 
