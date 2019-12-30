@@ -11,7 +11,7 @@ $(document).on("turbolinks:load", function() {
 
 function fetchDayColors() {
   let colors = ["pink200", "pink175", "pink150", "pink125", "pink100"];
-  $.getJSON(`/user/transactions/point`).then(data => {
+  $.getJSON(`/users/transactions/point`).then(data => {
     console.log(data)
     data
       .map(d => ({ ...d, color: colors[d.count] }))
