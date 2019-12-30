@@ -20,5 +20,5 @@
 * Book Chang book770208@gmail.com
 * Cindy Tu cindy0474@gmail.com
 * Eden Yang dexuan90213@outlook.com
-* Kevin Hui zozo2936@gmail.com
+* Kevin Xiao zozo2936@gmail.com
 
