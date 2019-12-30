@@ -6,6 +6,10 @@
   border-collapse: collapse;
 }
 
+.logo{
+  background-image: url('~images/black50.png');
+}
+
 .blue-box{
   border: 1px solid #16a1ec;
 }
@@ -18,6 +22,10 @@
 }
 section{
   padding: 50px 0;
+}
+
+.subtitle{
+  font-size: 18px;
 }
 
 .login{

@@ -1,5 +1,5 @@
 module User::TransactionsHelper
-    def invoice_photo_tag(transaction, width: 300, height: 300, fake_img: false)
+  def invoice_photo_tag(transaction, width: 300, height: 300, fake_img: false)
     if fake_img
       if transaction.invoice_photo.attached?
         generate_invoice_photo(transaction, width, height)

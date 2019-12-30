@@ -4,48 +4,50 @@
   <% end %>
 <% end %>
 
-<%= form_with model: [:user, @transaction], local: true do |invoice| %>
-  <div>
-    <%= invoice_photo_tag transaction %>
+<div class="container">
+  <%= form_with model: [:user, @transaction], local: true do |invoice| %>
 
-    <%= invoice.label :invoice_photo, '發票截圖' %>
-    <%= invoice.file_field :invoice_photo %>
-  </div>
-  <div>
-    <%= invoice.label :invoice_num, '發票號碼' %>
-    <%= invoice.text_field :invoice_num %>
-  </div>
-  <div>
-    <label>發票內容: </label>
-    <%= invoice.fields_for :transaction_items do |item| %>
-    <div>
-      <%= item.hidden_field :id %>
-      <%= item.label :title, '品項名稱' %>
-      <%= item.text_field :title %>
+      <%= invoice_photo_tag transaction %>
+    <div class="form-group">
+      <%= invoice.label :invoice_photo, '發票截圖' %>
+      <%= invoice.file_field :invoice_photo, class: 'form-control-file' %>
+    </div>
+    <div class="form-group">
+      <%= invoice.label :invoice_num, '發票號碼' %>
+      <%= invoice.text_field :invoice_num, class: 'form-control' %>
     </div>
     <div>
-      <%= item.label :quantity, '品項數量' %>
-      <%= item.text_field :quantity %>
+      <label>發票內容: </label>
+      <%= invoice.fields_for :transaction_items do |item| %>
+      <div class="form-group col-md-6">
+        <%= item.hidden_field :id %>
+        <%= item.label :title, '品項名稱' %>
+        <%= item.text_field :title, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= item.label :quantity, '品項數量' %>
+        <%= item.text_field :quantity, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= item.label :price, '品項單價' %>
+        <%= item.text_field :price, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= item.label :total, '品項總價' %>
+        <%= item.text_field :total, class: 'form-control' %>
+      </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= invoice.label :amount, '發票總價' %>
+      <%= invoice.text_field :amount, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= invoice.label :status, '對獎狀態' %>
+      <%= invoice.text_field :status, class: 'form-control' %>
     </div>
     <div>
-      <%= item.label :price, '品項單價' %>
-      <%= item.text_field :price %>
+      <%= invoice.submit '儲存', class: 'btn btn-blue1' %>
     </div>
-    <div>
-      <%= item.label :total, '品項總價' %>
-      <%= item.text_field :total %>
-    </div>
-    <% end %>
-  </div>
-  <div>
-    <%= invoice.label :amount, '發票總價' %>
-    <%= invoice.text_field :amount %>
-  </div>
-  <div>
-    <%= invoice.label :status, '對獎狀態' %>
-    <%= invoice.text_field :status %>
-  </div>
-  <div>
-    <%= invoice.submit '儲存', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+  <% end %>
+</div>

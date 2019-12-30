@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="http://localhost:3000/user/transactions">電子發票掃描記帳</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@
     <div class="navbar-item">
       <div class="buttons">
         <% if user_signed_in? %>
-          <%= link_to current_user.email, edit_user_registration_path, class: 'btn btn-dark' %>
+          <%= link_to current_user.email, edit_user_registration_path, class: 'btn btn-info' %>
           <%= link_to "登出", destroy_user_session_path, method: 'delete', class: 'btn btn-secondary' %>
         <% else %>
           <%= link_to "登入", new_user_session_path, class: 'btn btn-dark' %>
