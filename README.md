@@ -1,4 +1,4 @@
-# Money Keeper (電子發票記帳)
+# Money Pocket (電子發票記帳)
 
 我們是五倍紅寶石 Astro Camp第三屆學員，一群剛踏入軟體工程師領域的菜鳥們，希望藉此專案磨練Ruby, Rails, JavaScript等技術，此案為畢業專案。
 
