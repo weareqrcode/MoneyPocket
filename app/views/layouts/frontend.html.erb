@@ -7,12 +7,12 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= yield :scripts %>
   </head>
 
   <body>
     <%= render 'shared/frontend/navbar' %>
     <%= render 'shared/flash' if notice %>
     <%= yield %>
-    <%= yield :scripts %>
   </body>
 </html>

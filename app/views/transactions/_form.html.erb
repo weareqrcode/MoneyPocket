@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<%= form_with model: [:user, @transaction] do |invoice| %>
+<%= form_with model: [:users, @transaction] do |invoice| %>
   <div>
     <%= invoice.label :invoice_photo, '發票截圖' %>
     <%# 發票圖片上傳 %>
