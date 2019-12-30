@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_155146) do
+ActiveRecord::Schema.define(version: 2019_12_28_062726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2019_12_15_155146) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.decimal "total"
+    t.bigint "transaction_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["transaction_id"], name: "index_incomes_on_transaction_id"
   end
 
   create_table "transaction_items", force: :cascade do |t|
@@ -67,8 +77,6 @@ ActiveRecord::Schema.define(version: 2019_12_15_155146) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "provider"
-    t.string "uid"
     t.string "github_uid"
     t.string "github_token"
     t.string "google_uid"
@@ -78,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_155146) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "incomes", "transactions"
   add_foreign_key "transaction_items", "transactions"
   add_foreign_key "transactions", "users"
 end

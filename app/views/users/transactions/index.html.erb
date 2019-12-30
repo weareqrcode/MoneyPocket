@@ -12,7 +12,7 @@
 
 <h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
 
-<%= link_to '新增帳目', new_user_transaction_path, class: 'btn btn-primary' %>
+<%= link_to '新增帳目', new_users_transaction_path, class: 'btn btn-primary' %>
 
 <div class="table-responsive">
   <table class="table">
@@ -43,8 +43,8 @@
           <td><%= transaction.amount %></td>
           <td><%= transaction.status %></td>
           <td>
-            <%= link_to '編輯', edit_user_transaction_path(transaction), class: 'btn btn-outline-danger' %>
-            <%= link_to '刪除', user_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
+            <%= link_to '編輯', edit_users_transaction_path(transaction), class: 'btn btn-outline-danger' %>
+            <%= link_to '刪除', users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
           </td>
         <% end %>
         <% if @transactions.blank? %>

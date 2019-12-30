@@ -1,4 +1,4 @@
-class User::TransactionsController < User::BaseController
+class Users::TransactionsController < Users::BaseController
   before_action :find_transaction, only: [:show, :edit, :update, :destroy]
 
   def index
