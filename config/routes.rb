@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     root 'transactions#index'
     # 網址中的 new 換成 add
     scope(path_names: { new: 'add'}) do
-      resources :transactions
+      resources :transactions do 
+        collection do
+          get :point
+        end
+      end
     end
   end
 end
