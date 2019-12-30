@@ -4,4 +4,3 @@ import 'flatpickr/dist/flatpickr.min.css';
 import './transaction_items.scss';
 import './point.scss';
 
-// 重要放上面

@@ -15,7 +15,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(item_params)
     if @transaction.save
-      redirect_to user_transactions_path, notice: '完成一筆帳目新增'
+      redirect_to users_transactions_path, notice: '完成一筆帳目新增'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
 
   def update
     if @transaction.update(transaction_params)
-      redirect_to user_transactions_path, notice: '完成一筆帳目更新'
+      redirect_to users_transactions_path, notice: '完成一筆帳目更新'
     else
       render :edit
     end
@@ -37,9 +37,12 @@ class TransactionsController < ApplicationController
 
   def destroy
     @transaction.destroy
-    redirect_to user_transactions_path, notice: '完成一筆帳目刪除'
+    redirect_to users_transactions_path, notice: '完成一筆帳目刪除'
   end
 
+  def check
+  end
+  
   private
 
   def find_transaction
