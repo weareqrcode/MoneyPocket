@@ -1,4 +1,4 @@
-# Money Pocket (電子發票記帳)
+# MoneyPocket (電子發票記帳)
 
 我們是五倍紅寶石 Astro Camp第三屆學員，一群剛踏入軟體工程師領域的菜鳥們，希望藉此專案磨練Ruby, Rails, JavaScript等技術，此案為畢業專案。
 
@@ -15,10 +15,8 @@
 * 傳統發票手動記帳
 * 發票對獎
 
-
 ## Core Team (sort by A-Z)
-* Book Chang book770208@gmail.com
-* Cindy Tu cindy0474@gmail.com
-* Eden Yang dexuan90213@outlook.com
-* Kevin Xiao zozo2936@gmail.com
-
+* Book Chang 張爾書 book770208@gmail.com
+* Cindy Tu 屠秀敏 cindy0474@gmail.com
+* Eden Yang 楊德軒 dexuan90213@outlook.com
+* Kevin Xiao 蕭凱文 zozo2936@gmail.com
