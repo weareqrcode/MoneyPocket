@@ -19,22 +19,27 @@
     <div>
       <label>發票內容: </label>
       <%= invoice.fields_for :transaction_items do |item| %>
-      <div class="form-group col-md-6">
-        <%= item.hidden_field :id %>
-        <%= item.label :title, '品項名稱' %>
-        <%= item.text_field :title, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-6">
-        <%= item.label :quantity, '品項數量' %>
-        <%= item.text_field :quantity, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-6">
-        <%= item.label :price, '品項單價' %>
-        <%= item.text_field :price, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-6">
-        <%= item.label :total, '品項總價' %>
-        <%= item.text_field :total, class: 'form-control' %>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <%= item.hidden_field :id %>
+          <%= item.label :title, '品項名稱' %>
+          <%= item.text_field :title, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-3">
+          <%= item.label :quantity, '品項數量' %>
+          <%= item.text_field :quantity, class: 'form-control' %>
+        </div>
+      
+      <!-- <div class="form-row"> -->
+        <div class="form-group col-md-3">
+          <%= item.label :price, '品項單價' %>
+          <%= item.text_field :price, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-3">
+          <%= item.label :total, '品項總價' %>
+          <%= item.text_field :total, class: 'form-control' %>
+        </div>
+      <!-- </div> -->
       </div>
       <% end %>
     </div>

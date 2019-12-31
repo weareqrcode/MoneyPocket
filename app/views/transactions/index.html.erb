@@ -1,7 +1,7 @@
 <section class="login">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-6 input-box">
+      <div class="col-12 col-md-5 input-box">
         <div class="input-group mb-3">
           <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
           <div class="input-group-append">
@@ -10,9 +10,9 @@
         </div>
       </div>
       <div class="col-12 col-md-6">
-        <h3>Money Pocket聰明記帳</h3>
+        <h1 class="slogan">Money Pocket聰明記帳</h1>
         <p>快速掃描你的發票，同時記錄你的支出，統一發票對獎加上記帳功能，一次解決兩樣瑣碎的事務，省下更多時間去做別的事！</p>
-        <img src="https://picsum.photos/300/200?random=15" alt="圖片說明">
+        <%= image_tag ("finance400.png") %>
       </div>
     </div>
   </div>
@@ -22,52 +22,71 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6">
-        <img src="https://picsum.photos/500/300?random=13" alt="圖片說明">
+        
+        <%= image_tag ("Savings.png") %>
       </div>
       <div class="col-12 col-md-6 subtitle">
-          <p><i class="fas fa-child"></i>直覺好上手</p>
-          <p><i class="fas fa-clipboard-check"></i>一次輸入，整理發票同時完成記帳</p>
-          <p><i class="fas fa-piggy-bank"></i>免費申請，立即使用</p>
+        <div class="card w-75 mb-3">
+          <div class="card-body">
+            <h3 class="card-title">沒有繁複的步驟，直覺好上手</h3>
+            <p class="card-text">讓長輩也能輕鬆使用</p>
+          </div>
+        </div>
+        <div class="card w-75 mb-3">
+          <div class="card-body">
+            <h3 class="card-title">一次輸入，整理發票同時完成記帳</h3>
+            <p class="card-text">快速有效率的記帳方式</p>
+          </div>
+        </div>
+        <div class="card w-75 mb-3">
+          <div class="card-body">
+            <h3 class="card-title">免費申請，立即使用</h3>
+            <p class="card-text"></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="feature">
-  <div class="container">
-    <h3></h3>
-  </div>
+<!--   <div class="container">
+    <h3>特色功能</h3>
+  </div> -->
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-4">
         <div class="feature-item">
-          <img class= "icon" src="https://picsum.photos/50/50?random=13" alt="圖片說明">
-          <h4>發票QRcode解析</h4>
-        </div>
-        <div class="summary">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur hic nam labore possimus odio vitae magnam itaque tempore error eligendi facilis sint mollitia veniam a ducimus corporis, enim doloribus. Eos.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="feature-item">
-          <img class= "icon" src="https://picsum.photos/50/50?random=13" alt="筆記本">
-          <h4>對獎、記帳一次滿足</h4>
-        </div>
-        <div class="summary">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur hic nam labore possimus odio vitae magnam itaque tempore error eligendi facilis sint mollitia veniam a ducimus corporis, enim doloribus. Eos.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="feature-item">
-          <img class= "icon" src="https://picsum.photos/50/50?random=13" alt="成就截圖">
-          <!-- <div class="icon">
-            <i class="fab fa-buromobelexperte"></i>
-          </div> -->
-          <h4>成就紀錄，記越多越有感</h4>
-        </div>
-        <div class="summary">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur hic nam labore possimus odio vitae magnam itaque tempore error eligendi facilis sint mollitia veniam a ducimus corporis, enim doloribus. Eos.</p>
+          <div class="icon">
+            <i class="fas fa-qrcode"></i>
           </div>
+          <h2 class="feature-txt">發票QRcode解析</h2>
+          <div class="summary">
+          <p>手機掃描電子發票，或是手動上傳電子發票檔案，自動將消費內容轉換成清楚的明細</p>
+        </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="icon">
+            <i class="fas fa-check-double"></i>
+          </div>
+          <h2 class="feature-txt">對獎、記帳一次滿足</h2>
+          <div class="summary">
+            <p>為你記住統一發票號碼，再也不需要煩惱對獎，同時，也為你完成了繁瑣的記帳</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="icon">
+            <i class="fab fa-buromobelexperte"></i>
+          </div>
+          <h2 class="feature-txt">成就紀錄，記越多越有感</h2>
+          <div class="summary">
+            <p>發票隨手記，看著自己的成就紀錄，忍不住期待下一張發票的出現</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -75,11 +94,10 @@
 
 <section class="action">
   <div class="container">
-    <div class="col-12">
+    <div class="col-12 d-flex justify-content-center">
       <div class="title">
         <h2 class="info">現在就開始體驗吧！Keep your money well!</h2>
-        <h4 class="description"></h4>
-          <div class="input-group mb-3">
+        <div class="input-group mb-3">
           <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
           <div class="input-group-append">
             <button class="btn btn-blue1" type="button" id="button-addon2">立即註冊</button>
@@ -93,12 +111,11 @@
 <section class="footer">
   <div class="container">
     <div class="row justify-content-between">
-      <div class="col-12 col-md-9">Copyright © 2019. Theme by Money Pocket</div>
-        <div class="col-12 col-md-3">
+      <div class="col-12 col-md-11">Copyright © 2019. Theme by Money Pocket</div>
+        <div class="col-12 col-md-1">
           <div class="social-icon">
           <ul>
-            <li><a href="#" class="fab fa-facebook-f"></a></li>
-            <li><a href="#" class="fab fa-github"></a></li>
+            <li><a href="https://github.com/weareqrcode/MoneyPocket" class="fab fa-github"></a></li>
           </ul>
           </div>
         </div>
