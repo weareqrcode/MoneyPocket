@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 import 'jquery'
+import 'cocoon'
 import '../stylesheets'
 import '../transactions'
 
