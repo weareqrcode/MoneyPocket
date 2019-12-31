@@ -1,0 +1,32 @@
+.check {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.check-item{
+  border: black 1px solid;
+}
+
+label,#invote{
+  margin: 10px;
+}
+
+button, input{
+  border: 3px solid bl;
+  border-radius: 10px;
+  outline: none;
+}
+
+.messege {
+  border: black 1px solid;
+  width: 360px;
+  height: 200px;
+  margin: 10px;
+}
+
+.invote {
+  margin: 10px;
+  border: black 1px solid;
+  width: 360px;
+  height: 400px;
+}

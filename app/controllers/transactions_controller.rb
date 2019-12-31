@@ -39,9 +39,6 @@ class TransactionsController < ApplicationController
     @transaction.destroy
     redirect_to users_transactions_path, notice: '完成一筆帳目刪除'
   end
-
-  def check
-  end
   
   private
 
