@@ -1,5 +1,5 @@
-import flatpickr from 'flatpickr';
-import $ from "jQuery";
+import flatpickr from 'flatpickr'; // 別人的函式庫先上面，在放自己的js檔
+import $ from "jquery";
 // import '../sweetalert.js';
 
 $(document).on('turbolinks:load', function() {
