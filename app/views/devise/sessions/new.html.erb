@@ -1,38 +1,37 @@
-<div class="container">
-  <h2>登入</h2>
-  
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-group">
-      <%= f.label :email, 'Email', class: 'col-sm-2 col-form-label' %><br />
-      <div class="col-sm-10">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-      </div>
-    </div>
-  
-    <div class="form-group">
-      <%= f.label :password, '密碼', class: 'col-sm-2 col-form-label' %><br />
-      <div class="col-sm-10">
-      <!-- <i class="fas fa-key"></i> -->
-      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
-      </div>
-    </div>
-  
-    <% if devise_mapping.rememberable? %>
-      <div class="form-group">
-        <div class="col-sm-10">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me, '記住我' %>
+<div class="container d-flex justify-content-center">
+  <div class="login-box">
+    <h2 class="login-title">登入</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="col-12">
+          <div class="form-group">
+            <%= f.label :email, 'Email', class: ' col-form-label', class: 'txt-w' %>
+            <%= f.email_field :email, placeholder: "您的Email", autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
+           
+          <div class="form-group">
+            <%= f.label :password, '密碼', class: ' col-form-label txt-w' %>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "您的密碼", class: 'form-control' %>
+          </div>
+           
+          <% if devise_mapping.rememberable? %>
+            <div class="form-group">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me, '記住我', class: 'txt-w' %>
+              <a href="/users/password/new" class="forget">忘記密碼?</a>
+            </div>
+          <% end %>
+           
+          <div class="actions">
+            <%= f.submit "登入", class: ' btn btn-blue1' %>
+            <a href="/users/auth/github" class="btn btn-github">使用GitHub登入</a>
+            <a href="/users/auth/google_oauth2" class="btn btn-google">使用Google登入</a>
+          <% end %>
+        <!-- <div class="btns"> -->
+        <hr>
+          第一次使用Money Pocket？這邊 <a href="/users/sign_up" class="registration">註冊</a>
+        </div>
         </div>
       </div>
-    <% end %>
-  
-    <div class="actions">
-      <div class="col-sm-10">
-      <%= f.submit "登入", class: 'btn btn-outline-success' %>
-      </div>
-    </div>
-  <% end %>
-  <hr>
-  <%= render "devise/shared/links" %>
+  </div>
 </div>
 

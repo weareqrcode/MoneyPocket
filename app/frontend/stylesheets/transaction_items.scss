@@ -19,7 +19,7 @@
 
 .alert-blue{
   margin-bottom: -1rem;
-  background-color: #39BAE8;
+  background-color: #B9EDF8;
 }
 .logo{
   background-image: url('~images/black50.png');
@@ -41,6 +41,36 @@
   border: 1px solid #039;
   color: #fff;
 }
+
+.btn-google{
+  background-color: rgba(235, 69, 55, .8);
+  border: 1px solid rgba(235, 69, 55, .8);
+  color: #fff;
+}
+
+.btn-google:hover{
+  background-color: #eb4537;
+  border: 1px solid #eb4537;
+  color: #fff;
+}
+
+.btn-github{
+  background-color: rgba(36, 41, 46, .8);
+  border: 1px solid rgba(36, 41, 46, .8);
+  color: #fff;
+}
+
+.btn-github:hover{
+  background-color: #24292e;
+  border: 1px solid #24292e;
+  color: #fff;
+}
+
+.forget, .registration{
+  text-decoration: none;
+  color: #fff;
+}
+
 section{
   padding: 50px 0;
 }
@@ -138,8 +168,64 @@ section{
   margin-bottom: 25px;
 }
 
-.title{
-  
+.new-title{
+  margin: 20px 0;
+}
+
+.login-title{
+  margin: 20px 0;
+  text-align: center;
+  color: #fff;
+  font-weight: 500;
+}
+
+.content{
+  font-size: 20px;
+}
+
+.spend{
+  border: 1px solid #ccc;
+  width: 220px;
+  height: 220px;
+  /*background-color: #ccc;*/
+  border-radius: 20px;
+  margin: 0 5px 15px 0;
+}
+
+.income{
+  border: 1px solid #eee;
+  width: 220px;
+  height: 220px;
+  /*background-color: #eee;*/
+  border-radius: 20px;
+  margin: 0 5px 15px 0;
+}
+
+.chart{
+  border: 1px solid #ccc;
+  width: 250px;
+  height: 220px;
+  /*background-color: #ccc;*/
+  border-radius: 20px;
+}
+
+.login-box{
+  width: 450px;
+  height: 550px;
+  background-color: rgba(0,0,0,.7);
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 20px;
+}
+
+.login-group{
+  margin: 0 auto;
+  width: 100%;
+}
+
+.txt-w{
+  color: #fff;
 }
 
 .footer{
