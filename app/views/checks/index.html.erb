@@ -5,9 +5,17 @@
   <div class="check-item">
     <label for = "invot" >發票末三碼： </label>
     <input type="text" id="invot" placeholder = "請輸入發票號碼">
-    <button>送出</button>
+    <input type="button" value="送出" id="submit">
     <div class="messege"></div>
-    <div class="invote">
+    <div class="jsonb">
+      <% @checks.each do |c| %>
+        <% c.jsonb.each do |k,v| %>
+          <%= k %>: <%= v %><br>
+          <% if v = "" %>
+            <%= k = v%>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
