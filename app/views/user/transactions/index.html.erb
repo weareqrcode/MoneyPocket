@@ -6,26 +6,43 @@
   </div>
   <div class="container">
   <div class="row">
-    <div class="col-1">
+    <!-- <div class="col-1">
       <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action btn-blue1">
           對獎
         </a>
         <a href="#" class="list-group-item list-group-item-action">記帳</a>
       </div>
-    </div>
-    <div class="col-11">
+    </div> -->
+    <div class="col-12">
       <div class="d-flex">
-        <div class="spend col-3">支出</div>
-        <div class="income col-3">收入</div>
-        <div class="chart col-5">圖表
-          <div id="chartdiv">
-            
+        <div class="spend col-3">
+        <div class="row">
+          <div class="col-3"><%= image_tag "spend50.png", class: 'spend-logo' %></div>
+          <div class="col-9">
+            <div class="spend-total">$ 21000</div>
           </div>
+        </div>
+        </div>
+        <div class="income col-3">
+          <div class="row">
+            <div class="col-3">
+              <%= image_tag "income50.png", class: 'income-logo' %>
+              </div>
+            <div class="col-9">
+              <div class="income-total">$ 50000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
         </div>
       </div>
       <div class="table-responsive">
-        <%= link_to '新增', new_user_transaction_path, class: 'btn btn-outline-secondary' %>
+        <div class="new-btn-group">
+          <a href="#" class="btn btn-outline-dark">新增收入</a>
+          <%= link_to '新增消費', new_user_transaction_path, class: 'btn btn-outline-secondary' %>
+        </div>
         <table class="table">
           <thead class="thead-dark">
             <tr>

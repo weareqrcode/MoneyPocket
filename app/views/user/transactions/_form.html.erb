@@ -30,17 +30,17 @@
         <div class="form-row">
           <div class="form-group col-md-3">
             <%= item.hidden_field :id %>
-            <%= item.label :title, '品項名稱' %>
-            <%= item.text_field :title, class: 'form-control' %>
+            <%= item.label :title, '品項名稱(必填)' %>
+            <%= item.text_field :title, class: 'form-control has-error' %>
           </div>
           <div class="form-group col-md-3">
-            <%= item.label :quantity, '品項數量' %>
+            <%= item.label :quantity, '品項數量(必填)' %>
             <%= item.text_field :quantity, class: 'form-control' %>
           </div>
         
         <!-- <div class="form-row"> -->
           <div class="form-group col-md-3">
-            <%= item.label :price, '品項單價' %>
+            <%= item.label :price, '品項單價(必填)' %>
             <%= item.text_field :price, class: 'form-control' %>
           </div>
           <div class="form-group col-md-3">
