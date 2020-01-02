@@ -4,6 +4,13 @@ class User::TransactionsController < User::BaseController
   def index
     @transactions = Transaction.all
     @transactionitems = TransactionItem.all
+
+    respond_to do |format|
+      format.html { render "index" }
+      point_json = current_user.transactions.group("created_at::date").count
+      date_hash = point_json.map { |k, v| { :date => k, :count => v } }
+      format.json { render json: date_hash.to_json }
+    end
   end
 
   def new
@@ -37,15 +44,6 @@ class User::TransactionsController < User::BaseController
   def destroy
     @transaction.destroy
     redirect_to user_transactions_path, notice: "完成一筆帳目刪除"
-  end
-
-  def point
-    respond_to do |format|
-      format.html { render "point" }
-      point_json = current_user.transactions.group("created_at::date").count
-      date_hash = point_json.map { |k, v| { :date => k, :count => v } }
-      format.json { render json: date_hash.to_json }
-    end
   end
 
   private
