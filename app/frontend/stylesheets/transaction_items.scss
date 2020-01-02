@@ -209,10 +209,15 @@ section{
   border-radius: 20px;
 }
 
+#chartdiv {
+  width: 100%;
+  height: 200px;
+}
+
 .login-box{
   width: 450px;
-  height: 550px;
-  background-color: rgba(0,0,0,.7);
+  height: 600px;
+  background-color: rgba(0,0,0,.6);
   margin: 20px;
   padding: 15px;
   border: 1px solid #eee;
@@ -225,6 +230,10 @@ section{
 }
 
 .txt-w{
+  color: #fff;
+}
+
+hr{
   color: #fff;
 }
 

@@ -18,7 +18,11 @@
       <div class="d-flex">
         <div class="spend col-3">支出</div>
         <div class="income col-3">收入</div>
-        <div class="chart col-5">圖表</div>
+        <div class="chart col-5">圖表
+          <div id="chartdiv">
+            
+          </div>
+        </div>
       </div>
       <div class="table-responsive">
         <%= link_to '新增', new_user_transaction_path, class: 'btn btn-outline-secondary' %>
