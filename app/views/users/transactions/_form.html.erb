@@ -2,43 +2,31 @@
   <div>
     <button></button>
     <ul>
-      <% @transactions.errors.full_messages.each do |message| %>
+      <% @transaction.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_with model: [:user, @transaction] do |invoice| %>
+<%= form_with model: [:users, @transaction], local: true do |invoice| %>
   <div>
+    <%= invoice_photo_tag transaction %>
     <%= invoice.label :invoice_photo, '發票截圖' %>
-    <%# 發票圖片上傳 %>
+    <%= invoice.file_field :invoice_photo %>
   </div>
   <div>
     <%= invoice.label :invoice_num, '發票號碼' %>
     <%= invoice.text_field :invoice_num %>
   </div>
-  <div>
-    <label>發票內容: </label>
+  <div class="form-row">
+    <label>發票內容:</label>
     <%= invoice.fields_for :transaction_items do |item| %>
-    <div>
-      <%= item.hidden_field :id %>
-      <%= item.label :title, '品項名稱' %>
-      <%= item.text_field :title %>
-    </div>
-    <div>
-      <%= item.label :quantity, '品項數量' %>
-      <%= item.text_field :quantity %>
-    </div>
-    <div>
-      <%= item.label :price, '品項單價' %>
-      <%= item.text_field :price %>
-    </div>
-    <div>
-      <%= item.label :total, '品項總價' %>
-      <%= item.text_field :total %>
-    </div>
+      <%= render 'transaction_items_fields', invoice: item %>
     <% end %>
+    <div>
+      <%= link_to_add_association 'add item', invoice, :transaction_items, partial: 'users/transactions/transaction_items_fields', form_name: 'invoice' %>
+    </div>
   </div>
   <div>
     <%= invoice.label :amount, '發票總價' %>
@@ -52,3 +40,7 @@
     <%= invoice.submit '儲存', class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+
+
+

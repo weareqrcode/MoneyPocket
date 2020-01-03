@@ -1,6 +1,19 @@
+<% content_for :scripts do %>
+  <%= javascript_pack_tag 'transactions' %>
+<% end %>
+
+<%= form_with model: @transaction, method: :get, local: true do |date| %>
+  <%= date.label :start_date, '請輸入起始日期' %>
+  <%= date.text_field :start_date, value: params[:start_date] %>
+  <%= date.label :end_date, '請輸入結束日期' %>
+  <%= date.text_field :end_date, value: params[:end_date] %>
+  <%= date.submit '確認', class: 'btn btn-primary' %>
+<% end %>
+
 <h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
 
-<%= link_to '新增帳目', new_user_transaction_path, class: 'btn btn-primary' %>
+<%= link_to '新增帳目', new_users_transaction_path, class: 'btn btn-primary' %>
+
 <h1>打卡成就</h1>
 
 <div class="point">
@@ -16,6 +29,7 @@
     </div>
   </div>
 </div>
+
 
 <div class="table-responsive">
   <table class="table">
@@ -45,10 +59,16 @@
           <% end %>
           <td><%= transaction.amount %></td>
           <td><%= transaction.status %></td>
-          <td>
-            <%= link_to '編輯', edit_user_transaction_path(transaction), class: 'btn btn-outline-danger' %>
-            <%= link_to '刪除', user_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
+          <td class="d-flex">
+            <button class="btn btn-outline-danger">
+              <%= "共#{transaction.transaction_items.count}筆" %>，看更多
+            </button>
+            <%= link_to '編輯', edit_users_transaction_path(transaction), class: 'btn btn-outline-danger' %>
+            <%= link_to '刪除', users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
           </td>
+        <% end %>
+        <% if @transactions.blank? %>
+          <tr><td colspan="10">找不到任何帳目</td></tr>
         <% end %>
       </tr>
     </tbody>

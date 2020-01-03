@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   layout 'frontend'
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all.with_attached_invoice_photo
     @transactionitems = TransactionItem.all
   end
 
@@ -47,7 +47,7 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    clear_params = params.require(:transactions).premit(:invoice_num, :invoice_photo, :amount, :status, :data)
+    params.require(:transactions).premit(:invoice_num, :invoice_photo, :amount, :status, :data)
   end
 
 end

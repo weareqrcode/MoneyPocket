@@ -1,9 +1,15 @@
-class User::TransactionsController < User::BaseController
+class Users::TransactionsController < Users::BaseController
   before_action :find_transaction, only: [:show, :edit, :update, :destroy]
 
   def index
-    @transactions = Transaction.all
-    @transactionitems = TransactionItem.all
+    if (params[:start_date].blank? || params[:end_date].blank?)
+      @transactions = Transaction.all.with_attached_invoice_photo
+      @transactionitems = TransactionItem.all
+    else
+      @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
+        start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
+      )
+    end
 
     respond_to do |format|
       format.html { render "index" }
@@ -21,7 +27,7 @@ class User::TransactionsController < User::BaseController
   def create
     @transaction = current_user.transactions.new(transaction_params)
     if @transaction.save
-      redirect_to user_transactions_path, notice: "完成一筆帳目新增"
+      redirect_to users_transactions_path, notice: "完成一筆帳目新增"
     else
       render :new
     end
@@ -35,7 +41,7 @@ class User::TransactionsController < User::BaseController
 
   def update
     if @transaction.update(transaction_params)
-      redirect_to user_transactions_path, notice: "完成一筆帳目更新"
+      redirect_to users_transactions_path, notice: "完成一筆帳目更新"
     else
       render :edit
     end
@@ -43,7 +49,7 @@ class User::TransactionsController < User::BaseController
 
   def destroy
     @transaction.destroy
-    redirect_to user_transactions_path, notice: "完成一筆帳目刪除"
+    redirect_to users_transactions_path, notice: "完成一筆帳目刪除"
   end
 
   private
