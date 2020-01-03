@@ -34,6 +34,7 @@ gem 'aasm', '~> 5.0', '>= 5.0.6'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'omniauth-github', '~> 1.3'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem "chartkick"
 gem 'cocoon', '~> 1.2', '>= 1.2.14'
 
 group :development, :test do
