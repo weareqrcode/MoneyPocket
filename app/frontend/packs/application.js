@@ -7,11 +7,15 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-
-import '../stylesheets'
-
 require("chartkick")
 require("chart.js")
+
+import 'jquery'
+import '../stylesheets'
+import '../transactions'
+
+
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -19,4 +23,4 @@ require("chart.js")
 // or the `imagePath` JavaScript helper below.
 //
 // const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+// const imagePath = (name) => images(name, true)import 'jquery'

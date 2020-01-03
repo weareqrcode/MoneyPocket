@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+
 ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -34,6 +35,7 @@ gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'omniauth-github', '~> 1.3'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem "chartkick"
+gem 'cocoon', '~> 1.2', '>= 1.2.14'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
