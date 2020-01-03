@@ -1,8 +1,6 @@
 import flatpickr from 'flatpickr'
 import { MandarinTraditional } from "flatpickr/dist/l10n/zh-tw"
 
-console.log(MandarinTraditional)
-
 document.addEventListener('turbolinks:load', () => {
   flatpickr.localize(MandarinTraditional)
 
@@ -10,6 +8,6 @@ document.addEventListener('turbolinks:load', () => {
 
   flatpickr('#end_date', {
     defaultDate: "today",
-    maxDate: "today",
+    maxDate: "today"
   })
 })
