@@ -33,6 +33,21 @@
         </div>
       </div>
       
+      <h1>打卡成就</h1>
+      <div class="point">
+        <div id="point-item"></div>
+        <div class="point-color">
+          <div class="color-reference">
+            <div class="item pink200"></div>
+            <div class="item pink175"></div>
+            <div class="item pink150"></div>
+            <div class="item pink125"></div>
+            <div class="item pink100"></div>
+            <div class="item pink50"></div>
+          </div>
+        </div>
+      </div>  
+      
       <div>
         <%= form_with model: @transaction, method: :get, local: true do |date| %>
           <%= date.label :start_date, '請輸入起始日期' %>
