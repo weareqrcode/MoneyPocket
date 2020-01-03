@@ -1,46 +1,64 @@
 <% if @transaction.errors.any? %>
-  <div>
-    <button></button>
-    <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <% @transaction.errors.full_messages.each do |message| %>
+    <%= message %><i class="far fa-times-circle"></i>
+  <% end %>
 <% end %>
 
-<%= form_with model: [:users, @transaction], local: true do |invoice| %>
-  <div>
-    <%= invoice_photo_tag transaction %>
-    <%= invoice.label :invoice_photo, '發票截圖' %>
-    <%= invoice.file_field :invoice_photo %>
-  </div>
-  <div>
-    <%= invoice.label :invoice_num, '發票號碼' %>
-    <%= invoice.text_field :invoice_num %>
-  </div>
-  <div class="form-row">
-    <label>發票內容:</label>
-    <%= invoice.fields_for :transaction_items do |item| %>
-      <%= render 'transaction_items_fields', invoice: item %>
-    <% end %>
-    <div>
-      <%= link_to_add_association 'add item', invoice, :transaction_items, partial: 'users/transactions/transaction_items_fields', form_name: 'invoice' %>
-    </div>
-  </div>
-  <div>
-    <%= invoice.label :amount, '發票總價' %>
-    <%= invoice.text_field :amount %>
-  </div>
-  <div>
-    <%= invoice.label :status, '對獎狀態' %>
-    <%= invoice.text_field :status %>
-  </div>
-  <div>
-    <%= invoice.submit '儲存', class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-
-
+  <%= form_with model: [:user, @transaction], local: true do |invoice| %>
+  <div class="row">
+      <div class="col-4">
+        <%= invoice_photo_tag transaction %>
+            <div class="form-group">
+        <%= invoice.label :invoice_photo, '發票截圖' %>
+        <%= invoice.file_field :invoice_photo, class: 'form-control-file' %>
+            </div>
+      </div>
+    <div class="col-8">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= invoice.label :invoice_num, '發票號碼' %>
+          <%= invoice.text_field :invoice_num, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= invoice.label :status, '對獎狀態' %>
+          <%= invoice.text_field :status, class: 'form-control' %>
+        </div>
+      </div>
+      <div>
+        <!-- <label class="content">發票內容： </label> -->
+        <%= invoice.fields_for :transaction_items do |item| %>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <%= item.hidden_field :id %>
+            <%= item.label :title, '品項名稱(必填)' %>
+            <%= item.text_field :title, class: 'form-control has-error' %>
+          </div>
+          <div class="form-group col-md-3">
+            <%= item.label :quantity, '品項數量(必填)' %>
+            <%= item.text_field :quantity, class: 'form-control' %>
+          </div>
+        
+        <!-- <div class="form-row"> -->
+          <div class="form-group col-md-3">
+            <%= item.label :price, '品項單價(必填)' %>
+            <%= item.text_field :price, class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-3">
+            <%= item.label :total, '品項總價' %>
+            <%= item.text_field :total, class: 'form-control' %>
+          </div>
+        <!-- </div> -->
+        </div>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= invoice.label :amount, '發票總價' %>
+        <%= invoice.text_field :amount, class: 'form-control' %>
+      </div>
+      
+      <div class="d-flex justify-content-end">
+        <%= invoice.submit '儲存', class: 'btn btn-blue1' %>
+      </div>
+        <% end %></div>
+</div>
 
