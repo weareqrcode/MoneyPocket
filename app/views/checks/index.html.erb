@@ -10,9 +10,8 @@
     <div class="jsonb">
       <% @checks.each do |c| %>
         <% c.jsonb.each do |k,v| %>
-          <%= k %>: <%= v %><br>
-          <% if v = "" %>
-            <%= k = v%>
+          <% if  /\w{10}/ === k && v != ""%>
+            <%= k %>: <%= v %><br>
           <% end %>
         <% end %>
       <% end %>

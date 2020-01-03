@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_31_094204) do
+ActiveRecord::Schema.define(version: 2020_01_03_065728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,15 +37,6 @@ ActiveRecord::Schema.define(version: 2019_12_31_094204) do
   end
 
   create_table "checks", force: :cascade do |t|
-    t.string "invoYm"
-    t.integer "superPrizeNo"
-    t.integer "spcPrizeNo"
-    t.integer "firstPrizeNo1"
-    t.integer "firstPrizeNo2"
-    t.integer "firstPrizeNo3"
-    t.integer "sixthPrizeNo1"
-    t.integer "sixthPrizeNo2"
-    t.integer "sixthPrizeNo3"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "jsonb"
