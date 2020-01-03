@@ -1,13 +1,14 @@
-import './lib/jsqr'
+const jsQR = require("../lib/jsqr/jsqr");
 
-let scanedQRCode = []
-let video = document.createElement("video")
-let canvasElement = document.getElementById("scanner")
-let canvas = canvasElement.getContext("2d")
-let outputData = document.getElementById("outputData")
 
 document.addEventListener("turbolinks:load", () => {
-  document.querySelector('#startButton').addEventListener('click', () => {
+   scanedQRCode = []
+   video = document.createElement("video")
+   canvasElement = document.getElementById("scanner")
+   canvas = canvasElement.getContext("2d")
+
+  document.querySelector('#startButton').addEventListener('click', (evt) => {
+    evt.preventDefault()
     scanedQRCode = []
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
       window.stream = stream
