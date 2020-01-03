@@ -43,7 +43,10 @@
           <% end %>
           <td><%= transaction.amount %></td>
           <td><%= transaction.status %></td>
-          <td>
+          <td class="d-flex">
+            <button class="btn btn-outline-danger">
+              <%= "共#{transaction.transaction_items.count}筆" %>，看更多
+            </button>
             <%= link_to '編輯', edit_users_transaction_path(transaction), class: 'btn btn-outline-danger' %>
             <%= link_to '刪除', users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
           </td>

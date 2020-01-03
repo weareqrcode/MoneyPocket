@@ -25,9 +25,7 @@
       <%= render 'transaction_items_fields', invoice: item %>
     <% end %>
     <div>
-      <%= link_to_add_association 'add item', invoice, :transaction_items, partial: 'transaction_items_fields' %>
-      <%#= link_to_add_association 'add item', invoice, :transaction_items %>
-
+      <%= link_to_add_association 'add item', invoice, :transaction_items, partial: 'users/transactions/transaction_items_fields', form_name: 'invoice' %>
     </div>
   </div>
   <div>
