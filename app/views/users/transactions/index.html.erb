@@ -13,7 +13,22 @@
 <h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
 
 <%= link_to '新增帳目', new_users_transaction_path, class: 'btn btn-primary' %>
-<%= link_to '每日成就',point_users_transactions_path,class: 'btn btn-primary' %>
+
+<h1>打卡成就</h1>
+
+<div class="point">
+  <div id="point-item"></div>
+  <div class="point-color">
+    <div class="color-reference">
+      <div class="item pink200"></div>
+      <div class="item pink175"></div>
+      <div class="item pink150"></div>
+      <div class="item pink125"></div>
+      <div class="item pink100"></div>
+      <div class="item pink50"></div>
+    </div>
+  </div>
+</div>
 
 <div class="table-responsive">
   <table class="table">
