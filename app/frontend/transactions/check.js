@@ -6,7 +6,7 @@ $(document).ready(function() {
   
   $("#submit").on("chick", function() {
     let inv = $("#invot").val();
-    if (/\d{3}/.exec(inv)) {
+    if (/d{3}$/.exec(inv)) {
       (".messege").append(`<p>${inv}未中獎</p>`);
     } else {
 

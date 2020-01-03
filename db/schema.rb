@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2020_01_03_065728) do
     t.jsonb "jsonb"
   end
 
+  create_table "incomes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.text "description"
+    t.decimal "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_incomes_on_user_id"
+  end
+
   create_table "transaction_items", force: :cascade do |t|
     t.string "title"
     t.integer "quantity"
@@ -82,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_01_03_065728) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "incomes", "users"
   add_foreign_key "transaction_items", "transactions"
   add_foreign_key "transactions", "users"
 end

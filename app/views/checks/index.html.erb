@@ -8,13 +8,15 @@
     <input type="button" value="送出" id="submit">
     <div class="messege"></div>
     <div class="jsonb">
-      <% @checks.each do |c| %>
-        <% c.jsonb.each do |k,v| %>
-          <% if  /\w{10}/ === k && v != ""%>
-            <%= k %>: <%= v %><br>
-          <% end %>
-        <% end %>
-      <% end %>
+      <div class="prize">
+        <div>千萬特獎 : <%= @checks["superPrizeNo"]%></div>
+        <div>特獎 : <%= @checks["spcPrizeNo"]%></div>
+        <div>頭獎 : <%= @checks["firstPrizeNo1"]%></div>
+        <div>頭獎 : <%= @checks["firstPrizeNo2"]%></div>
+        <div>頭獎 : <%= @checks["firstPrizeNo3"]%></div>
+        <div>六獎 : <%= @checks["sixthPrizeNo1"]%></div>
+        <div>六獎 : <%= @checks["sixthPrizeNo2"]%></div>
+      </div>
     </div>
   </div>
 </div>
