@@ -1,13 +1,13 @@
 <section class="login">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-5 input-box">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <div class="col-12 col-md-5 input-box" action="http://localhost:3000/users/sign_in" method="get">
+        <form class="input-group mb-3">
+          <input type="email" name="email" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button class="btn btn-blue1" type="button" id="button-addon2">立即註冊</button>
+            <button class="btn btn-blue1" type="submit" id="button-addon2">立即註冊</button>
           </div>
-        </div>
+        </form>
       </div>
       <div class="col-12 col-md-6">
         <h1 class="slogan">Money Pocket聰明記帳</h1>

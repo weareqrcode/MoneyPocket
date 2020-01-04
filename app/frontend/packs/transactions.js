@@ -12,3 +12,12 @@ $(document).on('turbolinks:load', function() {
                   flatpickr('#end_date', {})
                 });
 })
+
+// let url = location.href;
+// let url = new URL(getUrlString);
+// url.searchParams.get('email');
+
+// if($_GET){
+//   if($_GET['email']!=''){echo .$_GET['email'].;}else{echo '未填寫';}
+//   console.log($_GET['email'])
+// }
