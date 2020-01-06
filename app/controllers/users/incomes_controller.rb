@@ -1,6 +1,8 @@
-class Users::IncomeController < ApplicationController
+class Users::IncomesController < Users::BaseController
+  before_action :find_income, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @incomes = Income.all
+    redirect_to users_transactions_path
   end
 
   def new
@@ -30,6 +32,11 @@ class Users::IncomeController < ApplicationController
     end
   end
 
+  def destroy
+    @income.destroy
+    redirect_to users_transactions_path, notice: "完成一筆帳目刪除"
+  end
+
   private
 
   def find_income
@@ -37,7 +44,7 @@ class Users::IncomeController < ApplicationController
   end
 
   def income_params
-    params.require(:income).premit(:id, :title, :description, :total)
+    params.require(:income).permit(:id, :title, :description, :total)
   end
 
 end

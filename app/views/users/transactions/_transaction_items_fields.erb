@@ -1,4 +1,4 @@
-<fieldset>
+<div class="nested-fields">
   <div class="form-group">
     <%= invoice.hidden_field :id %>
     <%= invoice.label :title, '品項名稱' %>
@@ -17,4 +17,4 @@
     <%= invoice.text_field :total, class: 'form-control' %>
   </div>
   <%= link_to_remove_association 'remove item', invoice %>
-</fieldset>
+</div>

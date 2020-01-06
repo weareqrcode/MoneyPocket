@@ -2,6 +2,16 @@
   <%= javascript_pack_tag 'transactions' %>
 <% end %>
 
+<div>
+  <label>收入:
+    <%= @incomes_balance.to_i %> 
+  </label>
+  <label>支出:
+    <%= @transactions_balance.to_i %> 
+  </label>
+  <label>結餘: <%= (@incomes_balance - @transactions_balance).to_i %></label>
+</div>
+
 <%= form_with model: @transaction, method: :get, local: true do |date| %>
   <%= date.label :start_date, '請輸入起始日期' %>
   <%= date.text_field :start_date, value: params[:start_date] %>
@@ -13,7 +23,7 @@
 <h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
 
 <%= link_to '新增帳目', new_users_transaction_path, class: 'btn btn-primary' %>
-<%= link_to '每日成就',point_users_transactions_path,class: 'btn btn-primary' %>
+<%= link_to '新增收入', new_users_income_path, class: 'btn btn-primary' %>
 
 <div class="table-responsive">
   <table class="table">
@@ -49,6 +59,37 @@
           </td>
         <% end %>
         <% if @transactions.blank? %>
+          <tr><td colspan="10">找不到任何帳目</td></tr>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">進帳時間</th>
+        <th scope="col">收入項目</th>
+        <th scope="col">收入說明</th>
+        <th scope="col">收入金額</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @incomes.each do |income| %>
+        <tr>
+          <td><%= income.created_at %></td> 
+          <td><%= income.title %></td>
+          <td><%= income.description %></td>
+          <td><%= income.total %></td>
+          <td>
+            <%= link_to '編輯', edit_users_income_path(income), class: 'btn btn-outline-danger' %>
+            <%= link_to '刪除', users_income_path(income), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
+          </td>
+        <% end %>
+        <% if @incomes.blank? %>
           <tr><td colspan="10">找不到任何帳目</td></tr>
         <% end %>
       </tr>
