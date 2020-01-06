@@ -21,34 +21,41 @@ document.addEventListener("turbolinks:load", () => {
   })
 })
 
-
 function tick() {
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
 
     canvasElement.height = video.videoHeight
     canvasElement.width = video.videoWidth
     canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height)
-    let imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height)
+    let imageData = canvas.getImageData(0, 0, 300, 300)
+    let imageData2 = canvas.getImageData(canvasElement.width / 2, 0, canvasElement.width, canvasElement.height)
+
     let code = jsQR(imageData.data, imageData.width, imageData.height, {
       inversionAttempts: "dontInvert",
     })
 
-    console.log(code)
+    let code2 = jsQR(imageData2.data, imageData2.width, imageData2.height, {
+      inversionAttempts: "dontInvert",
+    })
 
-    if (code) {
+    if (code) console.log(`Code1:${code.data}`) 
+    if (code2) console.log(`Code2:${code2.data}`) 
+
+    if (code && code2) {
       drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58")
       drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58")
       drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58")
       drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58")
-      insertQRCodeData(code.data)
+      insertQRCodeData(code.data, code2.data)
     }
   }
   if (pause) return
   requestAnimationFrame(tick)
 }
 
-function insertQRCodeData(codeData) {
+function insertQRCodeData(codeData, code2Data) {
   scanedQRCode.push(codeData)
+  scanedQRCode.push(code2Data)
   let invoiceQRCode =  scanedQRCode.filter(unique).sort().reverse()
 
   if (/^[A-Z]{2}\d{8}/.test(invoiceQRCode[0]) && invoiceQRCode.length === 2) {
