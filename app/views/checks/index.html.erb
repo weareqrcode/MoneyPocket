@@ -3,19 +3,25 @@
 
 <div class="check">
   <div class="check-item">
-    <label for = "invot" >發票末三碼： </label>
-    <input type="text" id="invot" placeholder = "請輸入發票號碼">
+    <label for = "input" >發票末三碼： </label>
+    <input type="text" id="input" placeholder = "請輸入發票號碼" maxlength="3" oninput = "value=value.replace(/[^\d]/g,'')">
     <input type="button" value="送出" id="submit">
-    <div class="messege"></div>
+    <div class="messege" id="messege"></div>
     <div class="jsonb">
-      <div class="prize">
-        <div>千萬特獎 : <%= @checks["superPrizeNo"]%></div>
-        <div>特獎 : <%= @checks["spcPrizeNo"]%></div>
-        <div>頭獎 : <%= @checks["firstPrizeNo1"]%></div>
-        <div>頭獎 : <%= @checks["firstPrizeNo2"]%></div>
-        <div>頭獎 : <%= @checks["firstPrizeNo3"]%></div>
-        <div>六獎 : <%= @checks["sixthPrizeNo1"]%></div>
-        <div>六獎 : <%= @checks["sixthPrizeNo2"]%></div>
+      <div class="messege_price">
+        <select name="" id="">
+          <optgroup>
+            <option value=""><%= @checks["invoYm"]%></option>
+            <option value=""><%= @checks["invoYm"]%></option>
+          </optgroup>
+        </select>
+        <div class="messege_prize">千萬特獎 : <%= @checks["superPrizeNo"]%></div>
+        <div class="messege_prize">特獎 : <%= @checks["spcPrizeNo"]%></div>
+        <div class="messege_prize">頭獎 : <%= @checks["firstPrizeNo1"]%></div>
+        <div class="messege_prize">頭獎 : <%= @checks["firstPrizeNo2"]%></div>
+        <div class="messege_prize">頭獎 : <%= @checks["firstPrizeNo3"]%></div>
+        <div class="messege_prize">六獎 : <%= @checks["sixthPrizeNo1"]%></div>
+        <div class="messege_prize">六獎 : <%= @checks["sixthPrizeNo2"]%></div>
       </div>
     </div>
   </div>
