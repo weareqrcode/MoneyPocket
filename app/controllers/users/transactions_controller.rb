@@ -3,13 +3,23 @@ class Users::TransactionsController < Users::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = Transaction.all.with_attached_invoice_photo
-      @transactionitems = TransactionItem.all
+      @transactions = Transaction.all.order('created_at desc')
+      @transactionitems = TransactionItem.all.order('created_at desc')
+      @incomes = Income.all.order('created_at desc')
     else
       @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
       )
+      @incomes = Income.where("created_at BETWEEN :start_date AND :end_date", {
+        start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
+      )
     end
+
+    @incomes_balance = Income.where(
+      {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:total)
+      
+    @transactions_balance = Transaction.where(
+      {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:amount)
 
     respond_to do |format|
       format.html { render "index" }
@@ -17,6 +27,7 @@ class Users::TransactionsController < Users::BaseController
       date_hash = point_json.map { |k, v| { :date => k, :count => v } }
       format.json { render json: date_hash.to_json }
     end
+
   end
 
   def new
@@ -57,8 +68,9 @@ class Users::TransactionsController < Users::BaseController
   def find_transaction
     @transaction = Transaction.find(params[:id])
   end
-
+  
   def transaction_params
     params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :status, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total])
   end
+
 end
