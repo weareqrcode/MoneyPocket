@@ -1,8 +1,7 @@
-const jsQR = require("../lib/jsqr/jsqr");
-
+const jsQR = require("jsqr")
+const R = require('ramda')
 
 document.addEventListener("turbolinks:load", () => {
-   scanedQRCode = []
    video = document.createElement("video")
    canvasElement = document.getElementById("scanner")
    canvas = canvasElement.getContext("2d")
@@ -10,6 +9,7 @@ document.addEventListener("turbolinks:load", () => {
   document.querySelector('#startButton').addEventListener('click', (evt) => {
     evt.preventDefault()
     scanedQRCode = []
+    pause = false
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
       window.stream = stream
       video.srcObject = stream
@@ -20,6 +20,7 @@ document.addEventListener("turbolinks:load", () => {
     })
   })
 })
+
 
 function tick() {
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -42,6 +43,7 @@ function tick() {
       insertQRCodeData(code.data)
     }
   }
+  if (pause) return
   requestAnimationFrame(tick)
 }
 
@@ -107,6 +109,7 @@ function insertQRCodeData(codeData) {
     window.stream.getTracks().forEach(track => track.stop())
     canvasElement.hidden = true
     scanedQRCode = []
+    pause = true
   }
 }
 
