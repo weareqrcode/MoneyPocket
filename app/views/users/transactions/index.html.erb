@@ -1,5 +1,6 @@
 <% content_for :scripts do %>
   <%= javascript_pack_tag 'datapicker', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'more', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <div class="container">
@@ -77,54 +78,78 @@
         <% end %>
       </div>
 
-      <div class="table-responsive">
+      <div>
         <div class="new-btn-group">
-          <a href="#" class="btn btn-outline-dark">新增收入</a>
+          <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
           <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
         </div>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">消費時間</th>
-              <th scope="col">發票號碼</th>
-              <th scope="col">品項名稱</th>
-              <th scope="col">品項數量</th>
-              <th scope="col">品項單價</th>
-              <th scope="col">品項總價</th>
-              <th scope="col">發票總價</th>
-              <th scope="col">對獎狀態</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @transactions.each do |transaction| %>
+        <div class="d-flex">
+          <table class="table">
+            <thead class="thead-dark">
               <tr>
-                <td><%= transaction.created_at %></td> 
-                <td><%= transaction.invoice_num %></td>
-                <% transaction.transaction_items.each do |item| %>
-                  <td><%= item.title %></td>
-                  <td><%= item.quantity %></td>
-                  <td><%= item.price %></td>
-                  <td><%= item.total %></td>
+                <th scope="col">消費時間</th>
+                <th scope="col">發票號碼</th>
+                <th scope="col">品項名稱</th>
+                <th scope="col">品項數量</th>
+                <th scope="col">品項單價</th>
+                <th scope="col">品項總價</th>
+                <th scope="col">發票總價</th>
+                <th scope="col">對獎狀態</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <td><%= transaction.created_at %></td> 
+                  <td><%= transaction.invoice_num %></td>
+                  <% transaction.transaction_items.each do |item| %>
+                    <td><%= item.title %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= item.price %></td>
+                    <td><%= item.total %></td>
+                  <% end %>
+                  <td><%= transaction.amount %></td>
+                  <td><%= transaction.status %></td>
+                  <td>
+                    <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>
+                      <i class="fas fa-edit"></i>編輯
+                    <% end %>
+                    <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
+                      <i class="fas fa-trash-alt"></i>刪除
+                    <% end %>
+                    <button id="more-btn" @click="show_more" class="btn btn-outline-secondary">MORE</button>
+                  </td>
                 <% end %>
-                <td><%= transaction.amount %></td>
-                <td><%= transaction.status %></td>
-                <td>
-                  <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>
-                    <i class="fas fa-edit"></i>編輯
+                <% if @transactions.blank? %>
+                  <tr><td colspan="10">找不到任何帳目</td></tr>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table">
+            <thead class="table-primary">
+              <tr>
+                <th scope="col">品項名稱</th>
+                <th scope="col">品項數量</th>
+                <th scope="col">品項單價</th>
+                <th scope="col">品項總價</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <% transaction.transaction_items.each do |item| %>
+                    <td><%= item.title %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= item.price %></td>
+                    <td><%= item.total %></td>
                   <% end %>
-                  <%= link_to users_transactions_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
-                    <i class="fas fa-trash-alt"></i>刪除
-                  <% end %>
-                  <button id="more-btn" class="btn btn-outline-secondary">MORE</button>
-                </td>
+                </tr>
               <% end %>
-              <% if @transactions.blank? %>
-                <tr><td colspan="10">找不到任何帳目</td></tr>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="table-responsive">
         <table class="table">
