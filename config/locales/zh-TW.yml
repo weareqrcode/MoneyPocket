@@ -1,4 +1,8 @@
-"zh-TW":
-  pending: 未開獎
-  missed: 未中獎
-  won: 中獎囉
+zh-TW:
+  activerecord:
+    attributes:
+      transaction:
+        aasm_state:
+          pending: "未開獎"
+          missed: "未中獎"
+          won: "中獎囉"

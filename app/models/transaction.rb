@@ -15,9 +15,6 @@ class Transaction < ApplicationRecord
     state :missed, :won
 
     event :miss do
-      # before do |args|
-      #   self.transition_id = args[:transition_id]
-      # end
       transitions from: :pending, to: :missed
     end
 
