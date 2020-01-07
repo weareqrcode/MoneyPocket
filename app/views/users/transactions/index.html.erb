@@ -1,6 +1,6 @@
 <% content_for :scripts do %>
   <%= javascript_pack_tag 'datapicker', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'more_btn', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'vue_application', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <div class="container">
@@ -71,7 +71,8 @@
         <% end %>
       </div>
 
-      <div>
+      <div id="vue-app">
+        {{ msg }}
         <div class="new-btn-group">
           <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
           <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>

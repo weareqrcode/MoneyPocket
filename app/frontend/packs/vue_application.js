@@ -7,14 +7,16 @@
 
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
-import MoreBtn from '../more_btn.vue'
+// import MoreBtnMain from './../vue/more_btn_main/MoreBtnMain.vue'
+import MoreBtnMain from './../vue/more_btn_main'
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
-    el: '#more-btn',
-    components: { MoreBtn }
+    el: '#vue-app',
+    // components: { MoreBtnMain }
+    ...MoreBtnMain
   })
 })
 
