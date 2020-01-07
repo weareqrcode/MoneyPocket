@@ -118,7 +118,7 @@
                     <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
                       <i class="fas fa-trash-alt"></i>刪除
                     <% end %>
-                    <button id="more-btn" @click="show_more" class="btn btn-outline-secondary">MORE</button>
+                    <button id="more-btn" @click="hello()" class="btn btn-outline-secondary">MORE</button>
                   </td>
                 <% end %>
                 <% if @transactions.blank? %>

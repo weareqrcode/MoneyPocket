@@ -1,7 +1,9 @@
 new Vue({
   el: '#more-btn',
   data: {},
-  method: {
-    
+  methods: {
+    hello: function() {
+      alert('test!test!');
+    }
   }
 });
