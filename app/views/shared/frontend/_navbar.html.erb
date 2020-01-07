@@ -10,7 +10,7 @@
     <div class="navbar-item">
       <div class="buttons">
         <% if user_signed_in? %>
-          <%= link_to current_user.email, edit_user_registration_path, class: 'nav-btn' %>
+          <%= link_to current_user.email, users_transactions_path, class: 'nav-btn' %>
           <%= link_to "登出", destroy_user_session_path, method: 'delete', class: 'nav-btn' %>
         <% else %>
           <%= link_to "登入", new_user_session_path, class: 'nav-btn' %>

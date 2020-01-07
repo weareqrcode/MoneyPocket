@@ -94,7 +94,7 @@
                   <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>
                     <i class="fas fa-edit"></i>編輯
                   <% end %>
-                  <%= link_to users_transactions_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
+                  <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
                     <i class="fas fa-trash-alt"></i>刪除
                   <% end %>
                 </td>
