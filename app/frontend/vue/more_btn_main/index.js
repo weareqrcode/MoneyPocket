@@ -1,6 +1,11 @@
 const main = {
   data: {
-    msg: 'kt 123'
+    item_show: false
+  },
+  methods: {
+    expand() {
+      this.item_show = !this.item_show
+    }
   }
 }
 export default main
