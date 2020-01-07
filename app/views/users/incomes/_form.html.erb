@@ -1,0 +1,32 @@
+<% if @income.errors.any? %>
+  <div>
+    <button></button>
+    <ul>
+      <% @income.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: [:users, @income] do |f| %>
+  <div>
+    <%= f.label :title, '收入項目' %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description, '收入說明' %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :total, '收入金額' %>
+    <%= f.text_field :total %>
+  </div>
+  <div>
+    <%= f.submit '儲存', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+
+
