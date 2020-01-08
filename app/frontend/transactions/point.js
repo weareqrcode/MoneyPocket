@@ -10,7 +10,7 @@ $(document).on("turbolinks:load", function() {
 });
 
 function fetchDayColors() {
-  let colors = ["pink200", "pink175", "pink150", "pink125", "pink100"];
+  let colors = ["checkin-1", "checkin-2", "checkin-3", "checkin-4", "checkin-5"];
   $.getJSON(`/users/transactions`).then(data => {
     data
       .map(d => ({ ...d, color: colors[d.count] }))
@@ -19,7 +19,7 @@ function fetchDayColors() {
         if (6 > d.count > 0){
           el.addClass(d.color);
         }else if (d.count > 5){
-          el.addClass("pink50");
+          el.addClass("checkin-6");
         }
       });
   });
