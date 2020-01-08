@@ -9,7 +9,8 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   # Relationships
-  has_many :transactions 
+  has_many :transactions
+  has_many :incomes
 
   # 第三方登入
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)

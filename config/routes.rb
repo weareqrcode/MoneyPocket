@@ -10,11 +10,10 @@ Rails.application.routes.draw do
 
   namespace :users do 
     root 'transactions#index'
-    # 網址中的 new 換成 add
+    resources :incomes
+    # 網址 new 換成 add
     scope(path_names: { new: 'add'}) do
       resources :transactions
     end
   end
 end
-
-
