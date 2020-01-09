@@ -34,6 +34,8 @@ gem 'aasm', '~> 5.0', '>= 5.0.6'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'omniauth-github', '~> 1.3'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'chartkick', '~> 3.3', '>= 3.3.1'
+gem 'cocoon', '~> 1.2', '>= 1.2.14'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

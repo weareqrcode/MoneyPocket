@@ -1,57 +1,169 @@
 <% content_for :scripts do %>
-  <%= javascript_pack_tag 'transactions' %>
+  <%= javascript_pack_tag 'datapicker', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'vue_application', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<%= form_with model: @transaction, method: :get, local: true do |date| %>
-  <%= date.label :start_date, '請輸入起始日期' %>
-  <%= date.text_field :start_date, value: params[:start_date] %>
-  <%= date.label :end_date, '請輸入結束日期' %>
-  <%= date.text_field :end_date, value: params[:end_date] %>
-  <%= date.submit '確認', class: 'btn btn-primary' %>
-<% end %>
+<div class="container">
+  <h1 class="new-title"><i class="fas fa-user-circle"></i> 個人頁面總覽</h1> 
+</div>
 
-<h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
-
-<%= link_to '新增帳目', new_users_transaction_path, class: 'btn btn-primary' %>
-<%= link_to '每日成就',point_users_transactions_path,class: 'btn btn-primary' %>
-
-<div class="table-responsive">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">消費時間</th>
-        <th scope="col">發票號碼</th>
-        <th scope="col">品項名稱</th>
-        <th scope="col">品項數量</th>
-        <th scope="col">品項單價</th>
-        <th scope="col">品項總價</th>
-        <th scope="col">發票總價</th>
-        <th scope="col">對獎狀態</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @transactions.each do |transaction| %>
-        <tr>
-          <td><%= transaction.created_at %></td> 
-          <td><%= transaction.invoice_num %></td>
-          <% transaction.transaction_items.each do |item| %>
-            <td><%= item.title %></td>
-            <td><%= item.quantity %></td>
-            <td><%= item.price %></td>
-            <td><%= item.total %></td>
-          <% end %>
-          <td><%= transaction.amount %></td>
-          <td><%= transaction.status %></td>
-          <td>
-            <%= link_to '編輯', edit_users_transaction_path(transaction), class: 'btn btn-outline-danger' %>
-            <%= link_to '刪除', users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
-          </td>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex">
+        <div class="spend col-3">
+        <div class="row">
+          <div class="col-3">
+            <%= image_tag "spend50.png", class: 'spend-logo' %>
+            </div>
+          <div class="col-9">
+            <div class="spend-total">$ <%= @transactions_balance.to_i %></div>
+          </div>
+        </div>
+        </div>
+        <div class="income col-3">
+          <div class="row">
+            <div class="col-3">
+              <%= image_tag "income50.png", class: 'income-logo' %>
+            </div>
+            <div class="col-9">
+              <div class="income-total">$ <%= @incomes_balance.to_i %></div>
+            </div>
+          </div>
+        </div>
+        <div class="income col-3">
+          <div class="row">
+            <div class="col-3">
+              <%= image_tag "income50.png", class: 'income-logo' %>
+            </div>
+            <div class="col-9">
+              <div class="income-total">$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
+        </div>
+      </div>
+      
+      <h1>打卡成就</h1>
+      <div class="point">
+        <div id="point-item"></div>
+        <div class="point-color">
+          <div class="color-reference">
+            <div class="item checkin-1"></div>
+            <div class="item checkin-2"></div>
+            <div class="item checkin-3"></div>
+            <div class="item checkin-4"></div>
+            <div class="item checkin-5"></div>
+            <div class="item checkin-6"></div>
+          </div>
+        </div>
+      </div>  
+      
+      <div>
+        <%= form_with model: @transaction, method: :get, local: true do |date| %>
+          <%= date.label :start_date, '請輸入起始日期' %>
+          <%= date.text_field :start_date, value: params[:start_date] %>
+          <%= date.label :end_date, '請輸入結束日期' %>
+          <%= date.text_field :end_date, value: params[:end_date] %>
+          <%= date.submit '確認', class: 'btn btn-primary' %>
         <% end %>
-        <% if @transactions.blank? %>
-          <tr><td colspan="10">找不到任何帳目</td></tr>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
+      </div>
+
+      <div>
+        <div class="new-btn-group">
+          <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
+          <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
+        </div>
+        <div id="vue-app" class="d-flex">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">消費時間</th>
+                <th scope="col">發票號碼</th>
+                <th scope="col">發票總價</th>
+                <th scope="col">對獎狀態</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <td><%= transaction.created_at %></td> 
+                  <td><%= transaction.invoice_num %></td>
+                  <td><%= transaction.amount %></td>
+                  <td><%= transaction.status %></td>
+                  <td>
+                    <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>
+                      <i class="fas fa-edit"></i>編輯
+                    <% end %>
+                    <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
+                      <i class="fas fa-trash-alt"></i>刪除
+                    <% end %>
+                    <button @click="expand()" class="btn btn-outline-secondary">MORE</button>
+                  </td>
+                <% end %>
+                <% if @transactions.blank? %>
+                  <tr><td colspan="10">找不到任何帳目</td></tr>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+          <table v-if="item_show" class="table">
+            <thead class="table-primary">
+              <tr>
+                <th scope="col">品項名稱</th>
+                <th scope="col">品項數量</th>
+                <th scope="col">品項單價</th>
+                <th scope="col">品項總價</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <% transaction.transaction_items.each do |item| %>
+                    <td><%= item.title %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= item.price %></td>
+                    <td><%= item.total %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">進帳時間</th>
+              <th scope="col">收入項目</th>
+              <th scope="col">收入說明</th>
+              <th scope="col">收入金額</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @incomes.each do |income| %>
+              <tr>
+                <td><%= income.created_at %></td> 
+                <td><%= income.title %></td>
+                <td><%= income.description %></td>
+                <td><%= income.total %></td>
+                <td>
+                  <%= link_to '編輯', edit_users_income_path(income), class: 'btn btn-outline-danger' %>
+                  <%= link_to '刪除', users_income_path(income), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
+                </td>
+              <% end %>
+              <% if @incomes.blank? %>
+                <tr><td colspan="10">找不到任何帳目</td></tr>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,41 +1,125 @@
-<h1 class="card-title"><i class="fas fa-address-book"></i> 個人頁面總覽</h1>
+<section class="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5 input-box">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-blue1" type="button" id="button-addon2">立即註冊</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <h1 class="slogan">Money Pocket聰明記帳</h1>
+        <p>快速掃描你的發票，同時記錄你的支出，統一發票對獎加上記帳功能，一次解決兩樣瑣碎的事務，省下更多時間去做更重要的事！</p>
+        <%= image_tag ("finance400.png") %>
+      </div>
+    </div>
+  </div>
+</section>
 
-<%= link_to '新增帳目', new_users_transaction_path, class: 'btn btn-primary' %>
-<%= link_to '兌獎', checks_path, class: 'btn btn-primary' %>
+<section class="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        
+        <%= image_tag ("Savings.png") %>
+      </div>
+      <div class="col-12 col-md-6 subtitle">
+        <div class="card w-75 mb-3">
+          <div class="card-body">
+            <h3 class="card-title">沒有繁複的步驟，直覺好上手</h3>
+            <p class="card-text">讓長輩也能輕鬆使用</p>
+          </div>
+        </div>
+        <div class="card w-75 mb-3">
+          <div class="card-body">
+            <h3 class="card-title">一次輸入，整理發票同時完成記帳</h3>
+            <p class="card-text">快速有效率的記帳方式</p>
+          </div>
+        </div>
+        <div class="card w-75 mb-3">
+          <div class="card-body">
+            <h3 class="card-title">免費申請，立即使用</h3>
+            <p class="card-text">免載APP，打開網頁即可使用</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="feature">
+<!--   <div class="container">
+    <h3>特色功能</h3>
+  </div> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="icon">
+            <i class="fas fa-qrcode"></i>
+          </div>
+          <h2 class="feature-txt">發票QRcode解析</h2>
+          <div class="summary">
+          <p>手機掃描電子發票，或是手動上傳電子發票檔案，自動將消費內容轉換成清楚的明細</p>
+        </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="icon">
+            <i class="fas fa-check-double"></i>
+          </div>
+          <h2 class="feature-txt">對獎、記帳一次滿足</h2>
+          <div class="summary">
+            <p>為你記住統一發票號碼，再也不需要煩惱對獎，同時，也為你完成了繁瑣的記帳</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="icon">
+            <i class="fab fa-buromobelexperte"></i>
+          </div>
+          <h2 class="feature-txt">成就紀錄，記越多越有感</h2>
+          <div class="summary">
+            <p>發票隨手記，看著自己的成就紀錄，忍不住期待下一張發票的出現</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">消費時間</th>
-      <th scope="col">發票號碼</th>
-      <th scope="col">品項名稱</th>
-      <th scope="col">品項數量</th>
-      <th scope="col">品項單價</th>
-      <th scope="col">品項總價</th>
-      <th scope="col">發票總價</th>
-      <th scope="col">對獎狀態</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <% @transactions.each do |transaction| %>
-        <th class="row"><%= transaction.created_at %></th> 
-        <td><%= transaction.invoice_num %></td>
-        <% transaction.transaction_items.each do |item| %>
-          <td><%= item.title %></td>
-          <td><%= item.quantity %></td>
-          <td><%= item.price %></td>
-          <td><%= item.total %></td>
-        <% end %>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.status %></td>
-        <td>
-          <%= link_to '刪除', users_transaction_path(transaction), method: :delete %>
-          <%= link_to '編輯', edit_users_transaction_path(transaction) %>
-        </td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+<section class="action">
+  <div class="container">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="title">
+        <h2 class="info">現在就開始體驗吧！Keep your money well!</h2>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-blue1" type="button" id="button-addon2">立即註冊</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-12 col-md-11">Copyright © 2020. Theme by Money Pocket</div>
+        <div class="col-12 col-md-1">
+          <div class="social-icon">
+          <ul>
+            <li><a href="https://github.com/weareqrcode/MoneyPocket" class="fab fa-github"></a></li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

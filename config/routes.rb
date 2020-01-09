@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  resources :transactions, only: [:index]
+  resources :transactions, only: [:index] 
   resources :checks, only: [:index] do 
     collection do
       get :prizes
@@ -11,15 +11,10 @@ Rails.application.routes.draw do
 
   namespace :users do 
     root 'transactions#index'
-    # 網址中的 new 換成 add
+    resources :incomes
+    # 網址 new 換成 add
     scope(path_names: { new: 'add'}) do
-      resources :transactions do 
-        collection do
-          get :point
-        end
-      end
+      resources :transactions
     end
   end
 end
-
-

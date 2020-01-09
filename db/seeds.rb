@@ -10,7 +10,7 @@
 require "uri"
 require "net/http"
 
-month = ["10", "08", "06"]
+month = ["10", "08"]
 month.each do |i|
 url = URI("https://api.einvoice.nat.gov.tw/PB2CAPIVAN/invapp/InvApp")
 
