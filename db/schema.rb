@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_02_055653) do
+ActiveRecord::Schema.define(version: 2020_01_08_073615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_01_02_055653) do
   create_table "transactions", force: :cascade do |t|
     t.string "invoice_num"
     t.string "invoice_photo"
-    t.decimal "amount"
+    t.decimal "amount", default: "0.0"
     t.bigint "user_id", null: false
     t.integer "status"
     t.jsonb "data"
