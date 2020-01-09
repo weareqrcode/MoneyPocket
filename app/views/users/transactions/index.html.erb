@@ -84,7 +84,6 @@
                 <th scope="col">發票號碼</th>
                 <th scope="col" width="20%">發票總價</th>
                 <th scope="col" colspan="2">對獎狀態</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -110,7 +109,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="col flex-column" style="display: none;" :class="{open: itemShow, kt: itemShow}" :style="{display: itemShow ? 'flex' : 'none'}">
+          <div class="col flex-column" style="display: none;" :style="{display: itemShow ? 'flex' : 'none'}">
             <% @transactions.each do |transaction| %>
               <table v-show="itemShow && itemId === '<%= transaction.id %>'" class="table">
                 <thead class="table-primary">
