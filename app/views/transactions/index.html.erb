@@ -2,6 +2,17 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-5 input-box">
+        <div class="check col-md-10">
+          <div class="check-item">
+            <%= form_tag prizes_transactions_path, method: 'get', remote:true do %>
+              <%= label_tag :inv_input, ' 發票末三碼 :'%>
+              <%= text_field_tag :inv_input,"", maxlength: 3%>
+              <%= hidden_field_tag :optioned, :value => "" %>
+              <%= submit_tag "送出", id: "submit"%>
+            <%end%>
+          <div class="messege" id="messege"></div>
+          </div>
+        </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
           <div class="input-group-append">
