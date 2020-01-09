@@ -1,21 +1,18 @@
-$(document).ready(function() {
-  $("#submit").on("click", function() {
+$(document).on("turbolinks:load", function() {
+  $("#submit").click(function() {
+    $("#optioned").val($("#check_select option:selected").index());
+  });
 
-    $.getJSON("/checks").then(data => {
-      let inv = $("#inv_input").val();
-      $(".prize").remove("");
-      for (i = 0; i < 7; i++) {
-        $(".prize").remove("");
-        let string = data[i].inter.substr(-3);
-        if (inv == string) {
-          $(".messege").append(`<div class="prize">中獎 ${inv}</div>`)
-          $(".messege").append(`<div class="prize">繼續對對看  ${data[i].inter}</div>`);
-          {break;}
-        } else {
-          $(".messege").append(`<div class="prize">未中獎 ${inv}</div>`);
-        }
+  $("#Ym_" + $("#check_select option:selected").val()).removeClass("d-none");
+  $("#check_select").change(function() {
+    let checkMonth = $("#check_select option:selected").val();
+    $(".Ym_group").addClass("d-none");
+    $("#Ym_" + checkMonth).removeClass("d-none");
+  });
+
+  $("#inv_input").keyup(function() {
+    if (this.value != this.value.replace(/[^0-9\.]/g, ""))
+      {this.value = this.value.replace(/[^0-9\.]/g, "");
       }
-      $("#inv_input").val("");
-    });
   });
 });

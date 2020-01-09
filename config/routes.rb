@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :transactions, only: [:index]
-  resources :checks, only: [:index]
+  resources :checks, only: [:index] do 
+    collection do
+      get :prizes
+    end
+  end
   root 'transactions#index'
 
   namespace :users do 

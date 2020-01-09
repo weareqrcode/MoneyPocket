@@ -1,27 +1,33 @@
-
 <h1>手動對獎器</h1>
 
 <div class="check">
   <div class="check-item">
-    <label for = "inv_input" >發票末三碼： </label>
-    <input type="text" id="inv_input" placeholder = "請輸入發票號碼" maxlength="3" oninput = "value=value.replace(/[^\d]/g,'')">
-    <input type="button" value="送出" id="submit">
+    <%= form_tag prizes_checks_path, method: 'get', remote:true do %>
+      <%= label_tag :inv_input, ' 發票末三碼 :'%>
+      <%= text_field_tag :inv_input,"", maxlength: 3%>
+      <%= hidden_field_tag :optioned, :value => "" %>
+    <%= submit_tag "送出", id: "submit"%>
+    <%end%>
     <div class="messege" id="messege"></div>
     <div class="jsonb">
       <div class="messege_price">
-        <select name="" id="">
-          <optgroup>
-            <option value=""><%= @checks["invoYm"]%></option>
-            <option value=""><%= @checks["invoYm"]%></option>
-          </optgroup>
+      <select id="check_select">
+          <% @check.each do |check|%>
+            <option id="check_option" value="<%=check%>"><%=check%></option>
+          <% end %>
         </select>
-        <div class="messege_prize">千萬特獎 : <%= @checks["superPrizeNo"]%></div>
-        <div class="messege_prize">特獎 : <%= @checks["spcPrizeNo"]%></div>
-        <div class="messege_prize">頭獎 : <%= @checks["firstPrizeNo1"]%></div>
-        <div class="messege_prize">頭獎 : <%= @checks["firstPrizeNo2"]%></div>
-        <div class="messege_prize">頭獎 : <%= @checks["firstPrizeNo3"]%></div>
-        <div class="messege_prize">六獎 : <%= @checks["sixthPrizeNo1"]%></div>
-        <div class="messege_prize">六獎 : <%= @checks["sixthPrizeNo2"]%></div>
+        <% @checks.each do |check|%>
+          <div id="Ym_<%=check.jsonb["invoYm"]%>" class="Ym_group d-none"> 
+            <div class="messege_prize">千萬特獎 : <%= check.jsonb["superPrizeNo"]%></div>
+            <div class="messege_prize">特獎 : <%= check.jsonb["spcPrizeNo"]%></div>
+            <div class="messege_prize">頭獎 : <%= check.jsonb["firstPrizeNo1"]%></div>
+            <div class="messege_prize">頭獎 : <%= check.jsonb["firstPrizeNo2"]%></div>
+            <div class="messege_prize">頭獎 : <%= check.jsonb["firstPrizeNo3"]%></div>
+            <div class="messege_prize">六獎 : <%= check.jsonb["sixthPrizeNo1"]%></div>
+            <div class="messege_prize">六獎 : <%= check.jsonb["sixthPrizeNo2"]%></div>
+            <div class="messege_prize">六獎 : <%= check.jsonb["sixthPrizeNo3"]%></div>
+          </div>
+        <%end%>
       </div>
     </div>
   </div>
