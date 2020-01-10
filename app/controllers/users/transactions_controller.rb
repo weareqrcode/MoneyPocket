@@ -63,8 +63,6 @@ class Users::TransactionsController < Users::BaseController
     redirect_to users_transactions_path, notice: "完成一筆帳目刪除"
   end
 
-  end
-
   private
 
   def find_transaction

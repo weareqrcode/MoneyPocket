@@ -8,7 +8,7 @@
               <%= label_tag :inv_input, ' 發票末三碼 :'%>
               <%= text_field_tag :inv_input,"", maxlength: 3%>
               <%= hidden_field_tag :optioned, :value => "" %>
-              <%= submit_tag "送出", id: "submit"%>
+              <%= submit_tag "送出", id: "submit" ,class: "btn "%>
             <%end%>
           <div class="messege" id="messege"></div>
           </div>
