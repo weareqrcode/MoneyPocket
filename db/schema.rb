@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 2020_01_08_073615) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "checks", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "jsonb"
+  end
+
   create_table "incomes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title"
