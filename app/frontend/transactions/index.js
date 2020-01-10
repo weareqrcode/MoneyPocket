@@ -1,2 +1,2 @@
 import './point.js';
-import './check.js';
+import './prize.js';

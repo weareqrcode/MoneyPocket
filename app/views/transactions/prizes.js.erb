@@ -11,15 +11,17 @@ if (three_code === true) {
   if (string.length == 3) {
     messege.insertAdjacentHTML(
       "beforeend",
-      `<div class="prize"> 中獎 ${input_val}</div>`
+      `<div class="prizes"> 中獎 ${input_val}</div>`
     );
   } else {
     messege.insertAdjacentHTML(
       "beforeend",
-      `<div class="prize">繼續對對看 <%=@front5%><span class="text-danger"><%=@back3%><span></div>`
+      `<div class="prizes">繼續對對看 <%= @front5 %>
+        <span class="text-danger"> <%= @back3 %> <span>
+      </div>`
     );
   }
 } else {
-  messege.insertAdjacentHTML("beforeend", `<div class="prize"> 未中獎 </div>`);
+  messege.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
 }
 document.querySelector("#inv_input").value = "";

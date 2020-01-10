@@ -2,14 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-5 input-box">
-        <div class="check col-md-10">
-          <div class="check-item">
+        <div class="prize col-md-10">
+          <div class="prize-item">
             <%= form_tag prizes_transactions_path, method: 'get', remote:true do %>
-              <%= label_tag :inv_input, ' 發票末三碼 :'%>
-              <%= text_field_tag :inv_input,"", maxlength: 3%>
+              <%= label_tag :inv_input, ' 發票末三碼 :' %>
+              <%= text_field_tag :inv_input,"", maxlength: 3 %>
               <%= hidden_field_tag :optioned, :value => "" %>
-              <%= submit_tag "送出", id: "submit" ,class: "btn "%>
-            <%end%>
+              <%= submit_tag "送出", id: "submit" ,class: "btn " %>
+            <% end %>
           <div class="messege" id="messege"></div>
           </div>
         </div>

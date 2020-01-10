@@ -10,7 +10,6 @@ $(document).on("turbolinks:load", function() {
 });
 
 function fetchDayColors() {
-
   let colors = ["checkin-1", "checkin-2", "checkin-3", "checkin-4", "checkin-5"];
   $.getJSON(`/users/transactions`).then(data => {
     data
@@ -41,5 +40,5 @@ function toDayDiv(m) {
 }
 
 function toWeekDiv(c) {
-  return `<div class="column">${c.join("")}</div>`;
+  return `<div class="column">${c.join("")}</div>`
 }
