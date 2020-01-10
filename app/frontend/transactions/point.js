@@ -53,8 +53,7 @@ function   monthToGrid(){
     $('#month').append(`<span class="month${i}">${i}月</span>`)
     $(`.month${i}`).offset({left: month_array[i-1]})
   };
-for (let i = 1; i < 13; i++){
+  for (let i = 1; i < 13; i++){
   $(`.${months.format}01`).position({left: month_array[i-1]})
-}
-  $('.01').addClass("checkin-2")
+  }
 }
