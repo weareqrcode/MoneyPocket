@@ -7,7 +7,8 @@
 
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
-import MoreBtnMain from './../vue/more_btn_main'
+import MoreBtnMain from '../vue/more_btn_main'
+import CloseBtnMain from '../vue/notice_close_main'
 
 Vue.use(TurbolinksAdapter)
 
@@ -15,6 +16,13 @@ document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#vue-app',
     ...MoreBtnMain
+  })
+})
+
+document.addEventListener('turbolinks:load', () => {
+  const app = new Vue({
+    el: '#notice-app',
+    ...CloseBtnMain
   })
 })
 

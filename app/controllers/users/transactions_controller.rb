@@ -3,9 +3,9 @@ class Users::TransactionsController < Users::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = Transaction.all.order('created_at desc')
-      @transactionitems = TransactionItem.all.order('created_at desc')
-      @incomes = Income.all.order('created_at desc')
+      @transactions = current_user.transactions.order('created_at desc')
+      @transactionitems = current_user.transaction_items.order('created_at desc')
+      @incomes = current_user.incomes.order('created_at desc')
     else
       @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
@@ -38,7 +38,7 @@ class Users::TransactionsController < Users::BaseController
   def create
     @transaction = current_user.transactions.new(transaction_params)
     if @transaction.save
-      redirect_to users_transactions_path, notice: "完成一筆帳目新增"
+      redirect_to users_transactions_path, flash: { success: "完成一筆帳目新增" }
     else
       render :new
     end
@@ -52,7 +52,7 @@ class Users::TransactionsController < Users::BaseController
 
   def update
     if @transaction.update(transaction_params)
-      redirect_to users_transactions_path, notice: "完成一筆帳目更新"
+      redirect_to users_transactions_path, flash: { success: "完成一筆帳目更新" }
     else
       render :edit
     end
@@ -60,7 +60,7 @@ class Users::TransactionsController < Users::BaseController
 
   def destroy
     @transaction.destroy
-    redirect_to users_transactions_path, notice: "完成一筆帳目刪除"
+    redirect_to users_transactions_path, flash: { warning: "完成一筆帳目刪除" }
   end
 
   private
