@@ -1,0 +1,7 @@
+zh-TW:
+  enum:
+    transaction:
+      status:
+        pending: "未開獎"
+        missed: "未中獎"
+        won: "中獎囉"
