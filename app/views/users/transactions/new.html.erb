@@ -1,5 +1,5 @@
 <% content_for :scripts do %>
-  <%= javascript_pack_tag 'qrcodescanner', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'vue-qrscaner', 'data-turbolinks-track': 'reload' %>
 <% end %>
 <div class="container">
   <h1 class='new-title'><i class="fas fa-plus"></i>新增帳目</h1>
@@ -7,4 +7,8 @@
     <a href="#" id="startButton" class="btn">Scan</a>
     <video id="video" width="320" height="200"></video>
   </div>
+</div>
+
+<div id="app">
+  <qrcode-stream @decode="onDecode" @init="onInit" />
 </div>
