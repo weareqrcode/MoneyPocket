@@ -93,7 +93,7 @@
                   <td><%= transaction.created_at %></td> 
                   <td><%= transaction.invoice_num %></td>
                   <td><%= transaction.amount %></td>
-                  <td><%= t("enum.transaction.status.#{transaction.status}") %></td>
+                  <td><%= transaction.status %></td>
                   <td>
                     <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>
                       <i class="fas fa-edit"></i>編輯

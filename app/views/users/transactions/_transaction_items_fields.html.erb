@@ -1,22 +1,20 @@
-<div class="nested-fields form-row">
-  <div class="form-group col-md-3">
+<div class="nested-fields">
+  <div class="form-group">
     <%= invoice.hidden_field :id %>
     <%= invoice.label :title, '品項名稱' %>
     <%= invoice.text_field :title, class: 'form-control' %>
   </div>
-  <div class="form-group col-md-3">
+  <div class="form-group">
     <%= invoice.label :quantity, '品項數量' %>
     <%= invoice.text_field :quantity, class: 'form-control' %>
   </div>
-  <div class="form-group col-md-3">
+  <div class="form-group">
     <%= invoice.label :price, '品項單價' %>
     <%= invoice.text_field :price, class: 'form-control' %>
   </div>
-  <div class="form-group col-md-3">
+  <div class="form-group">
     <%= invoice.label :total, '品項總價' %>
     <%= invoice.text_field :total, class: 'form-control' %>
   </div>
-  <div class="col-md-1">
-    <%= link_to_remove_association '移除', invoice, class: 'btn btn-small btn-dark' %>
-  </div>
+  <%= link_to_remove_association 'remove item', invoice %>
 </div>
