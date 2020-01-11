@@ -1,4 +1,8 @@
-<div class="alert alert-blue" role="alert">
-  <%= notice %>
-  <i class="far fa-times-circle"></i>
+<div id="flash-app">
+  <div class="alert alert-warning" role="alert" v-if="notice">
+    <%= notice %>
+    <button type="button" class="close" @click="closeBtn()">
+      <i class="far fa-times-circle"></i>
+    </button>
+  </div>
 </div>
