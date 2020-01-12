@@ -2,7 +2,6 @@ class TransactionsController < ApplicationController
   layout 'frontend'
 
   def index
-    @transactions = Transaction.all.with_attached_invoice_photo
     @transactionitems = TransactionItem.all
   end
   def prizes
@@ -27,5 +26,4 @@ class TransactionsController < ApplicationController
       prize_map = prize_select.map { |k, y| { :ID => k, :inter => y } }.map { |c| c[:inter] }
     end
   end
-
 end

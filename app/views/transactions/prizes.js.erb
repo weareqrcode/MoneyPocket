@@ -1,7 +1,7 @@
-messege = document.querySelector("#messege");
+message = document.querySelector("#message");
 
-while (messege.firstChild) {
-  messege.removeChild(messege.firstChild);
+while (message.firstChild) {
+  message.removeChild(message.firstChild);
 }
 var three_code = <%= @three_code %>;
 var string = "<%= @string %>";
@@ -9,12 +9,12 @@ var string = "<%= @string %>";
 if (three_code === true) {
   let input_val = document.querySelector("#inv_input").value;
   if (string.length == 3) {
-    messege.insertAdjacentHTML(
+    message.insertAdjacentHTML(
       "beforeend",
       `<div class="prizes"> 中獎 ${input_val}</div>`
     );
   } else {
-    messege.insertAdjacentHTML(
+    message.insertAdjacentHTML(
       "beforeend",
       `<div class="prizes">繼續對對看 <%= @front5 %>
         <span class="text-danger"> <%= @back3 %> <span>
@@ -22,6 +22,6 @@ if (three_code === true) {
     );
   }
 } else {
-  messege.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
+  message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
 }
 document.querySelector("#inv_input").value = "";

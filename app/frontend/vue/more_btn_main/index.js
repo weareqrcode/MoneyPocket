@@ -1,10 +1,19 @@
 const main = {
   data: {
-    item_show: false
+    itemShow: false,
+    itemId: '' 
   },
   methods: {
-    expand() {
-      this.item_show = !this.item_show
+    expand(id) {
+      // click to close more
+      if (this.itemId === id) {
+        this.itemId = ''
+        this.itemShow = false
+      // click to open more
+      } else {
+        this.itemId = id
+        this.itemShow = true
+      }
     }
   }
 }
