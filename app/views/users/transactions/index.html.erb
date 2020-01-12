@@ -10,7 +10,7 @@
 <!-- <section> -->
   <div class="container">
     <div class="row">
-      <div class="col-8">
+      <div class="col-12 col-md-8">
         <!-- <div class="d-flex"> -->
           <div class="row">
             <div class="col-12 col-md-6">
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
       </div>
       </div>
@@ -97,15 +97,15 @@
         <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
         <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
       </div>
-      <div id="vue-app" class="d-flex">
+      <div id="vue-app" class="d-flex custom-table-width">
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">消費時間</th>
-              <th scope="col">發票號碼</th>
-              <th scope="col">發票總價</th>
-              <th scope="col">對獎狀態</th>
-              <th scope="col"></th>
+              <th scope="col" class="w-20">消費時間</th>
+              <th scope="col" class="w-20">發票號碼</th>
+              <th scope="col" class="w-20">發票總價</th>
+              <th scope="col" class="w-20">對獎狀態</th>
+              <th scope="col" class="w-20"></th>
             </tr>
           </thead>
           <tbody>
@@ -131,28 +131,30 @@
             </tr>
           </tbody>
         </table>
-        <table v-if="item_show" class="table">
-          <thead class="thead-light">
-            <tr>
-              <th scope="col">品項名稱</th>
-              <th scope="col">品項數量</th>
-              <th scope="col">品項單價</th>
-              <th scope="col">品項總價</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @transactions.each do |transaction| %>
-              <tr>
-                <% transaction.transaction_items.each do |item| %>
-                  <td><%= item.title %></td>
-                  <td><%= item.quantity %></td>
-                  <td><%= item.price %></td>
-                  <td><%= item.total %></td>
-                <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+       <div class="custom-table-width">
+          <table v-if="item_show" class="table">
+           <thead class="thead-light">
+             <tr>
+               <th scope="col" class="w-20">品項名稱</th>
+               <th scope="col" class="w-15">品項數量</th>
+               <th scope="col" class="w-10">品項單價</th>
+               <th scope="col" class="w-10">品項總價</th>
+             </tr>
+           </thead>
+           <tbody>
+             <% @transactions.each do |transaction| %>
+               <tr>
+                 <% transaction.transaction_items.each do |item| %>
+                   <td><%= item.title %></td>
+                   <td><%= item.quantity %></td>
+                   <td><%= item.price %></td>
+                   <td><%= item.total %></td>
+                 <% end %>
+               </tr>
+             <% end %>
+           </tbody>
+         </table>
+       </div>
       </div>
     </div>
   </div>
@@ -160,7 +162,7 @@
 
 <div class="income-table">
   <div class="container">
-    <div class="table-responsive">
+    <div class="table-responsive custom-table-width">
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -174,13 +176,17 @@
         <tbody>
           <% @incomes.each do |income| %>
             <tr>
-              <td><%= income.created_at %></td> 
+              <td><%= income.created_at.to_date %></td> 
               <td><%= income.title %></td>
               <td><%= income.description %></td>
-              <td><%= income.total %></td>
+              <td><%= income.total.to_i %></td>
               <td>
-                <%= link_to '編輯', edit_users_income_path(income), class: 'btn btn-edit' %>
-                <%= link_to '刪除', users_income_path(income), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-delete' %>
+                <%= link_to edit_users_income_path(income), class: 'btn btn-edit btn-sm' do %>
+                  <i class="fas fa-edit"></i>編輯
+                <% end %>
+                <%= link_to users_income_path(income), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-delete btn-sm' do %>
+                  <i class="fas fa-trash-alt"></i> 刪除
+                <% end %>
               </td>
             <% end %>
             <% if @incomes.blank? %>

@@ -1,29 +1,24 @@
 <% if @income.errors.any? %>
-  <div>
-    <button></button>
-    <ul>
-      <% @income.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <% @income.errors.full_messages.each do |message| %>
+    <%= message %><i class="far fa-times-circle"></i>
+  <% end %>
 <% end %>
 
 <%= form_with model: [:users, @income] do |f| %>
-  <div>
+  <div class="form-group">
     <%= f.label :title, '收入項目' %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <div>
-    <%= f.label :description, '收入說明' %>
-    <%= f.text_field :description %>
-  </div>
-  <div>
+  <div class="form-group">
     <%= f.label :total, '收入金額' %>
-    <%= f.text_field :total %>
+    <%= f.text_field :total, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, '收入說明' %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
   <div>
-    <%= f.submit '儲存', class: 'btn btn-primary' %>
+    <%= f.submit '儲存', class: 'btn btn-blue1' %>
   </div>
 <% end %>
 

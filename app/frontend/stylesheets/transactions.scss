@@ -112,6 +112,36 @@
   color: #fff;
 }
 
+.pic{
+  /*width: 500px;*/
+}
+
+.card{
+  width: 75%;
+}
+
+@media screen and (max-width: 767px) {
+  .cover{
+    order: 1;
+  }
+  .input-box{
+    order: 2;
+  }
+  .pic{
+  width: 100%;
+  }
+  .card{
+    width: 100%;
+  }
+  .feature-item:first-child{
+    margin: 38px 0;
+  }
+  .social-icon{
+    align-items: flex-end;
+  }
+}
+
+
 section{
   padding: 50px 0;
 }
@@ -236,7 +266,7 @@ section{
   color: #fff;
   display: inline-block;
   /*margin-top: 10px;*/
-  padding-top: 15px;
+  padding-top: 25px;
   margin-left: 10px;
 }
 
@@ -275,12 +305,9 @@ section{
   color: #fff; 
 }
 
-th{
-  width: 20%;
-}
-
 tr:hover{
   background-color: #B9EDF8;
+  /*background-color: #17ccf1;*/
 }
 
 .login-box{
