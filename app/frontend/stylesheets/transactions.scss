@@ -120,7 +120,23 @@
   width: 75%;
 }
 
+.dropdown-item{
+  color: #fff;
+}
+
+.nav-btn{
+  margin: 0 10px 0 10px;
+  padding: 10px 10px 0 0;
+}
+
 @media screen and (max-width: 767px) {
+  .navbar{
+    padding-left: 8px;
+  }
+  .nav-btn{
+    margin:0 0 0 10px;
+    padding: 10px 0 0 0;
+  }
   .cover{
     order: 1;
   }

@@ -1,23 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/"><%= image_tag "logo50.png" %>Money Pocket</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+  
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
   </div>
-  
+
   <div class="navbar-end">
     <div class="navbar-item">
-      <div class="buttons">
-        <% if user_signed_in? %>
-          <%= link_to current_user.email, edit_user_registration_path, class: 'nav-btn' %>
-          <%= link_to "登出", destroy_user_session_path, method: 'delete', class: 'nav-btn' %>
-        <% else %>
-          <%= link_to "登入", new_user_session_path, class: 'nav-btn' %>
-          <%= link_to "註冊", new_user_registration_path, class: 'nav-btn' %>
-        <% end %>
-      </div>
+      <ul class="mr-auto">
+        <li class="nav-item dropdown mx-10">
+          <div id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if user_signed_in? %>
+              <%= link_to current_user.email, users_transactions_path, class: 'nav-link dropdown-toggle nav-btn' %>
+          </div>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <%= link_to "我的後台", users_transactions_path, class: 'dropdown-item' %>
+            <%= link_to "登出", destroy_user_session_path, method: 'delete', class: 'dropdown-item' %>
+            <% else %>
+              <%= link_to "登入", new_user_session_path, class: 'nav-btn' %>
+              <%= link_to "註冊", new_user_registration_path, class: 'nav-btn' %>
+            <% end %>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>  
 </nav>
