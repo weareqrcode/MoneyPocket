@@ -9,6 +9,6 @@
 </div>
 
 <div id="app">
-  <a href="#" v-if="!isScanned" @click.prevent="clickStatus" class="btn"><i class="fas fa-qrcode fa-2x"></i></a>
+  <a href="#" v-if="!isScanned && !clicked" @click.prevent="clickStatus" class="btn"><i class="fas fa-qrcode fa-2x"></i></a>
   <qrcode-stream v-if="clicked" @decode="onDecode" @init="onInit" />
 </div>

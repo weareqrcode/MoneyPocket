@@ -1,6 +1,7 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import { QrcodeStream } from 'vue-qrcode-reader'
 import Vue from 'vue/dist/vue.esm'
+const R = require('ramda')
 
 Vue.use(TurbolinksAdapter)
 
@@ -23,7 +24,6 @@ document.addEventListener('turbolinks:load', () => {
       },
       onDecode(result) {
         this.result = result
-        console.log(this.result)
         this.inserDataToField(this.result)
       },
       inserDataToField(result) {
@@ -31,14 +31,9 @@ document.addEventListener('turbolinks:load', () => {
         // let invoiceQRCode = this.scanedQRCode.filter(this.unique).sort().reverse()
         let invoiceQRCode = this.scanedQRCode.sort().reverse()
 
-        console.log(invoiceQRCode)
-        // this.isscanned = true
-        // this.clicked = false
 
         if (/^[A-Z]{2}\d{8}/.test(invoiceQRCode[0]) && invoiceQRCode.length === 2) {
           let fullInvoiceNumber = invoiceQRCode.join('')
-
-          console.log(fullInvoiceNumber)
 
           let number = fullInvoiceNumber.slice(0, 10)
           let dateYear = fullInvoiceNumber.slice(10, 13)
@@ -57,7 +52,9 @@ document.addEventListener('turbolinks:load', () => {
           invoiceItems.shift()
           let encode = Number(invoiceItems.shift())
           let aryItems = R.splitEvery(3, invoiceItems)
-          let productAry = aryItems.map((item) => ({ productName: item[0], productQty: Number(parseInt(item[1], 10)), productPrice: Number(item[2]) }))
+          let productAry = aryItems.map((item) => ({ productName: item[0].replace(/^\*+/, ''), productQty: Number(item[1]), productPrice: Number(item[2]) })).filter((item) => (
+            item.productPrice !== 0
+          ))
 
           document.querySelector('#transaction_invoice_num').value = number
           document.querySelector('#transaction_amount').value = taxAmount
@@ -92,11 +89,10 @@ document.addEventListener('turbolinks:load', () => {
             document.querySelector(`#transaction_transaction_items_attributes_${idx}_total`).value = item.productQty * item.productPrice
 
             if (productAry.length > 1 && idx < productAry.length - 1) document.querySelector('#add-item-btn').insertAdjacentHTML('beforebegin', temp)
+            this.isScanned = true
+            this.clicked = false
           })
         }
-      },
-      unique(value, index, self) {
-        return self.indexOf(value) === index
       },
       async onInit (promise) {
         try {
@@ -117,7 +113,7 @@ document.addEventListener('turbolinks:load', () => {
           }
         }
       }
-    }
+    },
   })
 })
 
