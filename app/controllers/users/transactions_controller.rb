@@ -3,7 +3,7 @@ class Users::TransactionsController < Users::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = current_user.transactions.order('created_at desc')
+      @transactions = current_user.transactions.includes(transaction_items: [:categories]).order('created_at desc')
       @transactionitems = current_user.transaction_items.order('created_at desc')
       @incomes = current_user.incomes.order('created_at desc')
     else
@@ -50,7 +50,7 @@ class Users::TransactionsController < Users::BaseController
   def edit
   end
 
-  def update
+  def update  
     if @transaction.update(transaction_params)
       redirect_to users_transactions_path, notice: "完成一筆帳目更新"
     else
@@ -70,7 +70,7 @@ class Users::TransactionsController < Users::BaseController
   end
   
   def transaction_params
-    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :status, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total, {category_items: []}])
+    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total, :category_items, :_destroy])
   end
 
 end

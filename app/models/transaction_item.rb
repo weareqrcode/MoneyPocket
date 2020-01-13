@@ -5,7 +5,7 @@ class TransactionItem < ApplicationRecord
   
   # Relationships
   belongs_to :transaction_record, class_name: "Transaction", foreign_key: 'transaction_id'
-  has_many :relations
+  has_many :relations, dependent: :destroy
   has_many :categories, through: 'relations'
   
   def category_list
@@ -19,10 +19,13 @@ class TransactionItem < ApplicationRecord
   end
 
   def category_items
-    categories.map(&:tag_name)
+    categories.map(&:tag_name).join(',')
   end
 
   def category_items=(tag_names)
-    self.categories = tag_names.map{|item| Category.where(tag_name: item.strip).first_or_create! unless item.blank?}.compact!
+    tags = tag_names.split(',')
+    self.categories = tags.map do |tag|
+      Category.where(tag_name: tag.strip).first_or_create!
+    end
   end
 end 
