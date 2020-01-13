@@ -3,9 +3,9 @@ class Users::TransactionsController < Users::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = Transaction.all.order('created_at desc')
-      @transactionitems = TransactionItem.all.order('created_at desc')
-      @incomes = Income.all.order('created_at desc')
+      @transactions = current_user.transactions.order('created_at desc')
+      @transactionitems = current_user.transaction_items.order('created_at desc')
+      @incomes = current_user.incomes.order('created_at desc')
     else
       @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}

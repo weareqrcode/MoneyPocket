@@ -80,14 +80,14 @@
           <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
         </div>
         <div id="vue-app" class="d-flex">
-          <table class="table">
+          <table class="table col">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">消費時間</th>
                 <th scope="col">發票號碼</th>
-                <th scope="col">發票總價</th>
-                <th scope="col">對獎狀態</th>
-                <th scope="col"></th>
+                <th scope="col" width="20%">發票總價</th>
+                <th scope="col" colspan="2">對獎狀態</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -95,8 +95,8 @@
                 <tr>
                   <td><%= transaction.created_at %></td> 
                   <td><%= transaction.invoice_num %></td>
-                  <td><%= transaction.amount %></td>
-                  <td><%= transaction.status %></td>
+                  <td><%= transaction.amount.to_i %></td>
+                  <td><%= t("enum.transaction.status.#{transaction.status}") %></td>
                   <td>
                     <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>
                       <i class="fas fa-edit"></i>編輯
@@ -104,7 +104,7 @@
                     <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
                       <i class="fas fa-trash-alt"></i>刪除
                     <% end %>
-                    <button @click="expand()" class="btn btn-outline-secondary">MORE</button>
+                    <button @click="expand('<%= transaction.id %>')" class="btn btn-outline-secondary">MORE</button>
                   </td>
                 <% end %>
                 <% if @transactions.blank? %>
@@ -113,28 +113,32 @@
               </tr>
             </tbody>
           </table>
-          <table v-if="item_show" class="table">
-            <thead class="table-primary">
-              <tr>
-                <th scope="col">品項名稱</th>
-                <th scope="col">品項數量</th>
-                <th scope="col">品項單價</th>
-                <th scope="col">品項總價</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @transactions.each do |transaction| %>
-                <tr>
+          <div class="col flex-column" style="display: none" :style="{display: itemShow ? 'flex' : 'none'}" >
+            <% @transactions.each do |transaction| %>
+              <table v-show="itemShow && itemId === '<%= transaction.id %>'" class="table">
+                <thead class="table-primary">
+                  <tr>
+                    <th scope="col">品項名稱</th>
+                    <th scope="col">品項分類</th>
+                    <th scope="col">品項數量</th>
+                    <th scope="col">品項單價</th>
+                    <th scope="col">品項總價</th>
+                  </tr>
+                </thead>
+                <tbody>
                   <% transaction.transaction_items.each do |item| %>
-                    <td><%= item.title %></td>
-                    <td><%= item.quantity %></td>
-                    <td><%= item.price %></td>
-                    <td><%= item.total %></td>
+                    <tr>
+                      <td><%= item.title %></td>
+                      <td>食衣住行</td>
+                      <td><%= item.quantity %></td>
+                      <td><%= item.price.to_i %></td>
+                      <td><%= item.total.to_i %></td>
+                    </tr>
                   <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="table-responsive">
@@ -154,7 +158,7 @@
                 <td><%= income.created_at %></td> 
                 <td><%= income.title %></td>
                 <td><%= income.description %></td>
-                <td><%= income.total %></td>
+                <td><%= income.total.to_i %></td>
                 <td>
                   <%= link_to '編輯', edit_users_income_path(income), class: 'btn btn-outline-danger' %>
                   <%= link_to '刪除', users_income_path(income), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' %>
