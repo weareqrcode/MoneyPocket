@@ -70,7 +70,7 @@ class Users::TransactionsController < Users::BaseController
   end
   
   def transaction_params
-    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :status, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total])
+    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total, :_destroy])
   end
 
 end
