@@ -126,7 +126,7 @@
                   <% transaction.transaction_items.each do |item| %>
                     <tr>
                       <td><%= item.title %></td>
-                      <td>食衣住行</td>
+                      <td><%= item.category_items %></td>
                       <td><%= item.quantity %></td>
                       <td><%= item.price.to_i %></td>
                       <td><%= item.total.to_i %></td>
