@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-4">
       <%= invoice_photo_tag transaction %>
-      <div class="form-group">
+      <div class="form-group col-md-6">
         <%= invoice.label :invoice_photo, '發票截圖' %>
         <%= invoice.file_field :invoice_photo, class: 'form-control-file' %>
       </div>
@@ -16,15 +16,11 @@
 
     <div class="col-8">
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group">
           <%= invoice.label :invoice_num, '發票號碼' %>
           <%= invoice.text_field :invoice_num, class: 'form-control' %>
         </div>
 
-        <div class="form-group col-md-6">
-          <%= invoice.label :status, '對獎狀態' %>
-          <%= invoice.text_field :status, class: 'form-control' %>
-        </div>
       </div>
     </div>
 
