@@ -97,15 +97,15 @@
         <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
         <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
       </div>
-      <div id="vue-app" class="d-flex custom-table-width">
+      <div class="d-flex custom-table-width">
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col" class="w-20">消費時間</th>
-              <th scope="col" class="w-20">發票號碼</th>
-              <th scope="col" class="w-20">發票總價</th>
-              <th scope="col" class="w-20">對獎狀態</th>
-              <th scope="col" class="w-20"></th>
+              <th scope="col">消費時間</th>
+              <th scope="col">發票號碼</th>
+              <th scope="col">發票總價</th>
+              <th scope="col">對獎狀態</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -131,30 +131,30 @@
             </tr>
           </tbody>
         </table>
-       <div class="custom-table-width">
+        <div class="custom-table-width">
           <table v-if="item_show" class="table">
-           <thead class="thead-light">
-             <tr>
-               <th scope="col" class="w-20">品項名稱</th>
-               <th scope="col" class="w-15">品項數量</th>
-               <th scope="col" class="w-10">品項單價</th>
-               <th scope="col" class="w-10">品項總價</th>
-             </tr>
-           </thead>
-           <tbody>
-             <% @transactions.each do |transaction| %>
-               <tr>
-                 <% transaction.transaction_items.each do |item| %>
-                   <td><%= item.title %></td>
-                   <td><%= item.quantity %></td>
-                   <td><%= item.price %></td>
-                   <td><%= item.total %></td>
-                 <% end %>
-               </tr>
-             <% end %>
-           </tbody>
-         </table>
-       </div>
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">品項名稱</th>
+                <th scope="col">品項數量</th>
+                <th scope="col">品項單價</th>
+                <th scope="col">品項總價</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <% transaction.transaction_items.each do |item| %>
+                    <td><%= item.title %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= item.price %></td>
+                    <td><%= item.total %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -199,9 +199,9 @@
   </div>
 </div>
 
-<div class="test">
+<div class="container" id="vue-app" class="d-flex custom-table-width">
   <table class="table rwdtable">
-    <thead>
+    <thead class="thead-dark">
       <tr>
         <th>消費時間</th>
         <th>發票號碼</th>
@@ -213,14 +213,14 @@
     <tbody>
       <% @transactions.each do |transaction| %>
       <tr>
-        <td data-label="No."><%= transaction.created_at.to_date %></td>
-        <td data-label="CompanyName">
+        <td data-label="消費時間"><%= transaction.created_at.to_date %></td>
+        <td data-label="發票號碼">
             <%= transaction.invoice_num %>
         </td>
-        <td data-label="ContactName">
+        <td data-label="發票總價">
             <%= transaction.amount %>
         </td>
-        <td data-label="ContactTitle">
+        <td data-label="對獎狀態">
             <%= transaction.status %>
         </td>
         <td data-label="Action">
@@ -239,5 +239,29 @@
       </tr>
     </tbody>
   </table>
+  <div class="custom-table-width">
+    <table v-if="item_show" class="table rwdtable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">品項名稱</th>
+          <th scope="col">品項數量</th>
+          <th scope="col">品項單價</th>
+          <th scope="col">品項總價</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transactions.each do |transaction| %>
+          <tr>
+            <% transaction.transaction_items.each do |item| %>
+              <td data-label="品項名稱"><%= item.title %></td>
+              <td data-label="品項數量"><%= item.quantity %></td>
+              <td data-label="品項單價"><%= item.price %></td>
+              <td data-label="品項總價"><%= item.total %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 

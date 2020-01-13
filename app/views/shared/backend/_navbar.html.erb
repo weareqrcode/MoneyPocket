@@ -8,18 +8,18 @@
     <div class="navbar-item">
       <ul class="mr-auto">
         <li class="nav-item dropdown mx-10">
+          <% if user_signed_in? %>
           <div id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if user_signed_in? %>
-              <%= link_to current_user.email, users_transactions_path, class: 'nav-link dropdown-toggle nav-btn' %>
+            <%= link_to current_user.email, users_transactions_path, class: 'nav-link dropdown-toggle nav-btn' %>
           </div>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
             <%= link_to "我的後台", users_transactions_path, class: 'dropdown-item' %>
             <%= link_to "登出", destroy_user_session_path, method: 'delete', class: 'dropdown-item' %>
-            <% else %>
-              <%= link_to "登入", new_user_session_path, class: 'nav-btn' %>
-              <%= link_to "註冊", new_user_registration_path, class: 'nav-btn' %>
-            <% end %>
           </div>
+          <% else %>
+            <%= link_to "登入", new_user_session_path, class: 'nav-btn' %>
+            <%= link_to "註冊", new_user_registration_path, class: 'nav-btn' %>
+          <% end %>
         </li>
       </ul>
     </div>
