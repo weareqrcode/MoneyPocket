@@ -24,4 +24,56 @@ class Transaction < ApplicationRecord
   end
 
 
+
+
+
+
+
+
+
+
+
+
+  def go1
+    if Date.current.month % 2 == 0
+      (Date.current - 2.months).end_of_month
+    elsif Date.current.day > 25 
+      (Date.current - 1.months).end_of_month
+    else
+      (Date.current - 3.months).end_of_month
+    end
+  end
+
+
+  def star1
+    if Date.current.month % 2 == 0
+      (Date.current - 4.months).end_of_month+1.day
+    elsif Date.current.day > 25 
+      (Date.current - 3.months).end_of_month+1.day
+    else
+      (Date.current - 5.months).end_of_month+1.day
+    end
+  end
+
+def go2
+  if Date.current.month % 2 == 0
+    (Date.current - 4.months).end_of_month
+  elsif Date.current.day > 25 
+    (Date.current - 3.months).end_of_month
+  else
+    (Date.current - 5.months).end_of_month
+  end
+end
+
+def star2
+  if Date.current.month % 2 == 0
+    (Date.current - 6.months).end_of_month+1.day
+  elsif Date.current.day > 25 
+    (Date.current - 5.months).end_of_month+1.day
+  else
+    (Date.current - 7.months).end_of_month+1.day
+  end
+end
+
+
 end

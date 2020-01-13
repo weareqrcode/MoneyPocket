@@ -28,7 +28,21 @@ class Users::TransactionsController < Users::BaseController
       format.json { render json: date_hash.to_json }
     end
 
-  end
+    cot = Transaction.select("created_at")
+    @cot = cot.map {|s| s.created_at.strftime('%Y-%m-%d')}
+      @cot.each do |x|
+        @cc = (((Date.today+11).to_time - (("2019-10-31").to_time))/1.month.second).round(2)
+      end
+      p @cc
+      prize_all
+    input = params[:inv_input]
+    prize_three = prize_all[0].map { |x| x.scan(/\d{3}$/) }.flatten
+    @three_code = prize_three.include?(input)
+    @string = prize_all[0].select {|d| d.scan(/\d{3}$/) == [input] }.try(:[], 0)
+    @front5 = @string&.scan(/\d{5}/).try(:[], 0)
+    @back3 = @string&.scan(/\d{3}$/).try(:[], 0)
+  
+end
 
   def new
     @transaction = Transaction.new
@@ -73,4 +87,11 @@ class Users::TransactionsController < Users::BaseController
     params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :status, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total])
   end
 
+  def prize_all
+    @prizes = Prize.last(2)
+    @prizes.map do |x|
+      prize_select = x.jsonb.select { |a, b| a =~ /No/ && b != "" }
+      prize_map = prize_select.map { |k, y| { :ID => k, :inter => y } }.map { |c| c[:inter] }
+    end
+  end
 end

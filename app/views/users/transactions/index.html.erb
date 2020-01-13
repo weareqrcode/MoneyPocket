@@ -75,6 +75,9 @@
         <div class="new-btn-group">
           <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
           <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
+          <%=form_tag do %>
+            <%= submit_tag "一件兌獎", id: "aasm_tag" ,class: "btn btn-outline-secondary" %>
+          <% end %>
         </div>
         <div id="vue-app" class="d-flex">
           <table class="table col">
