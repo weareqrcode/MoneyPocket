@@ -40,5 +40,5 @@ function toDayDiv(m) {
 }
 
 function toWeekDiv(c) {
-  return `<div class="column">${c.join("")}</div>`;
+  return `<div class="column">${c.join("")}</div>`
 }
