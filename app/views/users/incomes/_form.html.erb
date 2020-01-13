@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<%= form_with model: [:users, @income] do |f| %>
+<%= form_with model: [:users, @income], local: true do |f| %>
   <div>
     <%= f.label :title, '收入項目' %>
     <%= f.text_field :title %>
