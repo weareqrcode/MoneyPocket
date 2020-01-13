@@ -199,3 +199,45 @@
   </div>
 </div>
 
+<div class="test">
+  <table class="table rwdtable">
+    <thead>
+      <tr>
+        <th>消費時間</th>
+        <th>發票號碼</th>
+        <th>發票總價</th>
+        <th>對獎狀態</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+      <tr>
+        <td data-label="No."><%= transaction.created_at.to_date %></td>
+        <td data-label="CompanyName">
+            <%= transaction.invoice_num %>
+        </td>
+        <td data-label="ContactName">
+            <%= transaction.amount %>
+        </td>
+        <td data-label="ContactTitle">
+            <%= transaction.status %>
+        </td>
+        <td data-label="Action">
+          <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-edit btn-sm' do %>
+            <i class="fas fa-edit"></i>編輯
+          <% end %>
+          <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-delete btn-sm' do %>
+            <i class="fas fa-trash-alt"></i> 刪除
+          <% end %>
+          <button @click="expand()" class="btn btn-secondary btn-sm">看更多</button>
+        </td>
+        <% end %>
+          <% if @transactions.blank? %>
+            <tr><td colspan="10">找不到任何帳目</td></tr>
+          <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
