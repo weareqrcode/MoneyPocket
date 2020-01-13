@@ -24,9 +24,12 @@ class Users::TransactionsController < Users::BaseController
     respond_to do |format|
       format.html { render "index" }
       point_json = current_user.transactions.group("created_at::date").count
-      date_hash = point_json.map { |k, v| { :date => k, :count => v } }
-      format.json { render json: date_hash.to_json }
-    end
+      income_json = current_user.incomes.group("created_at::date").count
+      income_array = income_json.map { |k, v| { :date => k, :count => v } }
+      point_array = point_json.map { |k, v| { :date => k, :count => v } }
+      main_hash = { income: income_array, point: point_array }
+      format.json { render json: main_hash.to_json }
+      end
 
     cot = Transaction.select("created_at")
     @cot = cot.map {|s| s.created_at.strftime('%Y-%m-%d')}
@@ -42,7 +45,7 @@ class Users::TransactionsController < Users::BaseController
     @front5 = @string&.scan(/\d{5}/).try(:[], 0)
     @back3 = @string&.scan(/\d{3}$/).try(:[], 0)
   
-end
+  end
 
   def new
     @transaction = Transaction.new
@@ -84,7 +87,7 @@ end
   end
   
   def transaction_params
-    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :status, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total])
+    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total, :_destroy])
   end
 
   def prize_all
