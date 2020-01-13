@@ -24,10 +24,13 @@ class Users::TransactionsController < Users::BaseController
     respond_to do |format|
       format.html { render "index" }
       point_json = current_user.transactions.group("created_at::date").count
-      date_hash = point_json.map { |k, v| { :date => k, :count => v } }
-      format.json { render json: date_hash.to_json }
-    end
+      income_json = current_user.incomes.group("created_at::date").count
 
+      income_array = income_json.map { |k, v| { :date => k, :count => v } }
+      point_array = point_json.map { |k, v| { :date => k, :count => v } }
+      main_hash = { income: income_array, point: point_array }
+      format.json { render json: main_hash.to_json }
+      end
   end
 
   def new
