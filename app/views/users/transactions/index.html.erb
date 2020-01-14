@@ -10,17 +10,17 @@
 <!-- <section> -->
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-md-7">
         <!-- <div class="d-flex"> -->
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="spend">
                 <div class="row">
-                  <div class="col-3">
+                  <div class="col-2">
                     <%= image_tag "income50.png", class: 'income-logo' %>
                   </div>
-                  <div class="col-9">
-                    <div class="income-total">$ <%= @incomes_balance.to_i %></div>
+                  <div class="col-10">
+                    <div class="income-total">收$ <%= @incomes_balance.to_i %></div>
                   </div>
                 </div>
               </div>
@@ -28,11 +28,11 @@
             <div class="col-12 col-md-6">
               <div class="income">
                 <div class="row">
-                  <div class="col-3">
+                  <div class="col-2">
                     <%= image_tag "spend50.png", class: 'spend-logo' %>
                   </div>
-                  <div class="col-9">
-                    <div class="spend-total">$ <%= @transactions_balance.to_i %></div>
+                  <div class="col-10">
+                    <div class="spend-total">支$ <%= @transactions_balance.to_i %></div>
                   </div>
                 </div>
               </div>
@@ -42,18 +42,18 @@
             <div class="col-12">
               <div class="income">
                 <div class="row">
-                  <div class="col-3">
+                  <div class="col-2">
                     <%= image_tag "balance50.png", class: 'income-logo' %>
                   </div>
-                  <div class="col-9">
-                    <div class="income-total">$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
+                  <div class="col-10">
+                    <div class="income-total">餘$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-5">
         <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
       </div>
       </div>
@@ -63,7 +63,7 @@
       
 <div class="point">
   <div class="container">
-    <h4>打卡成就</h4>
+    <h4 class="check">打卡成就</h4>
     <div class="point">
       <div id="point-item"></div>
       <div class="point-color">
@@ -94,11 +94,11 @@
     
     <div>
       <div class="new-btn-group">
-        <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
-        <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
+        <%= link_to '新增收入', new_users_income_path, class: 'btn btn-income' %>
+        <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-spend' %>
       </div>
     </div>
-    <div class="d-flex custom-table-width" id="vue-app">
+    <div class="custom-table-width" id="vue-app">
         <table class="table rwdtable">
           <thead class="thead-dark">
             <tr>
@@ -111,10 +111,10 @@
           </thead>
           <tbody>
             <% @transactions.each do |transaction| %>
-              <tr>
+              <tr class="spendrwd">
                 <td data-label="消費時間"><%= transaction.created_at.to_date %></td> 
                 <td data-label="發票號碼"><%= transaction.invoice_num %></td>
-                <td data-label="發票總價"><%= transaction.amount %></td>
+                <td data-label="發票總價"><%= transaction.amount.to_i %></td>
                 <td data-label="對獎狀態"><%= transaction.status %></td>
                 <td data-label="">
                   <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-edit btn-sm' do %>
@@ -144,12 +144,12 @@
             </thead>
             <tbody>
               <% @transactions.each do |transaction| %>
-                <tr>
+                <tr class="itemrwd">
                   <% transaction.transaction_items.each do |item| %>
                     <td data-label="品項名稱"><%= item.title %></td>
                     <td data-label="品項數量"><%= item.quantity %></td>
-                    <td data-label="品項單價"><%= item.price %></td>
-                    <td data-label="品項總價"><%= item.total %></td>
+                    <td data-label="品項單價"><%= item.price.to_i %></td>
+                    <td data-label="品項總價"><%= item.total.to_i %></td>
                   <% end %>
                 </tr>
               <% end %>
@@ -157,74 +157,6 @@
           </table>
         </div>
       </div>
-  </div>
-</div>
-
-<div class="container" class="d-flex custom-table-width">
-  <div class="d-flex custom-table-width">
-    <table class="table rwdtable">
-      <thead class="thead-dark">
-        <tr>
-          <th>消費時間</th>
-          <th>發票號碼</th>
-          <th>發票總價</th>
-          <th>對獎狀態</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @transactions.each do |transaction| %>
-        <tr>
-          <td data-label="消費時間"><%= transaction.created_at.to_date %></td>
-          <td data-label="發票號碼">
-              <%= transaction.invoice_num %>
-          </td>
-          <td data-label="發票總價">
-              <%= transaction.amount %>
-          </td>
-          <td data-label="對獎狀態">
-              <%= transaction.status %>
-          </td>
-          <td data-label="">
-            <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-edit btn-sm' do %>
-              <i class="fas fa-edit"></i>編輯
-            <% end %>
-            <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-delete btn-sm' do %>
-              <i class="fas fa-trash-alt"></i> 刪除
-            <% end %>
-            <button @click="expand()" class="btn btn-secondary btn-sm">看更多</button>
-          </td>
-          <% end %>
-            <% if @transactions.blank? %>
-              <tr><td colspan="10">找不到任何帳目</td></tr>
-            <% end %>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="custom-table-width">
-    <table v-if="item_show" class="table rwdtable">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">品項名稱</th>
-          <th scope="col">品項數量</th>
-          <th scope="col">品項單價</th>
-          <th scope="col">品項總價</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @transactions.each do |transaction| %>
-          <tr>
-            <% transaction.transaction_items.each do |item| %>
-              <td data-label="品項名稱"><%= item.title %></td>
-              <td data-label="品項數量"><%= item.quantity %></td>
-              <td data-label="品項單價"><%= item.price %></td>
-              <td data-label="品項總價"><%= item.total %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
   </div>
 </div>
 
@@ -243,7 +175,7 @@
         </thead>
         <tbody>
           <% @incomes.each do |income| %>
-            <tr>
+            <tr class="incomerwd">
               <td data-label="進帳時間"><%= income.created_at.to_date %></td>
               <td data-label="收入金額"><%= income.total.to_i %></td>
               <td data-label="收入項目"><%= income.title %></td>

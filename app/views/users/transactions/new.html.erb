@@ -3,8 +3,9 @@
 <% end %>
 <div class="container">
   <h1 class='new-title'><i class="fas fa-plus"></i>新增帳目</h1>
-  <div class="row"><%= render 'form', transaction: @transaction %>
-    <a href="#" id="startButton" class="btn">Scan</a>
-    <video id="video" width="320" height="200"></video>
+  <div class="scan">
+    <a href="#" id="startButton" class="btn">點我掃描</a>
+    <video id="video" width="380" height="200"></video>
   </div>
+    <%= render 'form', transaction: @transaction %>
 </div>
