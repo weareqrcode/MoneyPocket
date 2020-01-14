@@ -1,11 +1,14 @@
 <% content_for :scripts do %>
-  <%= javascript_pack_tag 'qrcodescanner', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'vue-qrscaner', 'data-turbolinks-track': 'reload' %>
 <% end %>
+
 <div class="container">
   <h1 class='new-title'><i class="fas fa-plus"></i>新增帳目</h1>
-  <div class="scan">
-    <a href="#" id="startButton" class="btn">點我掃描</a>
-    <video id="video" width="380" height="200"></video>
-  </div>
+  <div class="row" id="app">
+    <a href="#" v-if="!isScanned && !clicked" @click.prevent="clickStatus" class="btn">點我，開始掃發票吧！</a>
+    <div>
+    <qrcode-stream v-if="clicked" @decode="onDecode" @init="onInit" />
+    </div>
     <%= render 'form', transaction: @transaction %>
+  </div>
 </div>

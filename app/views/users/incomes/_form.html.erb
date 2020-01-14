@@ -4,8 +4,8 @@
   <% end %>
 <% end %>
 
-<%= form_with model: [:users, @income] do |f| %>
-  <div class="form-group">
+<%= form_with model: [:users, @income], local: true do |f| %>
+  <div>
     <%= f.label :title, '收入項目' %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>

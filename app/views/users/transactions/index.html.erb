@@ -7,78 +7,76 @@
   <h1 class="new-title"><i class="fas fa-user-circle"></i> 個人頁面總覽</h1> 
 </div>
 
-<!-- <section> -->
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-7">
-        <!-- <div class="d-flex"> -->
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="spend">
-                <div class="row">
-                  <div class="col-2">
-                    <%= image_tag "income50.png", class: 'income-logo' %>
-                  </div>
-                  <div class="col-10">
-                    <div class="income-total">收$ <%= @incomes_balance.to_i %></div>
-                  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-7">
+      <!-- <div class="d-flex"> -->
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="spend">
+              <div class="row">
+                <div class="col-2">
+                  <%= image_tag "income50.png", class: 'income-logo' %>
                 </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="income">
-                <div class="row">
-                  <div class="col-2">
-                    <%= image_tag "spend50.png", class: 'spend-logo' %>
-                  </div>
-                  <div class="col-10">
-                    <div class="spend-total">支$ <%= @transactions_balance.to_i %></div>
-                  </div>
+                <div class="col-10">
+                  <div class="income-total">收$ <%= @incomes_balance.to_i %></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="income">
-                <div class="row">
-                  <div class="col-2">
-                    <%= image_tag "balance50.png", class: 'income-logo' %>
-                  </div>
-                  <div class="col-10">
-                    <div class="income-total">餘$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
-                  </div>
+          <div class="col-12 col-md-6">
+            <div class="income">
+              <div class="row">
+                <div class="col-2">
+                  <%= image_tag "spend50.png", class: 'spend-logo' %>
+                </div>
+                <div class="col-10">
+                  <div class="spend-total">支$ <%= @transactions_balance.to_i %></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <div class="col-12 col-md-5">
-        <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
+        <div class="row">
+          <div class="col-12">
+            <div class="income">
+              <div class="row">
+                <div class="col-2">
+                  <%= image_tag "balance50.png", class: 'income-logo' %>
+                </div>
+                <div class="col-10">
+                  <div class="income-total">餘$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      </div>
+    <div class="col-12 col-md-5">
+      <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
     </div>
-  </div>
-<!-- </section> -->
-      
-<div class="point">
-  <div class="container">
-    <h4 class="check">打卡成就</h4>
-    <div class="point">
-      <div id="point-item"></div>
-      <div class="point-color">
-        <div class="color-reference">
-          <div class="item checkin-1"></div>
-          <div class="item checkin-2"></div>
-          <div class="item checkin-3"></div>
-          <div class="item checkin-4"></div>
-          <div class="item checkin-5"></div>
-          <div class="item checkin-6"></div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
+      
+<h4>打卡成就</h4>
+<div class="point">
+  <div id="point-item">
+    <div id="month"></div>
+    <div id="item"></div>
+  </div>
+  <div class="point-color">
+    <div class="color-reference">
+      <div class="item checkin-1"></div>
+      <div class="item checkin-2"></div>
+      <div class="item checkin-3"></div>
+      <div class="item checkin-4"></div>
+      <div class="item checkin-5"></div>
+      <div class="item checkin-6"></div>
+    </div>
+  </div>
+ </div>
+
       
 <div class="spend-table">
   <div class="container">
@@ -115,7 +113,7 @@
                 <td data-label="消費時間"><%= transaction.created_at.to_date %></td> 
                 <td data-label="發票號碼"><%= transaction.invoice_num %></td>
                 <td data-label="發票總價"><%= transaction.amount.to_i %></td>
-                <td data-label="對獎狀態"><%= transaction.status %></td>
+                <td data-label="對獎狀態"><%= t("enum.transaction.status.#{transaction.status}") %></td>
                 <td data-label="">
                   <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-edit btn-sm' do %>
                     <i class="fas fa-edit"></i>編輯
@@ -151,10 +149,10 @@
                     <td data-label="品項單價"><%= item.price.to_i %></td>
                     <td data-label="品項總價"><%= item.total.to_i %></td>
                   <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
         </div>
       </div>
   </div>

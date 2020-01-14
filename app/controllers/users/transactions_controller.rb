@@ -3,9 +3,9 @@ class Users::TransactionsController < Users::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = Transaction.all.order('created_at desc')
-      @transactionitems = TransactionItem.all.order('created_at desc')
-      @incomes = Income.all.order('created_at desc')
+      @transactions = current_user.transactions.order('created_at desc')
+      @transactionitems = current_user.transaction_items.order('created_at desc')
+      @incomes = current_user.incomes.order('created_at desc')
     else
       @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
@@ -24,10 +24,13 @@ class Users::TransactionsController < Users::BaseController
     respond_to do |format|
       format.html { render "index" }
       point_json = current_user.transactions.group("created_at::date").count
-      date_hash = point_json.map { |k, v| { :date => k, :count => v } }
-      format.json { render json: date_hash.to_json }
-    end
+      income_json = current_user.incomes.group("created_at::date").count
 
+      income_array = income_json.map { |k, v| { :date => k, :count => v } }
+      point_array = point_json.map { |k, v| { :date => k, :count => v } }
+      main_hash = { income: income_array, point: point_array }
+      format.json { render json: main_hash.to_json }
+      end
   end
 
   def new
@@ -70,7 +73,7 @@ class Users::TransactionsController < Users::BaseController
   end
   
   def transaction_params
-    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :status, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total])
+    params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :data, transaction_items_attributes: [:id, :title, :quantity, :price, :total, :_destroy])
   end
 
 end

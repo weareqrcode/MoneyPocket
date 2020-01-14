@@ -2,12 +2,23 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-5 input-box">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-blue1" type="button" id="button-addon2">立即註冊</button>
+      <div class="prize col-md-10">
+          <div class="prize-item">
+            <%= form_tag prizes_transactions_path, method: 'get', remote:true do %>
+              <%= label_tag :inv_input, ' 發票末三碼 :' %>
+              <%= text_field_tag :inv_input,"", maxlength: 3 %>
+              <%= hidden_field_tag :optioned, :value => "" %>
+              <%= submit_tag "送出", id: "submit" ,class: "btn " %>
+            <% end %>
+          <div class="message" id="message"></div>
           </div>
         </div>
+        <form class="input-group mb-3" action="/users/sign_up" method="get">
+          <input type="text" name="email" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-blue1" type="submit" id="button-addon2">立即註冊</button>
+          </div>
+        </form>
       </div>
       <div class="col-12 col-md-6 cover">
         <h1 class="slogan">Money Pocket聰明記帳</h1>
@@ -100,16 +111,18 @@
     <div class="col-12 d-flex justify-content-center">
       <div class="title">
         <h2 class="info">現在就開始體驗吧！Keep your money well!</h2>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <form class="input-group mb-3" action="/users/sign_up" method="get">
+          <input type="text" name="email" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button class="btn btn-blue1" type="button" id="button-addon2">立即註冊</button>
+            <button class="btn btn-blue1" type="submit" id="button-addon2">立即註冊</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 </section>
+
+
 
 <section class="footer">
   <div class="container">
@@ -126,4 +139,3 @@
     </div>
   </div>
 </section>
-
