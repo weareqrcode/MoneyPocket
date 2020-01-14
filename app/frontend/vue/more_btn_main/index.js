@@ -1,7 +1,8 @@
 const main = {
   data: {
     itemShow: false,
-    itemId: '' 
+    itemId: '',
+    closeBtn: true
   },
   methods: {
     expand(id) {
@@ -14,6 +15,9 @@ const main = {
         this.itemId = id
         this.itemShow = true
       }
+    },
+    close() {
+      this.closeBtn = false
     }
   }
 }

@@ -6,30 +6,32 @@
 
 <%= form_with model: [:users, @transaction], local: true do |invoice| %>
   <div class="row">
-    <div class="col-12">
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <%= invoice.label :invoice_num, '發票號碼' %>
-          <%= invoice.text_field :invoice_num, class: 'form-control' %>
-        </div>
+    <div class="col-12 col-md-4">
+      <div class="form-group">
+        <%= invoice.label :invoice_num, '發票號碼' %>
+        <%= invoice.text_field :invoice_num, class: 'form-control' %>
+      </div>
+    </div>
 
-        <div class="form-group col-md-4">
+    <div class="col-12 col-md-8">
+      <!-- <div class="form-row"> -->
+        <div class="form-group">
           <%= invoice.label :amount, '發票總價' %>
           <%= invoice.text_field :amount, class: 'form-control' %>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
 
-    <div class="col-12">
+    <div class="container">
       <%= invoice.fields_for :transaction_items do |item| %>
         <%= render 'transaction_items_fields', invoice: item %>
       <% end %>
-      <div id="add-item-btn" class="">
-        <%= link_to_add_association '增加', invoice, :transaction_items, partial: 'users/transactions/transaction_items_fields', form_name: 'invoice', class: 'btn btn-light' %>
+      <div id="add-item-btn" class="d-flex justify-content-end">
+        <%= link_to_add_association '+', invoice, :transaction_items, partial: 'users/transactions/transaction_items_fields', form_name: 'invoice', class: 'btn btn-dark' %>
       </div>
     </div>
 
-    <div class="col-md-1">
+    <div class="container d-flex justify-content-end">
       <%= invoice.submit '儲存', class: 'btn btn-blue1' %>
     </div>
   </div>

@@ -15,10 +15,10 @@ class Users::TransactionsController < Users::BaseController
       )
     end
 
-    @incomes_balance = Income.where(
+    @incomes_balance = current_user.incomes.where(
       {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:total)
       
-    @transactions_balance = Transaction.where(
+    @transactions_balance = current_user.transactions.where(
       {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:amount)
 
     respond_to do |format|
@@ -30,7 +30,7 @@ class Users::TransactionsController < Users::BaseController
       point_array = point_json.map { |k, v| { :date => k, :count => v } }
       main_hash = { income: income_array, point: point_array }
       format.json { render json: main_hash.to_json }
-      end
+    end
   end
 
   def new
