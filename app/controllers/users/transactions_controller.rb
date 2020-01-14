@@ -3,14 +3,18 @@ class Users::TransactionsController < Users::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = current_user.transactions.includes(transaction_items: [:categories]).order('created_at desc')
+      @transactions = current_user.transactions.includes(transaction_items: [:categories]).order('created_at desc') #fixed n+1 problem
       @transactionitems = current_user.transaction_items.order('created_at desc')
       @incomes = current_user.incomes.order('created_at desc')
+      @categories = current_user.transaction_items.categories
     else
       @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
       )
       @incomes = Income.where("created_at BETWEEN :start_date AND :end_date", {
+        start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
+      )
+      @incomes = Category.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
       )
     end
