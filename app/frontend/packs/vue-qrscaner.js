@@ -52,8 +52,8 @@ document.addEventListener('turbolinks:load', () => {
           invoiceItems.shift()
           let encode = Number(invoiceItems.shift())
           let aryItems = R.splitEvery(3, invoiceItems)
-          let productAry = aryItems.map((item) => ({ productName: item[0].replace(/^\*+/, ''), productQty: Number(item[1]), productPrice: Number(item[2]) })).filter((item) => (
-            item.productPrice !== 0
+          let productAry = aryItems.map((item) => ({ productName: item[0].trim().replace(/^\*+/, ''), productQty: Number(item[1]), productPrice: Number(item[2]) })).filter((item) => (
+            item.productPrice !== 0 && item.productPrice !== NaN && item.productName !== NaN && item.productName !== ''
           ))
 
           document.querySelector('#transaction_invoice_num').value = number
