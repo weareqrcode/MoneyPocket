@@ -24,4 +24,13 @@ if (three_code === true) {
 } else {
   message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
 }
-document.querySelector("#inv_input").value = "";
+
+if (<%= @status %>) {
+    message.insertAdjacentHTML(
+      "beforeend",
+      `<div class="prizes"><%= @front %><span class="text-danger"><%= @back %><span>
+      </div>`
+    )
+}
+
+document.querySelector("#inv_input").value = ""
