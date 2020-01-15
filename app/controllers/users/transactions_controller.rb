@@ -8,21 +8,21 @@ class Users::TransactionsController < Users::BaseController
       @incomes = current_user.incomes.order('created_at desc')
       @categories = current_user.transaction_items.categories
     else
-      @transactions = Transaction.where("created_at BETWEEN :start_date AND :end_date", {
+      @transactions = current_user.transactions.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
       )
-      @incomes = Income.where("created_at BETWEEN :start_date AND :end_date", {
+      @incomes = current_user.incomes.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
       )
-      @incomes = Category.where("created_at BETWEEN :start_date AND :end_date", {
+      @categories = current_user.transaction_items.categories.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
       )
     end
 
-    @incomes_balance = Income.where(
+    @incomes_balance = current_user.incomes.where(
       {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:total)
       
-    @transactions_balance = Transaction.where(
+    @transactions_balance = current_user.transactions.where(
       {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:amount)
 
     respond_to do |format|

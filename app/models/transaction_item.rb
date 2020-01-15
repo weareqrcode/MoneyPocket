@@ -6,7 +6,7 @@ class TransactionItem < ApplicationRecord
   # Relationships
   belongs_to :transaction_record, class_name: "Transaction", foreign_key: 'transaction_id'
   has_many :relations, dependent: :destroy
-  has_many :categories, through: 'relations', source: 'categories'
+  has_many :categories, through: 'relations', source: 'category'
   
   def category_list
     categories.map(&:tag_name).join(', ')
