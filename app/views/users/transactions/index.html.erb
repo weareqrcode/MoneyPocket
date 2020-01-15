@@ -131,7 +131,7 @@
 
       <div>
         <% @transactions.each do |transaction| %>
-          <div :class="[modalFade, modalShow ? show : '']" style="display: none" :style="{display: itemShow ? 'block' : 'none'}">
+          <div :class="[modalFade, modalShow ? show : '']" style="display: none" :style="{display: (itemShow && itemId === '<%= transaction.id %>') ? 'block' : 'none'}">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -163,14 +163,14 @@
                   </table>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary">Close</button>
+                  <button type="button" class="btn btn-secondary" @click="itemShow = false; itemId = ''">Close</button>
                 </div>
               </div>
             </div>
           </div>
         <% end %>
       </div>
-      <div :class="[modalBack, modalShow ? show : '']"></div>
+      <div class="modal-backdrop fade" style="display: none;" :class="{show: itemShow}" v-show="itemShow"></div>
     </div>
   </div>
 </div>
