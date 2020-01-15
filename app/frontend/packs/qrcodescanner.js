@@ -48,7 +48,7 @@ function decodeContinuously(codeReader, selectedDeviceId) {
         invoiceItems.shift()
         let encode = Number(invoiceItems.shift())
         let aryItems = R.splitEvery(3, invoiceItems)
-        let productAry = aryItems.map((item) => ({productName: item[0], productQty: Number(parseInt(item[1], 10)), productPrice: Number(parseInt(item[2], 10))}))
+        let productAry = aryItems.map((item) => ({productName: item[0], productQty: Number(parseInt(item[1], 10)), productPrice: Number(item[2])}))
 
         document.querySelector('#transaction_invoice_num').value = number
         document.querySelector('#transaction_amount').value = taxAmount

@@ -1,11 +1,12 @@
-.point{
+.point {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 300px;
+  height: 250px;
 }
-#point-item {
+
+#item {
   display: flex;
   justify-content: center;
 }
@@ -24,7 +25,7 @@
   display: inline-block;
 }
 
-.color-reference{
+.color-reference {
   display: flex;
   margin: 30px;
 }

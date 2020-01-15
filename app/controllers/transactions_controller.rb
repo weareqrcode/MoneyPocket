@@ -2,8 +2,8 @@ class TransactionsController < ApplicationController
   layout 'frontend'
 
   def index
-    @transactionitems = TransactionItem.all
   end
+  
   def prizes
     prize_all
     input = params[:inv_input]
@@ -15,10 +15,6 @@ class TransactionsController < ApplicationController
   end
 
   private
-  def transaction_params
-    params.require(:transactions).premit(:invoice_num, :invoice_photo, :amount, :status, :data)
-  end
-
   def prize_all
     @prizes = Prize.last(2)
     @prizes.map do |x|
