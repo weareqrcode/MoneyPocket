@@ -27,18 +27,18 @@ document.addEventListener('turbolinks:load', () => {
         this.inserDataToField(this.result)
       },
       inserDataToField(result) {
-        this.scanedQRCode.push(result)
+        this.scanedQRCode.push(result.trim())
         // let invoiceQRCode = this.scanedQRCode.filter(this.unique).sort().reverse()
         let invoiceQRCode = this.scanedQRCode.sort().reverse()
 
 
         if (/^[A-Z]{2}\d{8}/.test(invoiceQRCode[0]) && invoiceQRCode.length === 2) {
-          let fullInvoiceNumber = invoiceQRCode.join('')
+          let fullInvoiceNumber = invoiceQRCode.map((item) => (item.trim())).join('')
 
           let number = fullInvoiceNumber.slice(0, 10)
-          let dateYear = fullInvoiceNumber.slice(10, 13)
-          let dateMonth = fullInvoiceNumber.slice(13, 15)
-          let dateDay = fullInvoiceNumber.slice(15, 17)
+          let Year = fullInvoiceNumber.slice(10, 13)
+          let Month = fullInvoiceNumber.slice(13, 15)
+          let Day = fullInvoiceNumber.slice(15, 17)
           let randomNumber = fullInvoiceNumber.slice(17, 21)
           let salesAmount = Number(parseInt(fullInvoiceNumber.slice(21, 29), 16))
           let taxAmount = Number(parseInt(fullInvoiceNumber.slice(29, 37), 16))
@@ -52,12 +52,22 @@ document.addEventListener('turbolinks:load', () => {
           invoiceItems.shift()
           let encode = Number(invoiceItems.shift())
           let aryItems = R.splitEvery(3, invoiceItems)
-          let productAry = aryItems.map((item) => ({ productName: item[0].trim().replace(/^\*+/, ''), productQty: Number(item[1]), productPrice: Number(item[2]) })).filter((item) => (
-            item.productPrice !== 0 && item.productPrice !== NaN && item.productName !== NaN && item.productName !== ''
-          ))
+
+          console.log(aryItems)
+
+          let productAry = aryItems.map((item) => {
+            if (item[0] !== "**") {
+              let obj = { productName: item[0].replace(/^\*+/, ''), productQty: Number(item[1]), productPrice: Number(item[2].replace(/\**$/, '')) }
+              return obj
+            }
+          }).filter((item) => (item !== undefined && item.productPrice !== 0 && item.productPrice !== NaN && item.productName !== NaN))
+          
+          
+          console.log(productAry)
 
           document.querySelector('#transaction_invoice_num').value = number
           document.querySelector('#transaction_amount').value = taxAmount
+          document.querySelector('#transaction_invoice_date').value = `${Number(Year) + 1911}-${Month}-${Day}`
 
           productAry.map((item, idx) => {
             let temp = `
