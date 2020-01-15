@@ -7,6 +7,7 @@ class Users::TransactionsController < Users::BaseController
       @transactionitems = current_user.transaction_items.order('created_at desc')
       @incomes = current_user.incomes.order('created_at desc')
       # @categories = current_user.transaction_items.categories
+      @pie_count = @transactionitems.unscope(:order).joins(:categories).select('transaction_items.total', 'categories.tag_name').group('categories.tag_name').sum('transaction_items.total')
     else
       @transactions = current_user.transactions.where("created_at BETWEEN :start_date AND :end_date", {
         start_date: params[:start_date].to_date, end_date: params[:end_date].to_date}
