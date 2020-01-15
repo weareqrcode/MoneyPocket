@@ -18,7 +18,7 @@ https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
 request["Content-Type"] = "application/x-www-form-urlencoded"
-request.body = "version=0.2&action=QryWinningList&invTerm=108#{i}&appID=EINV4201912114063"
+request.body = "version=0.2&action=QryWinningList&invTerm=108#{i}&appID=#{ENV["einvoice_app_id"]}"
 
 prize = JSON.parse(https.request(request).read_body)
 
