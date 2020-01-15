@@ -129,9 +129,9 @@
         </tbody>
       </table>
 
-      <div style="display: none" :style="{display: itemShow ? 'block' : 'none'}">
+      <div>
         <% @transactions.each do |transaction| %>
-          <div class="modal fade" v-show="itemShow && itemId === '<%= transaction.id %>'">
+          <div :class="[modalFade, modalShow ? show : '']" style="display: none" :style="{display: itemShow ? 'block' : 'none'}">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -170,6 +170,7 @@
           </div>
         <% end %>
       </div>
+      <div :class="[modalBack, modalShow ? show : '']"></div>
     </div>
   </div>
 </div>
