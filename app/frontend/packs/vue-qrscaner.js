@@ -33,7 +33,7 @@ document.addEventListener('turbolinks:load', () => {
 
 
         if (/^[A-Z]{2}\d{8}/.test(invoiceQRCode[0]) && invoiceQRCode.length === 2) {
-          let fullInvoiceNumber = invoiceQRCode.map((item) => (item.trim())).join('')
+          let fullInvoiceNumber = invoiceQRCode.join('')
 
           let number = fullInvoiceNumber.slice(0, 10)
           let Year = fullInvoiceNumber.slice(10, 13)
@@ -53,17 +53,12 @@ document.addEventListener('turbolinks:load', () => {
           let encode = Number(invoiceItems.shift())
           let aryItems = R.splitEvery(3, invoiceItems)
 
-          console.log(aryItems)
-
           let productAry = aryItems.map((item) => {
             if (item[0] !== "**") {
               let obj = { productName: item[0].replace(/^\*+/, ''), productQty: Number(item[1]), productPrice: Number(item[2].replace(/\**$/, '')) }
               return obj
             }
           }).filter((item) => (item !== undefined && item.productPrice !== 0 && item.productPrice !== NaN && item.productName !== NaN))
-          
-          
-          console.log(productAry)
 
           document.querySelector('#transaction_invoice_num').value = number
           document.querySelector('#transaction_amount').value = taxAmount
