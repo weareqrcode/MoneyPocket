@@ -1,7 +1,6 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import { QrcodeStream } from 'vue-qrcode-reader'
-import 'vue-qrcode-reader/dist/vue-qrcode-reader.css'
 const R = require('ramda')
 
 Vue.use(TurbolinksAdapter)
