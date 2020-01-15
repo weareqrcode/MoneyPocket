@@ -22,6 +22,4 @@ class Transaction < ApplicationRecord
       transitions from: :pending, to: :won
     end
   end
-
-
 end
