@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     scope(path_names: { new: 'add'}) do
       resources :transactions do 
         collection do 
-          get :actions
+          post :act
         end
       end
     end

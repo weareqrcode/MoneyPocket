@@ -33,28 +33,29 @@ class Users::TransactionsController < Users::BaseController
 
   end
 
-  def actions
+  def act
     @transactions = current_user.transactions.select("status" == "pending").order(created_at: :desc)
     @transactions.each do |t|
       invoice_num = t.invoice_num.gsub(/\A\w{2}(\d*)\z/,'\\1')
       next if invoice_num.blank?
       month = "#{(t.invoice_date.strftime('%Y').to_i) -1911}#{t.invoice_date.strftime('%m')}"
-      in_two_months?(month, prize_all.keys)
+      month_two = in_two_months?(month, prize_all.keys)
       next if (in_two_months?(month, prize_all.keys)) == false
 
       result = false
-      prize_all[month].keys.each do |method|
+      prize_all[month_two].keys.each do |method|
         num = invoice_num.scan(/\d{#{method}}$/)[0]
-        if prize_all[month][method].include?(num) && t.status == "pending"
+        if prize_all[month_two][method].include?(num) && t.status == "pending"
           t.win! 
           result = true
           break
         end
         if t.status == "pending"
-          t.miss unless result
+          t.miss! unless result
         end
       end
     end
+    redirect_to users_transactions_path, notice: "兌獎完成!!!"
   end
 
   def new
@@ -105,9 +106,6 @@ class Users::TransactionsController < Users::BaseController
       prize_select = pz.jsonb.select { |a, b| a =~ /No/ && b != "" }
       methods = {
         8 => prize_select.values ,
-        # 6 => prize_select.values ,
-        # 5 => [],
-        # 4 => [],
         3 => prize_select.values.map { |pz| pz.scan(/\d{3}$/)[0] }
       }
       rs.merge( pz.jsonb['invoYm'] => methods )
@@ -115,13 +113,13 @@ class Users::TransactionsController < Users::BaseController
   end
 
   def in_two_months?(cur_month, target_month)
-    next_month = (cur_month.to_i + 1).to_s
-      if  (cur_month.in?target_month) == true
-        return  month = cur_month
-      elsif (next_month.in?target_month) == true
-        return  month == next_month
-      else 
-        return false
-      end
+    next_month = ((cur_month.to_i) + 1).to_s
+    if (cur_month.in?target_month) == true
+      cur_month = cur_month
+    elsif(next_month.in?target_month) == true
+      return cur_month = next_month
+    else
+      return false
+    end
   end
 end
