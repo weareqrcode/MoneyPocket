@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="col-6">
-          <%= pie_chart current_user.transaction_items.where.not(total: 0).categories.group(:tag_name).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
+          <%#= pie_chart current_user.transaction_items.where.not(total: 0).categories.group(:tag_name).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
         </div>
       </div>
       
