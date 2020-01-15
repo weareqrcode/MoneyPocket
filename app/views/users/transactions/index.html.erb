@@ -65,7 +65,7 @@
       </div>  
       
       <div>
-        <%= form_with model: @transaction, method: :get, local: true do |date| %>
+        <%= form_with model:@transaction, method: :get, local: true do |date| %>
           <%= date.label :start_date, '請輸入起始日期' %>
           <%= date.text_field :start_date, value: params[:start_date] %>
           <%= date.label :end_date, '請輸入結束日期' %>
@@ -78,8 +78,8 @@
         <div class="new-btn-group">
           <%= link_to '新增收入', new_users_income_path, class: 'btn btn-outline-secondary' %>
           <%= link_to '新增消費', new_users_transaction_path, class: 'btn btn-outline-secondary' %>
-          <%=form_tag do %>
-            <%= submit_tag "一件兌獎", id: "aasm_tag" ,class: "btn btn-outline-secondary" %>
+          <%= form_tag actions_users_transactions_path, method: :get ,remote:true  do %>
+             <%= submit_tag "一鍵兌獎form", id: "aasm_tag" ,class: "btn btn-outline-secondary"%>
           <% end %>
         </div>
         <div id="vue-app" class="d-flex">
@@ -89,6 +89,7 @@
                 <th scope="col">消費時間</th>
                 <th scope="col">發票號碼</th>
                 <th scope="col" width="20%">發票總價</th>
+                <th scope="col" width="10%">發票日期</th>
                 <th scope="col" colspan="2">對獎狀態</th>
                 <th></th>
               </tr>
@@ -99,6 +100,7 @@
                   <td><%= transaction.created_at %></td> 
                   <td><%= transaction.invoice_num %></td>
                   <td><%= transaction.amount.to_i %></td>
+                  <td><%= transaction.invoice_date %></td>
                   <td><%= t("enum.transaction.status.#{transaction.status}") %></td>
                   <td>
                     <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>

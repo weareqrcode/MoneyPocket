@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :incomes
     # 網址 new 換成 add
     scope(path_names: { new: 'add'}) do
-      resources :transactions
+      resources :transactions do 
+        collection do 
+          get :actions
+        end
+      end
     end
   end
 end
