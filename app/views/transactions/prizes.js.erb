@@ -21,7 +21,7 @@ if (three_code === true) {
       </div>`
     );
   }
-} else {
+} else if (three_code && <%= @status %>){
   message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
 }
 
@@ -34,3 +34,4 @@ if (<%= @status %>) {
 }
 
 document.querySelector("#inv_input").value = ""
+document.querySelector('#inv_full_number').value = ""
