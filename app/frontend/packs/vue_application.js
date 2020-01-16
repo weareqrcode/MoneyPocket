@@ -13,9 +13,9 @@ import CloseBtnMain from '../vue/flash_close_main'
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
-  if (document.getElementById('vue-app')) {
+  if (document.getElementById('more-app')) {
     const app = new Vue({
-      el: '#vue-app',
+      el: '#more-app',
       ...MoreBtnMain
     })
   }

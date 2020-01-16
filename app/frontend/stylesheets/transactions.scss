@@ -23,12 +23,37 @@
   margin-top: 10px;
 }
 
+.prize-item{
+  padding: 20px 0;
+}
+
+.invoice-input{
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem; 
+}
+
+#inv_input{
+  height: 30px;
+  width: 150px;
+  border: 1px solid #ccc;
+  padding-left: 8px;
+}
+
 .alert-blue{
   margin-bottom: -1rem;
   background-color: #B9EDF8;
 }
+
+.space{
+  margin-top: 15px;
+}
+
 .logo{
   background-image: url('~images/black50.png');
+}
+
+.card-body{
+  padding: 1.75rem 1.25rem 1.75rem 6rem;
 }
 
 .blue-box{
@@ -159,6 +184,10 @@
   padding: 10px 10px 0 0;
 }
 
+span{
+  font-size: 14px;
+}
+
 @media screen and (max-width: 767px) {
   .navbar{
     padding-left: 8px;
@@ -172,6 +201,9 @@
     /*font-size: .75rem;*/
   }
 
+  .card-body{
+  padding: 1.75rem 1.25rem 1.75rem 4rem;
+  }
   .cover{
     order: 1;
   }
@@ -478,7 +510,4 @@ hr{
     }
   }
 }
-#inv_input{
-  height: 30px;
-  width: 100px;
-}
+
