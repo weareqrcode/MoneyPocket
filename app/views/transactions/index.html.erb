@@ -35,7 +35,7 @@
                 <p class="card-text">使用下方工具更快速的完成對獎。</p>
               </div>
               <div class="prize-item">
-                <%= form_tag prizes_transactions_path, method: 'get', remote:true do %>
+                <%= form_tag prizes_transactions_path, method: 'post', remote:true do %>
                   <div class="input-group">
                     <%= label_tag :inv_input, ' ' %>
                     <%= text_field_tag :inv_input,"", maxlength: 3, placeholder: '請輸入發票末三碼', class: 'invoice-input' %>
