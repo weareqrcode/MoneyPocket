@@ -51,15 +51,14 @@
             </div>
           </div>
         </div>
+        <div class="col-12 col-md-5">
+          <%= pie_chart @pie_count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
+        </div>
       </div>
-    <div class="col-12 col-md-5">
-      <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
-    </div>
     </div>
   </div>
 </div>
       
-      <h1>打卡成就</h1>
       <div class="point">
         <div id="point-item">
           <div id="month"></div>
@@ -115,46 +114,46 @@
                 <td><%= t("enum.transaction.status.#{transaction.status}") %></td>
                 <td>
                   <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-outline-success' do %>
-                  <i class="fas fa-edit"></i>編輯
+                    <i class="fas fa-edit"></i>編輯
                   <% end %>
                   <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-outline-danger' do %>
-                  <i class="fas fa-trash-alt"></i>刪除
+                    <i class="fas fa-trash-alt"></i>刪除
                   <% end %>
                   <button @click="expand('<%= transaction.id %>')" class="btn btn-outline-secondary">MORE</button>
                 </td>
                 <% end %>
                 <% if @transactions.blank? %>
-              <tr>
-                <td colspan="10">找不到任何帳目</td>
-              </tr>
-              <% end %>
+                 <tr>
+                  <td colspan="10">找不到任何帳目</td>
+                 </tr>
+                <% end %>
               </tr>
             </tbody>
           </table>
           <div class="col flex-column" style="display: none" :style="{display: itemShow ? 'flex' : 'none'}">
             <% @transactions.each do |transaction| %>
-            <table v-show="itemShow && itemId === '<%= transaction.id %>'" class="table">
-              <thead class="table-primary">
-                <tr>
-                  <th scope="col">品項名稱</th>
-                  <th scope="col">品項分類</th>
-                  <th scope="col">品項數量</th>
-                  <th scope="col">品項單價</th>
-                  <th scope="col">品項總價</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% transaction.transaction_items.each do |item| %>
-                <tr>
-                  <td><%= item.title %></td>
-                  <td>食衣住行</td>
-                  <td><%= item.quantity %></td>
-                  <td><%= item.price.to_i %></td>
-                  <td><%= item.total.to_i %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
+              <table v-show="itemShow && itemId === '<%= transaction.id %>'" class="table">
+                <thead class="table-primary">
+                  <tr>
+                    <th scope="col">品項名稱</th>
+                    <th scope="col">品項分類</th>
+                    <th scope="col">品項數量</th>
+                    <th scope="col">品項單價</th>
+                    <th scope="col">品項總價</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% transaction.transaction_items.each do |item| %>
+                    <tr>
+                      <td><%= item.title %></td>
+                      <td><%= item.category_items %></td>
+                      <td><%= item.quantity %></td>
+                      <td><%= item.price.to_i %></td>
+                      <td><%= item.total.to_i %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
             <% end %>
           </div>
         </div>
