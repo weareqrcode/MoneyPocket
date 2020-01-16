@@ -41,30 +41,54 @@ class TransactionsController < ApplicationController
       first_prize = not_spc_prize
                               .filter {|k, v| v == full_number[-8..-1] }
 
-      if not first_prize.empty?
+      spc_prize = all_prize_number
+                              .filter { |k, v| ["spcPrizeNo"].include? k }
+                              .filter {|k, v| v == full_number[-8..-1] }
+
+      super_prize = all_prize_number
+                              .filter { |k, v| ["superPrizeNo"].include? k }
+                              .filter {|k, v| v == full_number[-8..-1] }
+
+      if not super_prize.empty?
+        @front = full_number[0..1]
+        @back = super_prize.values[0][-8..-1]
+        @status = true
+        @prize = "特別獎"
+      elsif not spc_prize.empty?
+        @front = full_number[0..1]
+        @back = spc_prize.values[0][-8..-1]
+        @status = true
+        @prize = "特獎"
+      elsif not first_prize.empty?
         @front = full_number[0..1]
         @back = first_prize.values[0][-8..-1]
         @status = true
+        @prize = "頭獎"
       elsif not two_prize.empty?
         @front = full_number[0..-8]
         @back = two_prize.values[0][-7..-1]
         @status = true
+        @prize = "二獎"
       elsif not three_prize.empty?
         @front = full_number[0..-7]
         @back = three_prize.values[0][-6..-1]
         @status = true
+        @prize = "三獎"
       elsif not four_prize.empty?
         @front = full_number[0..-6]
         @back = four_prize.values[0][-5..-1]
         @status = true
+        @prize = "四獎"
       elsif not five_prize.empty?
         @front = full_number[0..-5]
         @back = five_prize.values[0][-4..-1]
         @status = true
+        @prize = "五獎"
       elsif not six_prize.empty?
         @front = full_number[0..-4]
         @back = six_prize.values[0][-3..-1]
         @status = true
+        @prize = "六獎"
       end
     end
   end

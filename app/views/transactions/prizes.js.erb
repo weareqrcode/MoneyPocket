@@ -28,7 +28,7 @@ if (three_code === true) {
 if (<%= @status %>) {
     message.insertAdjacentHTML(
       "beforeend",
-      `<div class="prizes"><%= @front %><span class="text-danger"><%= @back %><span>
+      `<div class="prizes">中獎：<%= @prize %> <%= @front %><span class="text-danger"><%= @back %><span>
       </div>`
     )
 }
