@@ -36,7 +36,6 @@ class Users::TransactionsController < Users::BaseController
       main_hash = { income: income_array, point: point_array }
       format.json { render json: main_hash.to_json }
     end
-
   end
 
   def act
@@ -61,7 +60,7 @@ class Users::TransactionsController < Users::BaseController
         end
       end
     end
-    redirect_to users_transactions_path, notice: "兌獎完成!!!"
+    redirect_to users_transactions_path, notice: "兌獎完成!!!
   end
 
   def new

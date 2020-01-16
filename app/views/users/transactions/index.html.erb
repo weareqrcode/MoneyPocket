@@ -10,43 +10,41 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-7">
-      <!-- <div class="d-flex"> -->
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <div class="spend">
-              <div class="row">
-                <div class="col-2">
-                  <%= image_tag "income50.png", class: 'income-logo' %>
-                </div>
-                <div class="col-10">
-                  <div class="income-total">收$ <%= @incomes_balance.to_i %></div>
-                </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="spend">
+            <div class="row">
+              <div class="col-2">
+                <%= image_tag "income50.png", class: 'income-logo' %>
               </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="income">
-              <div class="row">
-                <div class="col-2">
-                  <%= image_tag "spend50.png", class: 'spend-logo' %>
-                </div>
-                <div class="col-10">
-                  <div class="spend-total">支$ <%= @transactions_balance.to_i %></div>
-                </div>
+              <div class="col-10">
+                <div class="income-total">收$ <%= @incomes_balance.to_i %></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="income">
-              <div class="row">
-                <div class="col-2">
-                  <%= image_tag "balance50.png", class: 'income-logo' %>
-                </div>
-                <div class="col-10">
-                  <div class="income-total">餘$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
-                </div>
+        <div class="col-12 col-md-6">
+          <div class="income">
+            <div class="row">
+              <div class="col-2">
+                <%= image_tag "spend50.png", class: 'spend-logo' %>
+              </div>
+              <div class="col-10">
+                <div class="spend-total">支$ <%= @transactions_balance.to_i %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="income">
+            <div class="row">
+              <div class="col-2">
+                <%= image_tag "balance50.png", class: 'income-logo' %>
+              </div>
+              <div class="col-10">
+                <div class="income-total">餘$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
               </div>
             </div>
           </div>
@@ -55,6 +53,10 @@
           <%= pie_chart @pie_count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
         </div>
       </div>
+    </div>
+    <div class="col-12 col-md-5">
+      <%= pie_chart TransactionItem.group(:total).count, donut: true, colors: ["#fed95c", "#039", "#19A0EC", "#17ccF1","#41b6e6", "#39BAE8"] %>
+    </div>
     </div>
   </div>
 </div>
@@ -159,65 +161,84 @@
         </div>
       </div>
     </div>
-    <div class="custom-table-width" id="vue-app">
-        <table class="table rwdtable">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">消費時間</th>
-              <th scope="col">發票號碼</th>
-              <th scope="col">發票總價</th>
-              <th scope="col">對獎狀態</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @transactions.each do |transaction| %>
-              <tr class="spendrwd">
-                <td data-label="消費時間"><%= transaction.created_at.to_date %></td> 
-                <td data-label="發票號碼"><%= transaction.invoice_num %></td>
-                <td data-label="發票總價"><%= transaction.amount.to_i %></td>
-                <td data-label="對獎狀態"><%= t("enum.transaction.status.#{transaction.status}") %></td>
-                <td data-label="">
-                  <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-edit btn-sm' do %>
-                    <i class="fas fa-edit"></i>編輯
-                  <% end %>
-                  <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-delete btn-sm' do %>
-                    <i class="fas fa-trash-alt"></i> 刪除
-                  <% end %>
-                  <button @click="expand()" class="btn btn-secondary btn-sm">看更多</button>
-                </td>
-              <% end %>
-              <% if @transactions.blank? %>
-                <tr><td colspan="10">找不到任何帳目</td></tr>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-        <div class="custom-table-width">
-          <table v-if="item_show" class="table rwdtable">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">品項名稱</th>
-                <th scope="col">品項數量</th>
-                <th scope="col">品項單價</th>
-                <th scope="col">品項總價</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @transactions.each do |transaction| %>
-                <tr class="itemrwd">
-                  <% transaction.transaction_items.each do |item| %>
-                    <td data-label="品項名稱"><%= item.title %></td>
-                    <td data-label="品項數量"><%= item.quantity %></td>
-                    <td data-label="品項單價"><%= item.price.to_i %></td>
-                    <td data-label="品項總價"><%= item.total.to_i %></td>
-                  <% end %>
-                </tbody>
-              </table>
+    <div class="custom-table-width" id="more-app">
+      <table class="table rwdtable">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">消費時間</th>
+            <th scope="col">發票號碼</th>
+            <th scope="col">發票總價</th>
+            <th scope="col">對獎狀態</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @transactions.each do |transaction| %>
+            <tr class="spendrwd">
+              <td data-label="消費時間"><%= transaction.created_at.to_date %></td> 
+              <td data-label="發票號碼"><%= transaction.invoice_num %></td>
+              <td data-label="發票總價"><%= transaction.amount.to_i %></td>
+              <td data-label="對獎狀態"><%= t("enum.transaction.status.#{transaction.status}") %></td>
+              <td data-label="">
+                <%= link_to edit_users_transaction_path(transaction), class: 'btn btn-edit btn-sm' do %>
+                  <i class="fas fa-edit"></i>編輯
+                <% end %>
+                <%= link_to users_transaction_path(transaction), method: 'delete', data: {confirm: '你確定嗎???'}, class: 'btn btn-delete btn-sm' do %>
+                  <i class="fas fa-trash-alt"></i> 刪除
+                <% end %>
+                <button @click="expand('<%= transaction.id %>')" class="btn btn-secondary btn-sm">看更多</button>
+              </td>
             <% end %>
+            <% if @transactions.blank? %>
+              <tr><td colspan="10">找不到任何帳目</td></tr>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <% @transactions.each do |transaction| %>
+          <div :class="[modalFade, modalShow ? show : '']" style="display: none" :style="{display: (itemShow && itemId === '<%= transaction.id %>') ? 'block' : 'none'}">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">發票[<%= transaction.invoice_num %>]的品項</h5>
+                  <button type="button" class="close" aria-label="Close">
+                    <span @click="itemShow = false; itemId = ''" aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <table class="table rwdtable">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">品項名稱</th>
+                        <th scope="col">品項數量</th>
+                        <th scope="col">品項單價</th>
+                        <th scope="col">品項總價</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="itemrwd">
+                        <% transaction.transaction_items.each do |item| %>
+                          <td data-label="品項名稱"><%= item.title %></td>
+                          <td data-label="品項數量"><%= item.quantity %></td>
+                          <td data-label="品項單價"><%= item.price.to_i %></td>
+                          <td data-label="品項總價"><%= item.total.to_i %></td>
+                        <% end %>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" @click="itemShow = false; itemId = ''">Close</button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
+      <div class="modal-backdrop fade" style="display: none;" :class="{show: itemShow}" v-show="itemShow"></div>
+    </div>
   </div>
 </div>
 
