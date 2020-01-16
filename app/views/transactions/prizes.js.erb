@@ -1,39 +1,34 @@
-message = document.querySelector("#message");
+message = document.querySelector("#message")
 
 while (message.firstChild) {
   message.removeChild(message.firstChild);
 }
-var three_code = <%= @three_code %>;
-var string = "<%= @string %>";
 
-if (three_code === true) {
-  let input_val = document.querySelector("#inv_input").value;
-  if (string.length == 3) {
-    message.insertAdjacentHTML(
-      "beforeend",
-      `<div class="prizes"> 中獎 ${input_val}</div>`
-    );
-  } else {
-    message.insertAdjacentHTML(
-      "beforeend",
-      `<div class="prizes">繼續對對看 <%= @front5 %>
-        <span class="text-danger"> <%= @back3 %> <span>
-      </div>`
-    );
-  }
-} else if (three_code && <%= @status %>){
-  message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
-}
+document.querySelector("#inv_input").value = ""
 
-if (<%= @status %>) {
+<%= @string.nil? ? "var string = String.new" : "var string = #{@string}" %>
+
+if (<%= @status %> && !<%= @three_code %>) {
     message.insertAdjacentHTML(
       "beforeend",
       `<div class="prizes">中獎：<%= @prize %> <%= @front %><span class="text-danger"><%= @back %><span>
       </div>`
     )
+} else if (!<%= @status %> && <%= @three_code %>) {
+    let input_val = document.querySelector("#inv_input").value
+    if (string.length === 3) {
+      message.insertAdjacentHTML(
+        "beforeend",
+        `<div class="prizes"> 中獎 ${input_val}</div>`
+      ) 
+    } else {
+      message.insertAdjacentHTML(
+        "beforeend",
+        `<div class="prizes">繼續對對看 <%= @front5 %>
+          <span class="text-danger"> <%= @back3 %> <span>
+        </div>`
+      )
+    }
 } else {
-    message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
+  message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`)
 }
-
-document.querySelector("#inv_input").value = ""
-document.querySelector('#inv_full_number').value = ""

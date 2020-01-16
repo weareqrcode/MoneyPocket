@@ -36,11 +36,11 @@ document.addEventListener('turbolinks:load', () => {
           let dateMonth = fullInvoiceNumber.slice(13, 15)
           let dateDay = fullInvoiceNumber.slice(15, 17)
 
+          document.querySelector('#inv_full_number').value = ""
           document.querySelector('#inv_full_number').value = number
           this.clicked = false
 
-          let form = document.querySelector('#inv_form')
-          form.dispatchEvent(new Event('submit', {bubbles: true}))
+          document.querySelector('#inv_form').dispatchEvent(new Event('submit', {bubbles: true}))
 
         }
       },
@@ -64,6 +64,12 @@ document.addEventListener('turbolinks:load', () => {
         }
       }
     },
+  })
+
+  document.addEventListener('keyup', (evt) => {
+    if (evt.code === "Enter") {
+      document.querySelector('#inv_form').dispatchEvent(new Event('submit'))
+    }
   })
 })
 

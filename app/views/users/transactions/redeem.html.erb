@@ -13,7 +13,7 @@
   <%= label_tag :inv_input, '發票末三碼 :' %>
   <%= text_field_tag :inv_input,"", maxlength: 3 %>
   <%= hidden_field_tag :inv_full_number, "" %>
-  <%= submit_tag "送出" %>
+  <%= submit_tag "送出", id: 'submit' %>
 <% end %>
 
 <div id="message" class="message">

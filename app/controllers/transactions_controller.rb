@@ -5,12 +5,16 @@ class TransactionsController < ApplicationController
   end
   
   def prizes
+
     prize_all
     input = params[:inv_input]
     full_number = params[:inv_full_number]
     prize_three = prize_all[0].map { |x| x.scan(/\d{3}$/) }.flatten
     @three_code = prize_three.include?(input)
     @string = prize_all[0].select {|d| d.scan(/\d{3}$/) == [input] }.try(:[], 0)
+    p "-" * 30
+    p @string
+    p "-" * 30
     @front5 = @string&.scan(/\d{5}/).try(:[], 0)
     @back3 = @string&.scan(/\d{3}$/).try(:[], 0)
     @status = false
