@@ -40,7 +40,7 @@ document.addEventListener('turbolinks:load', () => {
           this.clicked = false
 
           let form = document.querySelector('#inv_form')
-          form.dispatchEvent(new Event('submit'))
+          form.dispatchEvent(new Event('submit', {bubbles: true}))
         }
       },
       async onInit (promise) {
