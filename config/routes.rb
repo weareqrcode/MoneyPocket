@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :transactions, only: [:index] do
     collection do
-      get :prizes
+      post :prizes
     end
   end
   root 'transactions#index'
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :transactions do 
         collection do 
           post :act
+          get :redeem
         end
       end
     end

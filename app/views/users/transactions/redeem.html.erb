@@ -1,0 +1,20 @@
+<% content_for :scripts do %>
+  <%= javascript_pack_tag 'vue-qrscaner-redeem', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<div class="row" id="app">
+  <a href="#" v-if="!clicked" @click.prevent="clickStatus" class="btn">點我，開始掃發票吧！</a>
+  <div>
+  <qrcode-stream v-if="clicked" @decode="onDecode" @init="onInit" />
+  </div>
+</div>
+
+<%= form_with url: prizes_transactions_path, id: "inv_form" do %>
+  <%= label_tag :inv_input, '發票末三碼 :' %>
+  <%= text_field_tag :inv_input,"", maxlength: 3 %>
+  <%= hidden_field_tag :inv_full_number, "" %>
+  <%= submit_tag "送出" %>
+<% end %>
+
+<div id="message" class="message">
+</div>
