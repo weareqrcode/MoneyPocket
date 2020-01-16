@@ -184,59 +184,6 @@
   padding: 10px 10px 0 0;
 }
 
-span{
-  font-size: 14px;
-}
-
-@media screen and (max-width: 767px) {
-  .navbar{
-    padding-left: 8px;
-  }
-  .nav-btn{
-    margin:0 0 0 10px;
-    padding: 3px 0 0 0;
-    /*font-size: .8rem;*/
-  }
-  .navbar-brand{
-    /*font-size: .75rem;*/
-  }
-
-  .card-body{
-  padding: 1.75rem 1.25rem 1.75rem 4rem;
-  }
-  .cover{
-    order: 1;
-  }
-  .input-box{
-    order: 2;
-  }
-  .pic{
-  width: 100%;
-  }
-  .card{
-    width: 100%;
-  }
-  .feature-item:first-child{
-    margin: 38px 0;
-  }
-  .social-icon{
-    align-items: flex-end;
-  }
-  .check{
-  margin-top: 30px;
-  }
-  .spendrwd{
-    /*background-color: #a5dff9;*/
-  }
-  .itemrwd{
-    /*background-color: #ceefe4;*/
-  }
-  .incomerwd{
-    /*background-color: #fef4a9;*/
-  }
-}
-
-
 section{
   padding: 50px 0;
 }
@@ -357,12 +304,16 @@ section{
 }
 
 .spend-total, .income-total{
-  font-size: 36px;
+  font-size: 26px;
   color: #fff;
   display: inline-block;
   /*margin-top: 10px;*/
-  padding-top: 25px;
-  margin-left: 10px;
+  padding-top: 28px;
+  margin-left: 18px;
+}
+
+h1{
+  font-size: 2.2rem;
 }
 
 .income{
@@ -413,7 +364,17 @@ tr:hover{
 .login-box{
   width: 450px;
   height: 600px;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,.5);
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 20px;
+}
+
+.password-box{
+  width: 450px;
+  height: 70vh;
+  background-color: rgba(0,0,0,.5);
   margin: 20px;
   padding: 15px;
   border: 1px solid #eee;
@@ -511,3 +472,54 @@ hr{
   }
 }
 
+@media screen and (max-width: 767px) {
+  .navbar{
+    padding-left: 8px;
+  }
+  .nav-btn{
+    margin:0 0 0 10px;
+    padding: 3px 0 0 0;
+    /*font-size: .8rem;*/
+  }
+  .navbar-brand{
+    /*font-size: .75rem;*/
+  }
+  .spend-total, .income-total{
+  font-size: 28px;
+  padding-top: 30px;
+  margin-left: 15%;
+  }
+  h1{
+    font-size: 2.2rem;
+  }
+  .cover{
+    order: 1;
+  }
+  .input-box{
+    order: 2;
+  }
+  .pic{
+  width: 100%;
+  }
+  .card{
+    width: 100%;
+  }
+  .feature-item:first-child{
+    margin: 38px 0;
+  }
+  .social-icon{
+    align-items: flex-end;
+  }
+  .check{
+  margin-top: 30px;
+  }
+  .spendrwd{
+    /*background-color: #a5dff9;*/
+  }
+  .itemrwd{
+    /*background-color: #ceefe4;*/
+  }
+  .incomerwd{
+    /*background-color: #fef4a9;*/
+  }
+}
