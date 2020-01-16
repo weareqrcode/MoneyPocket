@@ -15,7 +15,7 @@ class TransactionsController < ApplicationController
     @back3 = @string&.scan(/\d{3}$/).try(:[], 0)
     @status = false
 
-    if (full_number != "")
+    if (full_number != "" && !full_number.nil?)
       all_prize_number = Prize.where("jsonb @> ?", {invoYm: "10810"}.to_json)
                               .first.jsonb
                               .filter { |k, v| k =~ /^\w+PrizeNo\d?$/ && v != "" }
