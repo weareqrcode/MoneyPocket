@@ -31,6 +31,8 @@ if (<%= @status %>) {
       `<div class="prizes">中獎：<%= @prize %> <%= @front %><span class="text-danger"><%= @back %><span>
       </div>`
     )
+} else {
+    message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
 }
 
 document.querySelector("#inv_input").value = ""
