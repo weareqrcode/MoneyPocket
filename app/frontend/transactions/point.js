@@ -68,21 +68,19 @@ function toWeekDiv(c) {
 function monthToGrid() {
   if($(window).width() < 767){
     var range = moment.range(moment().subtract(4, "month"), moment());
+    let month = Array.from(range.by("month"));
+    for (let i = 1; i < 5; i++) {
+      let month01 = $(`.${month[i].format("MMM01")}`).offset().left
+      $("#month").append(`<span class="month${month[i].format("M")}">${month[i].format("M")}月</span>`);
+      $(`.month${month[i].format("M")}`).offset({left: month01})
+    }
   }else{
     var range = moment.range(moment().subtract(1, "year"), moment());
-  }
-  // let month_array = [1066, 200, 292, 364, 436, 526, 598, 688, 760, 832, 922, 994];
-  var month = Array.from(range.by("month"));
-  for (let i = 1; i < 13; i++) {
-    $("#month").append(`<span class="month${month[i].format("M")}">${month[i].format("M")}月</span>`);
-    // $(`.${month[i].format("01")}`).offset({ left: month_array[i - 1] });
-    // $(`.${month[i].format("01")}`).offset({ left: aa});
-    var cc = $(`.${month[i].format("MMM01")}`).offset().left
-    $(`.${month[i].format("MMM01")}`).offset({ left: cc});
-
-console.log( `.month${month[i].format("M")}` )
-  }
-  for (let i = 1; i < 13; i++) {
-    $(`.month${month[i].format("M")}`).position({ left: 994 })
+    let month = Array.from(range.by("month"));
+    for (let i = 1; i < 13; i++) {
+      let month01 = $(`.${month[i].format("MMM01")}`).offset().left
+      $("#month").append(`<span class="month${month[i].format("M")}">${month[i].format("M")}月</span>`);
+      $(`.month${month[i].format("M")}`).offset({left: month01})
+    }
   }
 }
