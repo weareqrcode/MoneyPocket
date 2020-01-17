@@ -1,5 +1,3 @@
-console.log('aaa')
-
 const main = {
   data: {
     notice: true

@@ -23,7 +23,6 @@ document.addEventListener('turbolinks:load', () => {
 
 document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('flash-app')) {
-    console.log('bbb')
     const app = new Vue({
       el: '#flash-app',
       ...CloseBtnMain
