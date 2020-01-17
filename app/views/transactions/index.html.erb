@@ -2,17 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-5 input-box">
-      <div class="prize col-md-10">
-          <div class="prize-item">
-            <%= form_with url: prizes_transactions_path do %>
-              <%= label_tag :inv_input, ' 發票末三碼 :' %>
-              <%= text_field_tag :inv_input,"", maxlength: 3 %>
-              <%= hidden_field_tag :optioned, :value => "" %>
-              <%= submit_tag "送出", id: "submit" ,class: "btn " %>
-            <% end %>
-          <div class="message" id="message"></div>
-          </div>
-        </div>
         <form class="input-group mb-3" action="/users/sign_up" method="get">
           <input type="text" name="email" class="form-control blue-box" placeholder="請輸入您的email" aria-label="Recipient's username" aria-describedby="button-addon2">
           <div class="input-group-append">
@@ -22,10 +11,8 @@
       </div>
       <div class="col-12 col-md-6 cover">
         <h1 class="slogan">Money Pocket聰明記帳</h1>
-        <p>快速掃描你的發票，同時記錄你的支出，統一發票對獎加上記帳功能，一次解決兩樣瑣碎的事務，省下更多時間去做更重要的事！</p>
-        <!-- <div class="pic"> -->
+        <p>快速掃描電子發票，同時記錄支出，統一發票對獎加上記帳功能，一次解決兩樣瑣碎的事務，省下更多時間去做更重要的事！</p>
           <%= image_tag ("finance400.png"), class: 'pic' %>
-        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -35,38 +22,45 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6">
-        <!-- <div class="pic"> -->
-          <%= image_tag ("Savings.png"), class: 'pic' %>
-        <!-- </div> -->
+        <%= image_tag ("Savings.png"), class: 'pic' %>
       </div>
-      <div class="col-12 col-md-6 subtitle">
+
+      <div class="prize col-12 col-md-6">
         <div class="card mb-3">
           <div class="card-body">
-            <h3 class="card-title">沒有繁複的步驟，直覺好上手</h3>
-            <p class="card-text">讓長輩也能輕鬆使用</p>
-          </div>
-        </div>
-        <div class="card mb-3">
-          <div class="card-body">
-            <h3 class="card-title">一次輸入，整理發票同時完成記帳</h3>
-            <p class="card-text">快速有效率的記帳方式</p>
-          </div>
-        </div>
-        <div class="card mb-3">
-          <div class="card-body">
-            <h3 class="card-title">免費申請，立即使用</h3>
-            <p class="card-text">免載APP，打開網頁即可使用</p>
+            <h3 class="card-title">還在手動對獎嗎？</h3>
+            <p class="">
+              <div class="">
+                <p class="card-text">使用下方工具更快速的完成對獎。</p>
+              </div>
+              <div class="prize-item">
+                <%= form_tag prizes_transactions_path, method: 'post', remote:true do %>
+                  <div class="input-group">
+                    <%= label_tag :inv_input, ' ' %>
+                    <%= number_field_tag :inv_input,"", maxlength: 3, placeholder: '請輸入發票末三碼', class: 'invoice-input' %>
+                    <%= hidden_field_tag :optioned, :value => "" %>
+                    <%= submit_tag "送出", id: "submit" ,class: "btn btn-sm btn-blue2 input-group-append-prize" %></div>
+                <% end %>
+                <span class="result">對獎結果：</span>
+              <div class="message" id="message"></div>
+              </div>
+              <div class="space">
+                <p class="card-text">
+                  還是覺得麻煩？<br>
+                  那就立即註冊Money Pocket，<br>
+                  完成一鍵對獎的夢想！</p>
+              </div>
+            </p>
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
 </section>
 
 <section class="feature">
-<!--   <div class="container">
-    <h3>特色功能</h3>
-  </div> -->
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-4">
@@ -76,7 +70,7 @@
           </div>
           <h2 class="feature-txt">發票QRcode解析</h2>
           <div class="summary">
-          <p>手機掃描電子發票，或是手動上傳電子發票檔案，自動將消費內容轉換成清楚的明細</p>
+          <p>手機掃描電子發票，自動將消費內容轉換成清楚的消費明細</p>
         </div>
         </div>
       </div>
@@ -87,7 +81,7 @@
           </div>
           <h2 class="feature-txt">對獎、記帳一次滿足</h2>
           <div class="summary">
-            <p>為你記住統一發票號碼，再也不需要煩惱對獎，同時，也為你完成了繁瑣的記帳</p>
+            <p>記錄下統一發票號碼，同時，也完成了繁瑣的記帳</p>
           </div>
         </div>
       </div>
@@ -98,7 +92,7 @@
           </div>
           <h2 class="feature-txt">成就紀錄，記越多越有感</h2>
           <div class="summary">
-            <p>發票隨手記，看著自己的成就紀錄，忍不住期待下一張發票的出現</p>
+            <p>看著自己的成就紀錄，忍不住期待下一張發票的出現</p>
           </div>
         </div>
       </div>
@@ -121,7 +115,6 @@
     </div>
   </div>
 </section>
-
 
 
 <section class="footer">
