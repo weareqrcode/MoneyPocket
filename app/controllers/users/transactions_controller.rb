@@ -66,9 +66,6 @@ class Users::TransactionsController < Users::BaseController
   def new
     @transaction = Transaction.new
     @transaction.transaction_items.new
-    quantity = current_user.transaction_items.quantity
-    price = current_user.transaction_items.price
-    @transaction_balance = (quantity * price)
   end
 
   def create
@@ -116,11 +113,11 @@ class Users::TransactionsController < Users::BaseController
     @prizes = Prize.last(2).reduce({}) do |rs, pz|
       prize_select = pz.jsonb.select { |a, b| a =~ /No/ && b != "" }
       methods = {
-        8 => prize_select.values ,
+        8 => prize_select.values,
         3 => prize_select.values.map { |pz| pz.scan(/\d{3}$/)[0] }
       }
       rs.merge( pz.jsonb['invoYm'] => methods )
-   end
+   endg
   end
 
   def in_two_months?(cur_month, target_month)
