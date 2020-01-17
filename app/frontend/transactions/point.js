@@ -4,8 +4,7 @@ const R = require("ramda");
 const moment = extendMoment(Moment);
 
 $(document).on("turbolinks:load", function() {
-  if (!window.myObj ){
-    window.myObj = {};
+  if ($("div").hasClass("point")){
     generateDayGrid();
     fetchDayColors();      
     monthToGrid();
@@ -13,7 +12,7 @@ $(document).on("turbolinks:load", function() {
       generateDayGrid()
       monthToGrid()
     });
-  };
+  }
 });
 
 function fetchDayColors() {
