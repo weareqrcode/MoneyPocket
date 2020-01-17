@@ -3,8 +3,8 @@ class Users::TransactionsController < Users::BaseController
 
   def index
     if (params[:start_date].blank? || params[:end_date].blank?)
-      @transactions = current_user.transactions.includes(transaction_items: [:categories]).order('created_at desc') #fixed n+1 problem
-      @transactionitems = current_user.transaction_items.order('created_at desc')
+      @transactions = current_user.transactions.includes(transaction_items: [:categories]).order('invoice_date desc') #fixed n+1 problem
+      @transactionitems = current_user.transaction_items.order('total desc')
       @incomes = current_user.incomes.order('created_at desc')
       @pie_count = @transactionitems.where({created_at: Date.today.beginning_of_month..Date.today.end_of_month})
                                     .unscope(:order)
