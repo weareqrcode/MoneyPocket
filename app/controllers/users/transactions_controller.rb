@@ -60,7 +60,7 @@ class Users::TransactionsController < Users::BaseController
         end
       end
     end
-    redirect_to users_transactions_path, notice: "兌獎完成!!!
+    redirect_to users_transactions_path, notice: "兌獎完成!!!"
   end
 
   def new

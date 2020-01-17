@@ -1,6 +1,5 @@
 import Moment from "moment";
 import { extendMoment } from "moment-range";
-import { xprod } from "ramda";
 const R = require("ramda");
 
 const moment = extendMoment(Moment);
@@ -39,21 +38,25 @@ function fetchDayColors() {
       });
   });
 }
-
 function generateDayGrid() {
-  const range = moment.range(moment().subtract(1, "year"), moment());
-  const days = Array.from(range.by("day"));
-  const daysByWeeks = R.splitEvery(7, days);
-  const daysHTML = daysByWeeks
-      .map(w => w.map(toDayDiv))
-      .map(w => toWeekDiv(w));
-  $("#item")
-    .empty()
-    .append(daysHTML);
+  if($(window).width() < 767){
+    var range = moment.range(moment().subtract(4, "month"), moment());
+    
+  } else {
+    var range = moment.range(moment().subtract(1, "year"), moment());
+  }
+    const days = Array.from(range.by("day"));
+    const daysByWeeks = R.splitEvery(7, days);
+    const daysHTML = daysByWeeks
+        .map(w => w.map(toDayDiv))
+        .map(w => toWeekDiv(w));
+    $("#item")
+      .empty()
+      .append(daysHTML);
 }
 
 function toDayDiv(m) {
-  return `<div class="item ${m.format("MMM DD")}" data-date="${m.format(
+  return `<div class="item ${m.format("MMMDD")}" data-date="${m.format(
     "YYYY-MM-DD"
   )}"></div>`;
 }
@@ -63,15 +66,23 @@ function toWeekDiv(c) {
 }
 
 function monthToGrid() {
-  const range = moment.range(moment().subtract(1, "year"), moment());
-  const months = Array.from(range.by("month"));
-  let month_array = [1066, 200, 292, 364, 436, 526, 598, 688, 760, 832, 922, 994];
-
+  if($(window).width() < 767){
+    var range = moment.range(moment().subtract(4, "month"), moment());
+  }else{
+    var range = moment.range(moment().subtract(1, "year"), moment());
+  }
+  // let month_array = [1066, 200, 292, 364, 436, 526, 598, 688, 760, 832, 922, 994];
+  var month = Array.from(range.by("month"));
   for (let i = 1; i < 13; i++) {
-    $("#month").append(`<span class="month${i}">${i}月</span>`);
-    $(`.month${i}`).offset({ left: month_array[i - 1] });
+    $("#month").append(`<span class="month${month[i].format("M")}">${month[i].format("M")}月</span>`);
+    // $(`.${month[i].format("01")}`).offset({ left: month_array[i - 1] });
+    // $(`.${month[i].format("01")}`).offset({ left: aa});
+    var cc = $(`.${month[i].format("MMM01")}`).offset().left
+    $(`.${month[i].format("MMM01")}`).offset({ left: cc});
+
+console.log( `.month${month[i].format("M")}` )
   }
   for (let i = 1; i < 13; i++) {
-    $(`.${months.format}01`).position({ left: month_array[i - 1] });
+    $(`.month${month[i].format("M")}`).position({ left: 994 })
   }
 }
