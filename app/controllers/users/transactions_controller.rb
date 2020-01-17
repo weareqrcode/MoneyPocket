@@ -55,9 +55,9 @@ class Users::TransactionsController < Users::BaseController
           result = true
           break
         end
-        if t.status == "pending"
+      end
+      if t.status == "pending"
           t.miss! unless result
-        end
       end
     end
     redirect_to users_transactions_path, notice: "兌獎完成!!!"
@@ -66,9 +66,6 @@ class Users::TransactionsController < Users::BaseController
   def new
     @transaction = Transaction.new
     @transaction.transaction_items.new
-    quantity = current_user.transaction_items.quantity
-    price = current_user.transaction_items.price
-    @transaction_balance = (quantity * price)
   end
 
   def create
