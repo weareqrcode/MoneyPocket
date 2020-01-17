@@ -117,7 +117,7 @@ class Users::TransactionsController < Users::BaseController
         3 => prize_select.values.map { |pz| pz.scan(/\d{3}$/)[0] }
       }
       rs.merge( pz.jsonb['invoYm'] => methods )
-   endg
+   end
   end
 
   def in_two_months?(cur_month, target_month)
