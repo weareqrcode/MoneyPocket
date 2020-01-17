@@ -35,11 +35,13 @@
               </div>
               <div class="prize-item">
                 <%= form_tag prizes_transactions_path, method: 'post', remote:true do %>
+                  <span>108年9、10月份</span>
                   <div class="input-group">
                     <%= label_tag :inv_input, ' ' %>
                     <%= number_field_tag :inv_input,"", maxlength: 3, placeholder: '請輸入發票末三碼', class: 'invoice-input' %>
                     <%= hidden_field_tag :optioned, :value => "" %>
-                    <%= submit_tag "送出", id: "submit" ,class: "btn btn-sm btn-blue2 input-group-append-prize" %></div>
+                    <%= submit_tag "送出", id: "submit" ,class: "btn btn-sm btn-blue2 input-group-append-prize" %>
+                  </div>
                 <% end %>
               </div>
               <div class="space">
