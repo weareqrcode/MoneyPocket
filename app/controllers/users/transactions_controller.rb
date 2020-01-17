@@ -55,9 +55,9 @@ class Users::TransactionsController < Users::BaseController
           result = true
           break
         end
-        if t.status == "pending"
+      end
+      if t.status == "pending"
           t.miss! unless result
-        end
       end
     end
     redirect_to users_transactions_path, notice: "兌獎完成!!!"
