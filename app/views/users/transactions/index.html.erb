@@ -17,7 +17,7 @@
                 <%= image_tag "income50.png", class: 'income-logo' %>
               </div>
               <div class="col-10">
-                <div class="income-total">收入$ <%= @incomes_balance.to_i %></div>
+                <div class="income-total">收入 <%= number_to_currency(@incomes_balance, precision: 0, unit: '$') %></div>
               </div>
             </div>
           </div>
@@ -29,7 +29,7 @@
                 <%= image_tag "spend50.png", class: 'spend-logo' %>
               </div>
               <div class="col-10">
-                <div class="spend-total">支出$ <%= @transactions_balance.to_i %></div>
+                <div class="spend-total">支出 <%= number_to_currency(@transactions_balance, precision: 0, unit: '$') %></div>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                 <%= image_tag "balance50.png", class: 'income-logo' %>
               </div>
               <div class="col-10">
-                <div class="income-total">餘額$ <%= (@incomes_balance - @transactions_balance).to_i %></div>
+                <div class="income-total">餘額 <%= number_to_currency((@incomes_balance - @transactions_balance), precision: 0, unit: '$') %></div>
               </div>
             </div>
           </div>
