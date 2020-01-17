@@ -215,9 +215,9 @@
 }
 
 .btn-save{
-  position: relative;
-  right: 15px;
-  bottom: 76px;
+  /*position: relative;*/
+  /*right: 15px;*/
+  bottom: 0px;
 }
 
 .forget, .registration{
@@ -415,6 +415,7 @@ tr:hover{
   background-color: #eee;
   border-radius: 5px;
   margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .scan-port{
@@ -534,6 +535,24 @@ hr{
   font-size: 20px;
   color: #343a40;
 }
+
+hr.style-eight {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+hr.style-eight:after {
+    content: "或者";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+
 @media screen and (max-width: 600px) {
   .rwdtable {
     border: 0;
@@ -649,8 +668,8 @@ hr{
   }
   .btn-save{
     position: fixed;
-    left: 15px;
-    bottom: 20px;
+    /*left: 15px;*/
+    bottom: 0px;
   }
   .btn-remove{
     width: 37.8px;
@@ -664,6 +683,7 @@ hr{
   }
   .scan{
     padding-top: 0;
+    padding-bottom: 80px;
   }
   .date-box{
     /*margin-left: -15px;*/
@@ -686,5 +706,8 @@ hr{
   }
   .card-body{
     padding: 1.75rem 1.25rem 1.75rem 4rem;
+  }
+  .box-top{
+    margin-top: 50px;
   }
 }
