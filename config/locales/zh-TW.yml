@@ -6,6 +6,20 @@ zh-TW:
         missed: "未中獎"
         won: "中獎囉"
   activerecord:
+    attributes:
+      incomes:
+        title: "收入項目"
+        description: "收入說明"
+        total: "收入金額"
+      transaction_items:
+        title: "品項名稱"
+        quantity: "品項數量"
+        price: "品項單價"
+        total: "品項總價"
+      transactions:
+        invoice_num: "發票號碼"
+        amount: "發票總價"
+        invoice_date: "發票日期"
     errors:
       messages:
         record_invalid: '校驗失敗: %{errors}'

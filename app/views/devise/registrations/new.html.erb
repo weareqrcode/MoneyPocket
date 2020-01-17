@@ -9,8 +9,8 @@
     <div class="col-12">
       <form class="login-form">
         <div class="form-group">
-          <%= f.label :email, 'Email', class: ' col-form-label txt-w' %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "您的Email", class: 'form-control', id: 'inputEmail' %>
+          <%= f.label :email, 'Email', class: 'col-form-label txt-w' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "您的Email", class: 'form-control' %>
         </div>
         
         <div class="form-group">
@@ -18,12 +18,12 @@
           <% if @minimum_password_length %>
           <small class="txt-w">(至少<%= @minimum_password_length %> 英數字元)</small>
           <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", placeholder: "您的密碼", class: 'form-control' %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "您的密碼", class: 'form-control' %>
         </div>
         
         <div class="form-group">
           <%= f.label :password_confirmation, '確認密碼', class: 'col-form-label txt-w' %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "請再次輸入您的密碼", class: 'form-control' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "請再次輸入您的密碼", class: 'form-control' %>
         </div>
         
         <div class="actions">
