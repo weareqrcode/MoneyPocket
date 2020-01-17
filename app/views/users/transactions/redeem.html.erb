@@ -31,7 +31,11 @@
     <div>
       <%= form_with url: prizes_transactions_path, id: "inv_form" do %>
         <%= label_tag :inv_input, '請輸入發票末三碼對獎 :', class: 'invoice-input' %>
+<<<<<<< Updated upstream
         <%= number_field_tag :inv_input,"", maxlength: 3, placeholder: '末三碼', class: 'invoice-input form-control' %>
+=======
+        <%= text_field_tag :inv_input,"", maxlength: 3, placeholder: '末三碼', class: 'invoice-input form-control' %>
+>>>>>>> Stashed changes
         <%= hidden_field_tag :inv_full_number, "" %>
         <div class="container">
           <div class="row">

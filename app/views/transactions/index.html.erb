@@ -37,7 +37,11 @@
                 <%= form_tag prizes_transactions_path, method: 'post', remote:true do %>
                   <div class="input-group">
                     <%= label_tag :inv_input, ' ' %>
+<<<<<<< Updated upstream
                     <%= number_field_tag :inv_input,"", maxlength: 3, placeholder: '請輸入發票末三碼', class: 'invoice-input' %>
+=======
+                    <%= text_field_tag :inv_input,"",maxlength: 3, placeholder: '請輸入發票末三碼', class: 'invoice-input' %>
+>>>>>>> Stashed changes
                     <%= hidden_field_tag :optioned, :value => "" %>
                     <%= submit_tag "送出", id: "submit" ,class: "btn btn-sm btn-blue2 input-group-append-prize" %></div>
                 <% end %>
