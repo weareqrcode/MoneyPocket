@@ -15,6 +15,7 @@
     "cocoon": "github:nathanvda/cocoon",
     "flatpickr": "^4.6.3",
     "jquery": "^3.4.1",
+    "modernizr": "^3.8.0",
     "moment": "^2.24.0",
     "moment-range": "^4.0.2",
     "popper.js": "^1.16.0",
