@@ -14,6 +14,7 @@
           </div>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
             <%= link_to "我的後台", users_transactions_path, class: 'dropdown-item' %>
+            <%= link_to "QR兌獎", redeem_users_transactions_path, class: 'dropdown-item' %>
             <%= link_to "登出", destroy_user_session_path, method: 'delete', class: 'dropdown-item' %>
           </div>
           <% else %>
