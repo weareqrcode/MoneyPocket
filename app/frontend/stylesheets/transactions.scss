@@ -56,6 +56,90 @@
   padding: 1.75rem 1.25rem 1.75rem 6rem;
 }
 
+.info {
+  position: relative;
+  $info-color: rgba(0, 0, 0, 0.5);
+  
+  &:before, &:after {
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    z-index: 10;
+    transition: all 0.18s ease-out 0.18s;
+    opacity: 0;
+  }
+  
+  // body of the info
+  &:after {
+    background-color: $info-color;
+    border-radius: 4px;
+    color: white;
+    content: attr(info-data);
+    margin-bottom: 12px;
+    padding: 10px;
+  }
+
+  // tip (triangle) of the info
+  &:before {
+    content: "";
+    margin-bottom: 4px;
+    border-top: solid 8px $info-color;
+    border-left: solid 8px transparent;
+    border-right: solid 8px transparent;
+  }
+
+  &:hover:before,
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
+// Other elements
+html {
+  background-color: #eee;
+  font-family: Arial;
+}
+
+.button {
+  text-align: center;
+  margin: 50px;
+  padding: 10px;
+  min-width: 150px;
+  background: #FFA340;
+  color: white;
+  border: 0;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: red;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* 定位 */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 .blue-box{
   border: 1px solid #039;
 }

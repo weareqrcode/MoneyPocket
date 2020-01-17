@@ -168,25 +168,27 @@
                             <thead class="thead-light">
                               <tr>
                                 <th scope="col">品項名稱</th>
+                                <th scope="col">品項分類</th>
                                 <th scope="col">品項數量</th>
                                 <th scope="col">品項單價</th>
                                 <th scope="col">品項總價</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr class="itemrwd">
-                                <% transaction.transaction_items.each do |item| %>
+                              <% transaction.transaction_items.each do |item| %>
+                                <tr class="itemrwd">
                                   <td data-label="品項名稱"><%= item.title %></td>
+                                  <td data-label="品項分類"><%= item.category_items %></td>
                                   <td data-label="品項數量"><%= item.quantity %></td>
                                   <td data-label="品項單價"><%= item.price.to_i %></td>
                                   <td data-label="品項總價"><%= item.total.to_i %></td>
-                                <% end %>
-                              </tr>
+                              <% end %>
+                                </tr>
                             </tbody>
                           </table>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" @click="itemShow = false; itemId = ''">Close</button>
+                          <button type="button" class="btn btn-secondary" @click="itemShow = false; itemId = ''">返回</button>
                         </div>
                       </div>
                     </div>
