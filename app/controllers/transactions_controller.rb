@@ -5,6 +5,7 @@ class TransactionsController < ApplicationController
   end
   
   def prizes
+
     prize_all
     input = params[:inv_input]
     full_number = params[:inv_full_number]

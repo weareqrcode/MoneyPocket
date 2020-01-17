@@ -1,10 +1,12 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import { QrcodeStream } from 'vue-qrcode-reader'
 import Vue from 'vue/dist/vue.esm'
+import Rails from '@rails/ujs'
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
+  let fullNumber = document.querySelector('#inv_full_number')
   new Vue({
     el: '#app',
     components: {
@@ -14,7 +16,9 @@ document.addEventListener('turbolinks:load', () => {
       result: '',
       error: '',
       clicked: false,
-      scanedQRCode: []
+      invoiceQRCode: [],
+      fullInvoiceNumber: '',
+      number: ''
     },
     methods: {
       clickStatus() {
@@ -25,23 +29,22 @@ document.addEventListener('turbolinks:load', () => {
         this.inserDataToField(this.result)
       },
       inserDataToField(result) {
-        this.scanedQRCode.push(result)
-        let invoiceQRCode = this.scanedQRCode.sort().reverse()
+        this.invoiceQRCode.push(result)
+        this.invoiceQRCode = this.invoiceQRCode.sort().reverse()
 
-        if (/^[A-Z]{2}\d{8}/.test(invoiceQRCode[0]) && invoiceQRCode.length > 0) {
-          let fullInvoiceNumber = invoiceQRCode.join('')
+        if (/^[A-Z]{2}\d{8}/.test(this.invoiceQRCode[0]) && this.invoiceQRCode.length > 0) {
+          this.fullInvoiceNumber = this.invoiceQRCode.join('')
 
-          let number = fullInvoiceNumber.slice(0, 10)
-          let dateYear = fullInvoiceNumber.slice(10, 13)
-          let dateMonth = fullInvoiceNumber.slice(13, 15)
-          let dateDay = fullInvoiceNumber.slice(15, 17)
+          this.number = this.fullInvoiceNumber.slice(0, 10)
+          // let dateYear = fullInvoiceNumber.slice(10, 13)
+          // let dateMonth = fullInvoiceNumber.slice(13, 15)
+          // let dateDay = fullInvoiceNumber.slice(15, 17)
 
-          document.querySelector('#inv_full_number').value = number
+          fullNumber.value = this.number
           this.clicked = false
-
-          let form = document.querySelector('#inv_form')
-          form.dispatchEvent(new Event('submit', {bubbles: true}))
-
+          this.invoiceQRCode = []
+          // document.querySelector('#inv_form').dispatchEvent(new Event('submit', {bubbles: true}))
+          Rails.fire(document.querySelector('#inv_form'), 'submit')
         }
       },
       async onInit (promise) {
@@ -64,6 +67,13 @@ document.addEventListener('turbolinks:load', () => {
         }
       }
     },
+  })
+
+  document.addEventListener('keyup', (evt) => {
+    if (evt.code === "Enter") {
+      // document.querySelector('#inv_form').dispatchEvent(new Event('submit'))
+      Rails.fire(document.querySelector('#inv_form'), 'submit')
+    }
   })
 })
 
