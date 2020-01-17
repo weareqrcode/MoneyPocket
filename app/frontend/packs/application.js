@@ -9,3 +9,5 @@ require('bootstrap')
 import 'jquery'
 import '../stylesheets'
 import '../transactions'
+import Swal from 'sweetalert2'
+window.Swal = Swal

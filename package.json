@@ -19,6 +19,7 @@
     "moment-range": "^4.0.2",
     "popper.js": "^1.16.0",
     "ramda": "^0.26.1",
+    "select2": "^4.0.12",
     "sweetalert2": "^9.5.3",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.11",
