@@ -1,13 +1,18 @@
 import Moment from "moment";
 import { extendMoment } from "moment-range";
 const R = require("ramda");
-
 const moment = extendMoment(Moment);
 
 $(document).on("turbolinks:load", function() {
-  generateDayGrid();
-  fetchDayColors();
-  monthToGrid();
+  if ($("div").hasClass("point")){
+    generateDayGrid();
+    fetchDayColors();      
+    monthToGrid();
+    $(window).resize(function() {
+      generateDayGrid()
+      monthToGrid()
+    });
+  }
 });
 
 function fetchDayColors() {
@@ -38,22 +43,23 @@ function fetchDayColors() {
       });
   });
 }
+
 function generateDayGrid() {
-  if($(window).width() < 767){
+  var query = Modernizr.mq('(max-width: 768px)');
+  if (query) {
     var range = moment.range(moment().subtract(4, "month"), moment());
-    
   } else {
     var range = moment.range(moment().subtract(1, "year"), moment());
-  }
-    const days = Array.from(range.by("day"));
-    const daysByWeeks = R.splitEvery(7, days);
-    const daysHTML = daysByWeeks
-        .map(w => w.map(toDayDiv))
-        .map(w => toWeekDiv(w));
-    $("#item")
-      .empty()
-      .append(daysHTML);
-}
+  } 
+  const days = Array.from(range.by("day"));
+  const daysByWeeks = R.splitEvery(7, days);
+  const daysHTML = daysByWeeks
+      .map(w => w.map(toDayDiv))
+      .map(w => toWeekDiv(w));
+  $("#item")
+    .empty()
+    .append(daysHTML);
+};
 
 function toDayDiv(m) {
   return `<div class="item ${m.format("MMMDD")}" data-date="${m.format(
@@ -66,17 +72,20 @@ function toWeekDiv(c) {
 }
 
 function monthToGrid() {
-  if($(window).width() < 767){
+  var query = Modernizr.mq('(max-width: 768px)');
+  if (query) {
     var range = moment.range(moment().subtract(4, "month"), moment());
     let month = Array.from(range.by("month"));
+    $('#month').html("")
     for (let i = 1; i < 5; i++) {
       let month01 = $(`.${month[i].format("MMM01")}`).offset().left
       $("#month").append(`<span class="month${month[i].format("M")}">${month[i].format("M")}月</span>`);
       $(`.month${month[i].format("M")}`).offset({left: month01})
     }
-  }else{
+  } else {
     var range = moment.range(moment().subtract(1, "year"), moment());
     let month = Array.from(range.by("month"));
+    $('#month').html("")
     for (let i = 1; i < 13; i++) {
       let month01 = $(`.${month[i].format("MMM01")}`).offset().left
       $("#month").append(`<span class="month${month[i].format("M")}">${month[i].format("M")}月</span>`);
