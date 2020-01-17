@@ -66,6 +66,9 @@ class Users::TransactionsController < Users::BaseController
   def new
     @transaction = Transaction.new
     @transaction.transaction_items.new
+    quantity = current_user.transaction_items.quantity
+    price = current_user.transaction_items.price
+    @transaction_balance = (quantity * price)
   end
 
   def create
