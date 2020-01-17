@@ -24,7 +24,7 @@
            
           <div class="actions">
             <%= f.submit "登入", class: ' btn btn-block btn-blue1' %>
-            <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+            <a href="/users/auth/facebook" class="btn btn-block btn-facebook"><i class="fab fa-facebook-square"></i> 使用 Facebook 登入</a>
           <% end %>
         <!-- <div class="btns"> -->
         <hr>
