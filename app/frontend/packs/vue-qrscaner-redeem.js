@@ -70,10 +70,9 @@ document.addEventListener('turbolinks:load', () => {
   })
 
   document.addEventListener('keyup', (evt) => {
-    if (evt.code === "Enter") {
+    if (document.querySelector('#inv_input'.value != "" && evt.code === "Enter")) {
       // document.querySelector('#inv_form').dispatchEvent(new Event('submit'))
       Rails.fire(document.querySelector('#inv_form'), 'submit')
-    }
-  })
+        }
+  });
 })
-
