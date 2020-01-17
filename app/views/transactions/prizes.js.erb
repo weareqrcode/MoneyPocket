@@ -1,10 +1,8 @@
-message = document.querySelector("#message")
+var message = document.querySelector("#message") 
 
 while (message.firstChild) {
   message.removeChild(message.firstChild);
 }
-
-document.querySelector("#inv_input").value = ""
 
 <%= @string.nil? ? "var string = String.new" : "var string = #{@string}" %>
 
@@ -32,3 +30,4 @@ if (<%= @status %> && !<%= @three_code %>) {
 } else {
   message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`)
 }
+document.querySelector('#inv_form').reset()
