@@ -5,10 +5,15 @@ import moment from 'moment'
 document.addEventListener('turbolinks:load', () => {
   flatpickr.localize(MandarinTraditional)
 
-  flatpickr('#start_date', {})
+  // var setupFlatpickr = function(){
+    flatpickr('#start_date', {disableMobile: true})
 
-  flatpickr('#end_date', {
-    defaultDate: "today",
-    maxDate: moment().endOf('day').fromNow()
-  })
+    flatpickr('#end_date', {
+      disableMobile: true,
+      defaultDate: "today",
+      maxDate: "today"
+    })
+  // };
+  // setupFlatpickr();
+  // window.addEventListener('resize', setupFlatpickr);
 })

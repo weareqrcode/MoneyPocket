@@ -15,7 +15,19 @@ if (three_code === true) {
                 <%= @front5 %><span class="text-danger"><%= @back3 %> <span>
               </div>`)
   }
-} else {
+} else if (three_code && <%= @status %>){
   message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
 }
-document.querySelector("#inv_input").value = "";
+
+if (<%= @status %>) {
+    message.insertAdjacentHTML(
+      "beforeend",
+      `<div class="prizes">中獎：<%= @prize %> <%= @front %><span class="text-danger"><%= @back %><span>
+      </div>`
+    )
+} else {
+    message.insertAdjacentHTML("beforeend", `<div class="prizes"> 未中獎 </div>`);
+}
+
+document.querySelector("#inv_input").value = ""
+document.querySelector('#inv_full_number').value = ""

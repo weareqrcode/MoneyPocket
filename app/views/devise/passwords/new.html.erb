@@ -1,0 +1,22 @@
+<div class="container d-flex justify-content-center">
+  <div class="password-box">
+    <h2 class="login-title">忘記密碼?</h2>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <%= f.label :email, class: 'col-form-label txt-w' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "您的Email", class: 'form-control' %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "寄出重設的密碼", class: 'btn btn-block btn-primary' %>
+      <hr class="txt-w">
+      <%= f.submit "登入", class: ' btn btn-block btn-blue1' %>
+        <a href="/users/auth/github" class="btn btn-block btn-github"><i class="fab fa-github"></i> 使用GitHub登入</a>
+        <a href="/users/auth/google_oauth2" class="btn btn-block btn-google"><i class="fab fa-google"></i> 使用Google登入</a>
+      <% end %>
+    </div>
+  </div>
+</div>

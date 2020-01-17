@@ -73,6 +73,31 @@
   color: #fff;
 }
 
+.btn-date{
+  background-color: #003060;
+  border: 1px solid #003060;
+  color: #fff;
+  margin: 23px 0 15px 0;
+}
+
+.btn-date:hover{
+  background-color: #003260;
+  border: 1px solid #003060;
+  color: #fff;
+}
+
+.btn-detail{
+  background-color: #003060;
+  border: 1px solid #003060;
+  color: #fff;
+}
+
+.btn-detail:hover{
+  background-color: #001060;
+  border: 1px solid #003060;
+  color: #fff;
+}
+
 .btn-blue2{
   /*background-color: #16a1ec;*/
   background-color: #39F;
@@ -87,30 +112,30 @@
 }
 
 .btn-edit{
-  /*background-color: #16a1ec;*/
-  background-color: #1bc396;
-  border: 1px solid #1bc396;
+  background-color: #16a1ec;
+  /*background-color: #1bc396;*/
+  border: 1px solid #16a1ec;
   color: #fff;
   margin-bottom: 2px;
 }
 
 .btn-edit:hover{
-  background-color: #1ab396;
-  border: 1px solid #1bc396;
+  background-color: #16b1ec;
+  border: 1px solid #16a1ec;
   color: #fff;
 }
 
 .btn-delete{
   /*background-color: #16a1ec;*/
-  background-color: #ef5285;
-  border: 1px solid #ef5285;
+  background-color: #004b97;
+  border: 1px solid #004b97;
   color: #fff;
   margin-bottom: 2px;
 }
 
 .btn-delete:hover{
-  background-color: #ef316b;
-  border: 1px solid #ef5285;
+  background-color: #002b97;
+  border: 1px solid #004b97;
   color: #fff;
 }
 
@@ -139,15 +164,14 @@
 }
 
 .btn-income{
-  background-color: rgba(254,244,169,.8);
-  border: 1px solid rgba(254,244,169,.8);
+  background-color: rgba(255,210,107,.8);
+  border: 1px solid rgba(255,210,107,.8);
   color: #000;
 }
 
 .btn-income:hover{
-  background-color: #fef4a9;
-  border: 1px solid #fef4a9;
-  color: #000;
+  background-color: #ffd26b;
+  border: 1px solid #ffd26b;
 }
 
 .btn-spend{
@@ -157,9 +181,31 @@
 }
 
 .btn-spend:hover{
-  background-color: #a5dff9;
-  border: 1px solid #a5dff9;
-  color: #000;
+  background-color: #1bc396;
+  border: 1px solid #1bc396;
+}
+
+.btn-remove{
+  width: 37.8px;
+  background-color: #dadada;
+  border-color: #dadada;
+}
+
+.btn-remove:hover{
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+.btn-add{
+  position: relative;
+  bottom: 38px;
+  right: 40px;
+}
+
+.btn-save{
+  position: relative;
+  right: 15px;
+  bottom: 76px;
 }
 
 .forget, .registration{
@@ -167,8 +213,12 @@
   color: #fff;
 }
 
-.pic{
-  /*width: 500px;*/
+.date{
+  margin-bottom: 0;
+}
+
+.date-end{
+  margin-left: 5px;
 }
 
 .card{
@@ -183,59 +233,6 @@
   margin: 0 10px 0 10px;
   padding: 10px 10px 0 0;
 }
-
-span{
-  font-size: 14px;
-}
-
-@media screen and (max-width: 767px) {
-  .navbar{
-    padding-left: 8px;
-  }
-  .nav-btn{
-    margin:0 0 0 10px;
-    padding: 3px 0 0 0;
-    /*font-size: .8rem;*/
-  }
-  .navbar-brand{
-    /*font-size: .75rem;*/
-  }
-
-  .card-body{
-  padding: 1.75rem 1.25rem 1.75rem 4rem;
-  }
-  .cover{
-    order: 1;
-  }
-  .input-box{
-    order: 2;
-  }
-  .pic{
-  width: 100%;
-  }
-  .card{
-    width: 100%;
-  }
-  .feature-item:first-child{
-    margin: 38px 0;
-  }
-  .social-icon{
-    align-items: flex-end;
-  }
-  .check{
-  margin-top: 30px;
-  }
-  .spendrwd{
-    /*background-color: #a5dff9;*/
-  }
-  .itemrwd{
-    /*background-color: #ceefe4;*/
-  }
-  .incomerwd{
-    /*background-color: #fef4a9;*/
-  }
-}
-
 
 section{
   padding: 50px 0;
@@ -252,13 +249,6 @@ section{
 .input-box{
   line-height: 100px;
   margin: auto;
-}
-
-.intro{
-
-}
-
-.feature{
 }
 
 .feature-item{
@@ -324,10 +314,6 @@ section{
   padding: 0 10px;
 }
 
-.action{
-  
-}
-
 .info{
   margin-bottom: 25px;
 }
@@ -357,12 +343,16 @@ section{
 }
 
 .spend-total, .income-total{
-  font-size: 36px;
+  font-size: 26px;
   color: #fff;
   display: inline-block;
   /*margin-top: 10px;*/
-  padding-top: 25px;
-  margin-left: 10px;
+  padding-top: 28px;
+  margin-left: 18px;
+}
+
+h1{
+  font-size: 2.2rem;
 }
 
 .income{
@@ -391,6 +381,10 @@ section{
   border-radius: 20px;
 }
 
+.date-box{
+  margin: 15px 0;
+}
+
 .new-btn-group{
   margin-bottom: 15px;
 }
@@ -408,12 +402,29 @@ tr:hover{
 .scan{
   background-color: #eee;
   border-radius: 5px;
+  padding: 40px 0;
+  margin-bottom: 10px;
+}
+
+.scan-port{
+  width: 80%;
+  height: 100px;
 }
 
 .login-box{
   width: 450px;
   height: 600px;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,.5);
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 20px;
+}
+
+.password-box{
+  width: 450px;
+  height: 70vh;
+  background-color: rgba(0,0,0,.5);
   margin: 20px;
   padding: 15px;
   border: 1px solid #eee;
@@ -462,52 +473,203 @@ hr{
   }
 }
 
+.list-group{
+  flex-direction: row;
+  justify-content: flex-end;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 15px;
+}
+
+.list-group-item:first-child, .list-group-item:last-child{
+  border-radius: .25rem .25rem 0 0;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #19a0ec;
+  border-color: #19a0ec;
+}
+
+.list-group-item-action{
+  width: 80px;
+}
+
+.dropdown-item:hover{
+  background-color: #fff;
+  color: #000;
+}
+.dropdown-item:focus {
+  background-color: #fff;
+  color: #039;
+}
+
+.result{
+  font-size: 14px;
+}
+
+.input-group-append {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.input-group-append-prize{
+  padding: 3px 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
 
 @media screen and (max-width: 600px) {
   .rwdtable {
     border: 0;
-    
     caption {
-        font-size: 1.3em;
+      font-size: 1.3em;
     }
     
-    thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-    
-    tr {
-        /*background-color: #a5dff9;*/
-        /*border-bottom: 1px solid #ddd;*/
-        display: block;
-        margin-bottom: .625em;
-    }
-    
-    td {
-        color: #000;
-        /*border-bottom: 1px solid #ddd;*/
-        display: block;
-        font-size: .8em;
-        text-align: right;
-    }
-    
-    td:before {
-        color: black;
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-    
-    td:last-child {
-        border-bottom: 0;
-    }
+  thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  tr {
+    /*background-color: #a5dff9;*/
+    /*border-bottom: 1px solid #ddd;*/
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  td {
+    color: #000;
+    /*border-bottom: 1px solid #ddd;*/
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  td:before {
+    color: black;
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  td:last-child {
+    border-bottom: 0;
   }
 }
+}
 
+@media screen and (max-width: 767px) {
+  .navbar{
+    padding-left: 8px;
+  }
+  .nav-btn{
+    margin:0 0 0 10px;
+    padding: 3px 0 0 0;
+    font-size: .8rem;
+  }
+  .navbar-brand{
+    font-size: 1rem;
+  }
+  .spend-total, .income-total{
+    font-size: 28px;
+    padding-top: 30px;
+    margin-left: 15%;
+  }
+  h1{
+    font-size: 2rem;
+  }
+  .cover{
+    order: 1;
+  }
+  .input-box{
+    order: 2;
+  }
+  .pic, .card{
+    width: 100%;
+  }
+  .feature-item:first-child{
+    margin: 38px 0;
+  }
+  .social-icon{
+    align-items: flex-end;
+  }
+  .check{
+    margin-top: 30px;
+  }
+  .spendrwd{
+    /*background-color: #a5dff9;*/
+  }
+  .itemrwd{
+    /*background-color: #ceefe4;*/
+  }
+  .incomerwd{
+    /*background-color: #fef4a9;*/
+  }
+  .spend-total, .income-total{
+    padding-top: 10px;
+  }
+  .income, .spend{
+    height: 65px;
+    margin: 0 5px 10px 0;
+  }
+  .spend-logo{
+    margin-top: 0px;
+  }
+  .income-logo{
+    margin-top: 10px;
+  }
+  .new-title{
+    margin: 10px 0;
+  }
+  .form-group{
+    margin-bottom: .3rem;
+  }
+  .btn-save{
+    position: fixed;
+    left: 15px;
+    bottom: 20px;
+  }
+  .btn-remove{
+    width: 37.8px;
+    background-color: #ccc;
+    border-color: #ccc;
+  }
+  .btn-add{
+    position: relative;
+    bottom: 38px;
+    right: 40px;
+  }
+  .scan{
+    padding-top: 0;
+  }
+  .date-box{
+    /*margin-left: -15px;*/
+  }
+  .date{
+    display: block;
+    margin: .5rem 0 0 0;
+  }
+  .date-start{
+    /*padding-right: 15px;*/
+  }
+  .date-input{
+    padding: 0.375rem .3rem;
+  }
+  .btn-date{
+    /*margin-left: 0;*/
+    line-height: 1.5;
+    border-radius: .2rem;
+    margin: 5px 0 15px 0;
+  }
+  .card-body{
+    padding: 1.75rem 1.25rem 1.75rem 4rem;
+  }
+}
