@@ -2,19 +2,51 @@
   <%= javascript_pack_tag 'vue-qrscaner-redeem', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<div class="row" id="app">
-  <a href="#" v-if="!clicked" @click.prevent="clickStatus" class="btn">點我，開始掃發票吧！</a>
-  <div>
-  <qrcode-stream v-if="clicked" @decode="onDecode" @init="onInit" />
+<div class="container my-2">
+  <h1 class='new-title'><i class="fas fa-award"></i>  發票對獎</h1>
+
+  <div class="spend">
+    <div class="row">
+      <div class="col-12 col-md-6 d-flex">
+        <div><%= image_tag "income50.png", class: 'income-logo' %></div>
+        <div class="income-total">您今天中獎了嗎?</div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="income-total ml-0 message" id="message"></div>
+      </div>
+    </div>
   </div>
-</div>
 
-<%= form_with url: prizes_transactions_path, id: "inv_form" do %>
-  <%= label_tag :inv_input, '發票末三碼 :' %>
-  <%= text_field_tag :inv_input,"", maxlength: 3 %>
-  <%= hidden_field_tag :inv_full_number, "" %>
-  <%= submit_tag "送出" %>
-<% end %>
-
-<div id="message" class="message">
+<div class="row">
+  <div class="col-12 col-md-6">
+  <h3>使用QRcode對獎</h3>
+    <div class="scan" id="app">
+      <a href="#" v-if="!clicked" @click.prevent="clickStatus" class="btn pl-2">點我，開始掃發票吧！</a>
+      <div>
+      <qrcode-stream v-if="clicked" @decode="onDecode" @init="onInit" />
+      </div>
+    </div>
+  </div>
+  
+  <!-- <div class="or">或是</div> -->
+  <div class="col-12 col-md-6">
+    <h3>手動輸入末三碼對獎</h3>
+    <div>
+      <%= form_with url: prizes_transactions_path, id: "inv_form" do %>
+        <%= label_tag :inv_input, '請輸入發票末三碼對獎 :', class: 'invoice-input' %>
+        <%= text_field_tag :inv_input,"", maxlength: 3, placeholder: '末三碼', class: 'invoice-input form-control' %>
+        <%= hidden_field_tag :inv_full_number, "" %>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-3 pl-0 py-3">
+              <%= submit_tag "送出", class: 'btn btn-blue2 btn-block' %>
+            </div>
+            <div class="col-12 col-md-3 pl-0 py-3">
+              <%= link_to '返回', users_transactions_path, class: 'btn btn-blue1 btn-block' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
