@@ -134,7 +134,7 @@
                 <tbody>
                   <% @transactions.each do |transaction| %>
                   <tr class="spendrwd">
-                    <td data-label="消費時間"><%= transaction.created_at.to_date %></td> 
+                    <td data-label="消費時間"><%= transaction.invoice_date %></td> 
                     <td data-label="發票號碼"><%= transaction.invoice_num %></td>
                     <td data-label="發票總價"><%= transaction.amount.to_i %></td>
                     <td data-label="對獎狀態"><%= t("enum.transaction.status.#{transaction.status}") %></td>
