@@ -9,7 +9,7 @@ $(document).on("turbolinks:load", function() {
     fetchDayColors();      
     monthToGrid();
     $(window).resize(function() {
-      generateDayGrid()
+      // generateDayGrid()
       monthToGrid()
     });
   }
