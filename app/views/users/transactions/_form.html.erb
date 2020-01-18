@@ -35,7 +35,7 @@
     <%= link_to_add_association '+', invoice, :transaction_items, partial: 'users/transactions/transaction_items_fields', form_name: 'invoice', class: 'btn btn-add btn-dark' %>
   </div>
 
-  <div class="container">
-    <%= invoice.submit '儲存', class: 'btn btn-blue1 btn-save' %>
+  <div class="row">
+    <%= invoice.submit '儲存發票明細', class: 'btn btn-block btn-blue1 btn-save' %>
   </div>
 <% end %>
