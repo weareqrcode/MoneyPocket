@@ -65,28 +65,33 @@ document.addEventListener('turbolinks:load', () => {
           document.querySelector('#transaction_invoice_date').value = `${Number(Year) + 1911}-${Month}-${Day}`
 
           productAry.map((item, idx) => {
-            let temp = `
-          <div class="nested-fields">
-             <div class="form-group">
-                <input type="hidden" name="transaction[transaction_items_attributes][${idx + 1}][id]" id="transaction_transaction_items_attributes_${idx + 1}_id" />
-                <label for="transaction_transaction_items_attributes_${idx + 1}_title">品項名稱</label>
-                <input class="form-control" type="text" name="transaction[transaction_items_attributes][${idx + 1}][title]" id="transaction_transaction_items_attributes_${idx + 1}_title" />
-              </div>
-              <div class="form-group">
-                <label for="transaction_transaction_items_attributes_${idx + 1}_quantity">品項數量</label>
-                <input class="form-control" type="text" name="transaction[transaction_items_attributes][${idx + 1}][quantity]" id="transaction_transaction_items_attributes_${idx + 1}_quantity" />
-              </div>
-              <div class="form-group">
-                <label for="transaction_transaction_items_attributes_${idx + 1}_price">品項單價</label>
-                <input class="form-control" type="text" name="transaction[transaction_items_attributes][${idx + 1}][price]" id="transaction_transaction_items_attributes_${idx + 1}_price" />
-              </div>
-              <div class="form-group">
-                <label for="transaction_transaction_items_attributes_${idx + 1}_total">品項總價</label>
-                <input class="form-control" type="text" name="transaction[transaction_items_attributes][${idx + 1}][total]" id="transaction_transaction_items_attributes_${idx + 1}_total" />
-              </div>
-              <input value="false" type="hidden" name="transaction[transaction_items_attributes][${idx + 1}][_destroy]" id="transaction_transaction_items_attributes_${idx + 1}__destroy" /><a class="remove_fields dynamic" href="#">remove item</a>
-            </div>
-          `
+            let temp = `<div class="nested-fields form-row">
+                          <div class="form-group col-md-3">
+                            <input type="hidden" name="transaction[transaction_items_attributes][${idx + 1}][id]" id="transaction_transaction_items_attributes_${idx + 1}_id">
+                            <label for="transaction_transaction_items_attributes_${idx + 1}_title">品項名稱</label> 
+                            <input type="text" name="transaction[transaction_items_attributes][${idx + 1}][title]" id="transaction_transaction_items_attributes_${idx + 1}_title" class="form-control">
+                        </div>
+                          <div class="form-group col-md-3">
+                            <label for="transaction_transaction_items_attributes_${idx + 1}_category_items">品項分類</label>
+                            <input type="text" value="" name="transaction[transaction_items_attributes][${idx + 1}][category_items]" id="transaction_transaction_items_attributes_${idx + 1}_category_items" class="form-control">
+                        </div>
+                          <div class="form-group col-md-2">
+                            <label for="transaction_transaction_items_attributes_${idx + 1}_quantity">品項數量</label>
+                            <input type="text" name="transaction[transaction_items_attributes][${idx + 1}][quantity]" id="transaction_transaction_items_attributes_${idx + 1}_quantity" class="form-control">
+                          </div> 
+                          <div class="form-group col-md-2">
+                            <label for="transaction_transaction_items_attributes_${idx + 1}_price">品項單價</label>
+                            <input type="text" name="transaction[transaction_items_attributes][${idx + 1}][price]" id="transaction_transaction_items_attributes_${idx + 1}_price" class="form-control">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="transaction_transaction_items_attributes_${idx + 1}_total">品項總價</label>
+                            <input type="text" name="transaction[transaction_items_attributes][${idx + 1}][total]" id="transaction_transaction_items_attributes_${idx + 1}_total" class="form-control">
+                          </div>
+                          <div class="col-12 d-flex justify-content-end">
+                            <input value="false" type="hidden" name="transaction[transaction_items_attributes][${idx + 1}][_destroy]" id="transaction_transaction_items_attributes_${idx + 1}__destroy">
+                            <a href="#" class="btn btn-remove remove_fields dynamic">-</a>
+                          </div>
+                        </div>`
 
             document.querySelector(`#transaction_transaction_items_attributes_${idx}_title`).value = item.productName
             document.querySelector(`#transaction_transaction_items_attributes_${idx}_quantity`).value = item.productQty
