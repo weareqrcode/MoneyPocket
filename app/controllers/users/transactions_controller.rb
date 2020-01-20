@@ -2,10 +2,15 @@ class Users::TransactionsController < Users::BaseController
   before_action :find_transaction, only: [:show, :edit, :update, :destroy]
 
   def index
+
+     # 可能可以用 scope 整理
     if (params[:start_date].blank? || params[:end_date].blank?)
+      # 居然有注意到 N+1 很棒XD
       @transactions = current_user.transactions.includes(transaction_items: [:categories]).order('invoice_date desc') #fixed n+1 problem
       @transactionitems = current_user.transaction_items.order('total desc')
       @incomes = current_user.incomes.order('created_at desc')
+
+
       @pie_count = @transactionitems.where({created_at: Date.today.beginning_of_month..Date.today.end_of_month})
                                     .unscope(:order)
                                     .joins(:categories)
@@ -23,12 +28,14 @@ class Users::TransactionsController < Users::BaseController
 
     @incomes_balance = current_user.incomes.where(
       {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:total)
-      
+
     @transactions_balance = current_user.transactions.where(
       {created_at: Date.today.beginning_of_month..Date.today.end_of_month}).sum(&:amount)
 
     respond_to do |format|
       format.html { render "index" }
+
+      # 這些應該拉到 respond_to 外面
       point_json = current_user.transactions.group("created_at::date").count
       income_json = current_user.incomes.group("created_at::date").count
       income_array = income_json.map { |k, v| { :date => k, :count => v } }
@@ -39,23 +46,29 @@ class Users::TransactionsController < Users::BaseController
   end
 
   def act
+    # select("status" == "pending") 好像沒有這樣用的喔，可以用 transactions.pending 把 pending 叫出來
     @transactions = current_user.transactions.select("status" == "pending").order(created_at: :desc)
     @transactions.each do |t|
       invoice_num = t.invoice_num.gsub(/\A\w{2}(\d*)\z/,'\\1')
       next if invoice_num.blank?
       month = "#{(t.invoice_date.strftime('%Y').to_i) -1911}#{t.invoice_date.strftime('%m')}"
       month_two = in_two_months?(month, prize_all.keys)
+
+      # 可改為
+      # next unless (in_two_months?(month, prize_all.keys))
       next if (in_two_months?(month, prize_all.keys)) == false
 
       result = false
       prize_all[month_two].keys.each do |method|
         num = invoice_num.scan(/\d{#{method}}$/)[0]
         if prize_all[month_two][method].include?(num) && t.status == "pending"
-          t.win! 
+          t.win!
           result = true
           break
         end
       end
+
+      # 可改為 t.pending?
       if t.status == "pending"
           t.miss! unless result
       end
@@ -83,7 +96,7 @@ class Users::TransactionsController < Users::BaseController
   def edit
   end
 
-  def update  
+  def update
     if @transaction.update(transaction_params)
       redirect_to users_transactions_path, notice: "完成一筆帳目更新"
     else
@@ -104,7 +117,7 @@ class Users::TransactionsController < Users::BaseController
   def find_transaction
     @transaction = Transaction.find(params[:id])
   end
-  
+
   def transaction_params
     params.require(:transaction).permit(:invoice_num, :invoice_photo, :amount, :data, :invoice_date, transaction_items_attributes: [:id, :title, :quantity, :price, :total, :category_items, :_destroy])
   end
@@ -122,6 +135,8 @@ class Users::TransactionsController < Users::BaseController
 
   def in_two_months?(cur_month, target_month)
     next_month = ((cur_month.to_i) + 1).to_s
+
+    # 直接寫 cur_month.in? target_month 即可
     if (cur_month.in?target_month) == true
       cur_month = cur_month
     elsif(next_month.in?target_month) == true

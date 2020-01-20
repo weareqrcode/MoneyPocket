@@ -51,6 +51,8 @@ document.addEventListener('turbolinks:load', () => {
         try {
           await promise
         } catch (error) {
+          //可以用 js 的 switch case
+          // https://www.wibibi.com/info.php?tid=187
           if (error.name === 'NotAllowedError') {
             this.error = "ERROR: you need to grant camera access permisson"
           } else if (error.name === 'NotFoundError') {

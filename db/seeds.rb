@@ -11,22 +11,22 @@ require "net/http"
 
 month = ["10", "08"]
 month.each do |i|
-url = URI("https://api.einvoice.nat.gov.tw/PB2CAPIVAN/invapp/InvApp")
+  url = URI("https://api.einvoice.nat.gov.tw/PB2CAPIVAN/invapp/InvApp")
 
-https = Net::HTTP.new(url.host, url.port);
-https.use_ssl = true
+  https = Net::HTTP.new(url.host, url.port); # ruby 裡面沒有在加 ; 的
+  https.use_ssl = true
 
-request = Net::HTTP::Post.new(url)
-request["Content-Type"] = "application/x-www-form-urlencoded"
-request.body = "version=0.2&action=QryWinningList&invTerm=108#{i}&appID=#{ENV["EINVOICE_APP_ID"]}"
+  request = Net::HTTP::Post.new(url)
+  request["Content-Type"] = "application/x-www-form-urlencoded"
+  request.body = "version=0.2&action=QryWinningList&invTerm=108#{i}&appID=#{ENV["EINVOICE_APP_ID"]}"
 
-prize = JSON.parse(https.request(request).read_body)
+  prize = JSON.parse(https.request(request).read_body)
 
-a = Prize.new
-a.jsonb = {a: 124}
-a.save
+  a = Prize.new
+  a.jsonb = {a: 124} # 這邊看起來是忘記拿掉吧
+  a.save
 
-a.jsonb = prize
-a.save
+  a.jsonb = prize
+  a.save
 end
 # 將近三次的發票中獎號碼從財政部拿回來,並存進資料庫

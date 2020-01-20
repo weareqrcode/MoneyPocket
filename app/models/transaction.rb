@@ -1,14 +1,16 @@
 class Transaction < ApplicationRecord
   include AASM
-  
+
   # Relationships
   belongs_to :user
   has_many :transaction_items, inverse_of: :transaction_record, dependent: :destroy
   accepts_nested_attributes_for :transaction_items, :allow_destroy => true
 
+  scope :with_time, -> (time) { time.present? ? where('created_at > ?', time) : all }
+
   # photo upload
   has_one_attached :invoice_photo
-  
+
   # 狀態機
   enum status: { pending: 0, missed: 1, won: 2 }
 
