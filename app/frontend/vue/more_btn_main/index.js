@@ -3,7 +3,6 @@ const main = {
     itemShow: false,
     itemId: '',
     modalFade: 'modal fade',
-    modalBack: 'modal-backdrop fade',
     show: 'show',
     modalShow: false,
     closeBtn: true,
