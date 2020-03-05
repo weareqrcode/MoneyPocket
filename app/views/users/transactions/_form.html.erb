@@ -4,6 +4,7 @@
   <% end %>
 <% end %>
 
+<%# 這邊用 transaction 會比 @transaction 好%>
 <%= form_with model: [:users, @transaction], local: true do |invoice| %>
   <div class="row">
     <div class="col-12 col-md-4">
